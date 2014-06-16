@@ -1,0 +1,52 @@
+options:
+  charset: utf8
+ 
+ManagedFile:
+  actAs: [Timestampable]
+  columns:
+    id: { type: integer(4), primary: true, autoincrement: true }
+    member_id: { type: integer(4), notnull: true }
+    name: { type: string, notnull: true }
+    file_id: { type: integer(4), notnull: true }
+    directory_id: { type: integer(4), notnull: true }
+  relations:
+    Member:
+      foreignAlias: ManagedFiles
+      local: member_id
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: cascade
+    File:
+      local: file_id
+      foreign: id
+      type: one
+      foreignType: one
+      onDelete: cascade
+    FileDirectory:
+      foreignAlias: ManagedFiles
+      local: directory_id
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: cascade
+
+FileDirectory:
+  actAs: [Timestampable]
+  columns:
+    id: { type: integer(4), primary: true, autoincrement: true }
+    member_id: { type: integer(4), notnull: true }
+    name: { type: string(64), notnull: true }
+    is_open: { type: boolean, notnull: true, default: true }
+  relations:
+    Member:
+      foreignAlias: ManagedFileDirectories
+      local: member_id
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: cascade
+  indexes:
+    member_id_name_UNIQUE:
+      fields: [member_id, name]
+      type: unique

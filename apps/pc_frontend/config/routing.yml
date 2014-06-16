@@ -1,0 +1,38 @@
+file_show:
+  url: /file/show/:id
+  class: sfDoctrineRoute
+  options: { model: ManagedFile, type: object }
+  param: { module: file, action: show }
+  requirements:
+    id: \d+
+
+file_create:
+  url: /file/create
+  param: { module: file, action: create }
+  requirements:
+    sf_method: [post]
+
+file_download:
+  url: /file/download/:id
+  class: sfDoctrineRoute
+  options: { model: ManagedFile, type: object }
+  param: { module: file, action: download }
+  requirements:
+    id: \d+
+
+file_edit:
+  url: /file/edit/:id
+  class: sfDoctrineRoute
+  options: { model: ManagedFile, type: object }
+  param: { module: file, action: edit }
+  requirements:
+    id: \d+
+
+file_update:
+  url: /file/update/:id
+  class: sfDoctrineRoute
+  options: { model: ManagedFile, type: object }
+  param: { module: file, action: update }
+  requirements:
+    sf_method: [post]
+    id: \d+
