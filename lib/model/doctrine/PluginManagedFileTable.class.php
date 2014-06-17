@@ -17,10 +17,11 @@ class PluginManagedFileTable extends Doctrine_Table
     return Doctrine_Core::getTable('PluginManagedFile');
   }
 
-  public static function getExtension($type)
+  public function getFileListByDirectoryId($directoryId)
   {
-    $tmp = explode('/', $type);
-
-    return $tmp[1];
+    return $this->createQuery()
+      ->from('ManagedFile f')
+      ->where('f.directory_id = ?', $directoryId)
+      ->execute();
   }
 }

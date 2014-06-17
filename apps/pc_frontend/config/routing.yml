@@ -36,3 +36,12 @@ file_update:
   requirements:
     sf_method: [post]
     id: \d+
+
+
+directory_show:
+  url: /directory/show/:id
+  class: sfDoctrineRoute
+  options: { model: FileDirectory, type: object }
+  param: { module: directory, action:show }
+  requirements:
+    id: \d+

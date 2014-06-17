@@ -25,12 +25,24 @@ class directoryActions extends sfActions
     }
   }
 
+ /**
+  * Executes show action
+  *
+  * @param sfWebRequest $request A request object
+  */
   public function executeShow(sfWebRequest $request)
   {
-    $this->directory = Doctrine::getTable('FileDirectory')->find($request['id']);
-    $this->forward404If(!$this->directory);
+    $this->directory = $this->getRoute()->getObject();
+    $this->forward404If(!$this->directory->isViewable());
+    $this->files = Doctrine::getTable('ManagedFile')
+      ->getFileListByDirectoryId($this->directory->getId());
   }
 
+ /**
+  * Executes list action
+  *
+  * @param sfWebRequest $request A request object
+  */
   public function executeList(sfWebRequest $request)
   {
     $this->directories = Doctrine_Query::create()
@@ -39,6 +51,12 @@ class directoryActions extends sfActions
       ->execute();
   }
 
+ /**
+  * process form
+  *
+  * @param sfWebRequest $request A request object
+  * @param sfForm $form A form object
+  */
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind(
