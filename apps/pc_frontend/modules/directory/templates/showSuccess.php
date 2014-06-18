@@ -1,5 +1,12 @@
-<h2><?php echo $directory->getName() ?></h2>
-<?php echo link_to('設定', 'directory/edit?id='.$directory->id) ?>
+<h3>
+  <?php echo $directory->getName() ?>
+  <?php if ($directory->isAuthor()): ?>
+  <small>(<?php echo $directory->getPublicLabel() ?>)</small>
+  <?php endif; ?>
+</h3>
+<?php if ($directory->isAuthor()): ?>
+<?php echo link_to('公開', 'directory_publish?id='.$directory->id) ?>
+<?php endif; ?>
 <ul>
 <?php foreach ($files as $file): ?>
   <li>
