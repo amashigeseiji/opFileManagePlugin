@@ -20,7 +20,9 @@ class directoryActions extends sfActions
 
     if ($request->isMethod('POST'))
     {
-      $this->processForm($request, $this->form);
+      $directory = $this->processForm($request, $this->form);
+
+      $this->redirect('directory/list?id='.$directory->getId());
     }
   }
 
@@ -64,9 +66,7 @@ class directoryActions extends sfActions
 
     if ($form->isValid())
     {
-      $directory = $form->save();
-
-      $this->redirect('directory/list?id='.$directory->getId());
+      return $form->save();
     }
   }
 }
