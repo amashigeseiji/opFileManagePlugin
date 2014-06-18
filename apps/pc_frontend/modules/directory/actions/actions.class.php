@@ -22,7 +22,7 @@ class directoryActions extends sfActions
     {
       $directory = $this->processForm($request, $this->form);
 
-      $this->redirect('directory/list?id='.$directory->getId());
+      $this->redirect('@directory_show?id='.$directory->getId());
     }
   }
 
@@ -50,6 +50,37 @@ class directoryActions extends sfActions
       ->from('FileDirectory f')
       ->where('f.member_id = ?', $this->getUser()->getMemberId())
       ->execute();
+  }
+
+ /**
+  * Executes publish action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executePublish(sfWebRequest $request)
+  {
+    $directory = $this->getRoute()->getObject();
+    $this->forward404If(!$directory->isAuthor());
+    $directory->setIsOpen($request['private'] ? false : true);
+    $directory->save();
+
+    $this->redirect('@directory_show?id='.$directory->getId());
+  }
+
+ /**
+  * Executes edit action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeEdit(sfWebRequest $request)
+  {
+    $directory = $this->getRoute()->getObject();
+    $this->forward404If(!$directory->isAuthor());
+    $this->forward404If(!$request->getParameter('name'));
+    $directory->setName($request['name']);
+    $directory->save();
+
+    $this->redirect('@directory_show?id='.$directory->getId());
   }
 
  /**

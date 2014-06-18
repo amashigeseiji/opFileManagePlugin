@@ -1,3 +1,4 @@
+#file actions
 file_show:
   url: /file/show/:id
   class: sfDoctrineRoute
@@ -37,11 +38,39 @@ file_update:
     sf_method: [post]
     id: \d+
 
-
+#directory actions
 directory_show:
   url: /directory/show/:id
   class: sfDoctrineRoute
   options: { model: FileDirectory, type: object }
-  param: { module: directory, action:show }
+  param: { module: directory, action: show }
   requirements:
     id: \d+
+
+directory_create:
+  url: /directory/create
+  param: { module: directory, action: create }
+
+directory_list:
+  url: /directory/list
+  param: { module: directory, action: list }
+
+directory_edit_name:
+  url: /directory/:id/edit
+  class: sfDoctrineRoute
+  options: { model: FileDirectory, type: object }
+  param: { module: directory, action: edit }
+  requirements:
+    id: \d+
+
+directory_publish:
+  url: /directory/:id/publish
+  class: sfDoctrineRoute
+  options: { model: FileDirectory, type: object }
+  param: { module: directory, action: publish }
+  requirements:
+    id: \d+
+
+directory_nodefaults:
+  url: /directory/*
+  options: { module: default, action: error }
