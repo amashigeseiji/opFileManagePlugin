@@ -23,4 +23,12 @@ abstract class PluginFileDirectory extends BaseFileDirectory
   {
     return (bool)sfContext::getInstance()->getUser()->getMemberId() === $this->getMember()->getId();
   }
+
+  /**
+   * @return bool
+   */
+  public function getPublicLabel()
+  {
+    return $this->getIsOpen() ? '公開' : '非公開';
+  }
 }
