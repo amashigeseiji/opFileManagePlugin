@@ -81,6 +81,7 @@ class fileActions extends sfActions
   {
     $this->file = $this->getRoute()->getObject();
     $this->forward404If(!$this->file->isViewable($this->getUser()->getMemberId()));
+    $this->directory = $this->file->getFileDirectory();
   }
 
  /**

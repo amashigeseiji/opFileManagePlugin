@@ -2,11 +2,18 @@
 <table>
 <tr>
   <th>ファイル名 &nbsp;</th>
-  <td><?php echo $file->getFileNameWithExtension() ?></td>
+  <td>
+    <?php echo $file->getFileNameWithExtension() ?> ( <?php echo $file->getFile()->getType() ?> )
+    <?php echo link_to('<i class="icon-download-alt"></i>', '@file_download?id='.$file->id, array('class' => 'btn btn-default')) ?>
+  </td>
+</tr>
+<tr>
+  <th>サイズ</th>
+  <td><?php echo $file->getFilesize() ?></td>
 </tr>
 <tr>
   <th>ディレクトリ &nbsp;</th>
-  <td><?php echo $file->getFileDirectory()->getName() ?></td>
+  <td><?php echo link_to($directory->getName(), 'directory_show', $directory) ?> ( <?php echo $directory->getPublicLabel() ?> )</td>
 </tr>
 <tr>
   <th>メンバー &nbsp;</th>
@@ -17,5 +24,3 @@
   <td><?php echo $file->getDateTimeObject('created_at')->format('Y年m月d日') ?></td>
 </tr>
 </table>
-<br />
-<?php echo link_to('ダウンロード', '@file_download?id='.$file->getId()) ?>
