@@ -41,4 +41,19 @@ abstract class PluginManagedFile extends BaseManagedFile
   {
     return (bool)sfContext::getInstance()->getUser()->getMemberId() === $this->getMember()->getId();
   }
+
+  /**
+   * @return string
+   */
+  public function getFilesize()
+  {
+    $size = $this->getFile()->getFilesize();
+    $units = array(' B', ' KB', ' MB', ' GB');
+    for ($i = 0; $size >= 1024 && $i < 3; $i++)
+    {
+      $size /= 1024;
+    }
+
+    return round($size, 2).$units[$i];
+  }
 }
