@@ -17,7 +17,6 @@ class directoryActions extends sfActions
   public function executeCreate(sfWebRequest $request)
   {
     $this->form = new FileDirectoryForm();
-    $this->form->getObject()->member_id = $this->getUser()->getMemberId();
 
     if ($request->isMethod('POST'))
     {

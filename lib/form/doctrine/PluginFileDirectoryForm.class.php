@@ -3,10 +3,9 @@
 /**
  * PluginFileDirectory form.
  *
- * @package    ##PROJECT_NAME##
+ * @package    OpenPNE
  * @subpackage form
- * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: sfDoctrineFormPluginTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @author     Seiji Amashige <amashige@tejimaya.com>
  */
 abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
 {
@@ -16,5 +15,12 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
     unset(
       $this['member_id'], $this['created_at'], $this['updated_at']
     );
+  }
+
+  public function save()
+  {
+    $this->getObject()->setMemberId(sfContext::getInstance()->getUser()->getMemberId());
+
+    return parent::save();
   }
 }
