@@ -66,6 +66,7 @@ directory_edit_name:
   param: { module: directory, action: edit }
   requirements:
     id: \d+
+    sf_method: [put]
 
 directory_publish:
   url: /directory/:id/publish
@@ -74,6 +75,7 @@ directory_publish:
   param: { module: directory, action: publish }
   requirements:
     id: \d+
+    sf_method: [put]
 
 directory_nodefaults:
   url: /directory/*

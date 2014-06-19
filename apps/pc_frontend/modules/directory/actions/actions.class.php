@@ -59,6 +59,8 @@ class directoryActions extends sfActions
   */
   public function executePublish(sfWebRequest $request)
   {
+    $request->checkCSRFProtection();
+
     $directory = $this->getRoute()->getObject();
     $this->forward404If(!$directory->isAuthor());
     $directory->setIsOpen($request['private'] ? false : true);
@@ -74,6 +76,8 @@ class directoryActions extends sfActions
   */
   public function executeEdit(sfWebRequest $request)
   {
+    $request->checkCSRFProtection();
+
     $directory = $this->getRoute()->getObject();
     $this->forward404If(!$directory->isAuthor());
     $this->forward404If(!$request->getParameter('name'));
