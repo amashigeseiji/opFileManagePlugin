@@ -12,7 +12,7 @@
   <td><?php echo $file->getFilesize() ?></td>
 </tr>
 <tr>
-  <th>ディレクトリ &nbsp;</th>
+  <th>フォルダ &nbsp;</th>
   <td><?php echo link_to($directory->getName(), 'directory_show', $directory) ?> ( <?php echo $directory->getPublicLabel() ?> )</td>
 </tr>
 <tr>

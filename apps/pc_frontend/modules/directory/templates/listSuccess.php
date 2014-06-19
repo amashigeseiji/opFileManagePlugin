@@ -1,4 +1,4 @@
-<h3>ディレクトリ一覧</h3>
+<h3>フォルダ一覧</h3>
 <ul>
 <?php foreach ($directories as $key => $directory): ?>
 <li>

@@ -32,10 +32,11 @@ $(document).ready(function() {
   <?php echo link_to('非公開', '@directory_publish?id='.$directory->getId().'&private=true', array('method' => 'put')) ?>
 <?php endif; ?>
 
+<?php echo link_to('削除', '@directory_delete?id='.$directory->getId(), array('method' => 'delete', 'confirm' => 'フォルダの中のファイルもすべて削除されます。\nよろしいですか？')) ?>
+
 <a href="javascript:void(0)" id="directory_edit_name_show_link">名前を変更する</a>
 <div id="directory_edit_name" class="hide">
-  <input type="text" class="directory_edit_name_input" />
+  <input type="text" class="directory_edit_name_input" placeholder="フォルダ名を入力してください" />
   <?php echo link_to('確定', '@directory_edit_name?id='.$directory->getId(), array('method' => 'put', 'class' => 'directory_edit_name_form btn btn-default')) ?>
 </div>
 
-<?php echo link_to('削除', '@directory_delete?id='.$directory->getId(), array('method' => 'delete', 'confirm' => 'ディレクトリ配下のファイルもすべて削除されます。\nよろしいですか？')) ?>
