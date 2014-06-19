@@ -37,3 +37,5 @@ $(document).ready(function() {
   <input type="text" class="directory_edit_name_input" />
   <?php echo link_to('確定', '@directory_edit_name?id='.$directory->getId(), array('method' => 'put', 'class' => 'directory_edit_name_form btn btn-default')) ?>
 </div>
+
+<?php echo link_to('削除', '@directory_delete?id='.$directory->getId(), array('method' => 'delete', 'confirm' => 'ディレクトリ配下のファイルもすべて削除されます。\nよろしいですか？')) ?>

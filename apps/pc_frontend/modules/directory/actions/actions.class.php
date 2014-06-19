@@ -86,6 +86,21 @@ class directoryActions extends sfActions
   }
 
  /**
+  * Executes delete action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeDelete(sfWebRequest $request)
+  {
+    $request->checkCSRFProtection();
+
+    $directory = $this->getRoute()->getObject();
+    $this->forward404If(!$directory->isAuthor());
+    $directory->delete();
+
+    $this->redirect('@directory_list');
+  }
+ /**
   * process form
   *
   * @param sfWebRequest $request A request object

@@ -81,6 +81,15 @@ directory_publish:
     id: \d+
     sf_method: [put]
 
+directory_delete:
+  url: /directory/:id/delete
+  class: sfDoctrineRoute
+  options: { model: FileDirectory, type: object }
+  param: { module: directory, action: delete }
+  requirements:
+    id: \d+
+    sf_method: [delete]
+
 directory_nodefaults:
   url: /directory/*
   options: { module: default, action: error }
