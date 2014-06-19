@@ -63,8 +63,7 @@ class directoryActions extends sfActions
 
     $directory = $this->getRoute()->getObject();
     $this->forward404If(!$directory->isAuthor());
-    $directory->setIsOpen($request['private'] ? false : true);
-    $directory->save();
+    $directory->publish($request['private'] ? false : true);
 
     $this->redirect('@directory_show?id='.$directory->getId());
   }

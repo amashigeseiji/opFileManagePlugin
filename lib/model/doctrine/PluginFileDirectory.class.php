@@ -31,4 +31,13 @@ abstract class PluginFileDirectory extends BaseFileDirectory
   {
     return $this->getIsOpen() ? '公開' : '非公開';
   }
+
+  /**
+   * @param bool|null $publish 公開フラグ
+   */
+  public function publish($publish = null)
+  {
+    $this->setIsOpen($publish ? true : false);
+    $this->save();
+  }
 }
