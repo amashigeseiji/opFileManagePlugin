@@ -40,4 +40,10 @@ abstract class PluginFileDirectory extends BaseFileDirectory
     $this->setIsOpen($publish ? true : false);
     $this->save();
   }
+
+  public function modifyName($name)
+  {
+    $this->setName($name);
+    $this->save();
+  }
 }

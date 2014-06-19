@@ -80,8 +80,7 @@ class directoryActions extends sfActions
     $directory = $this->getRoute()->getObject();
     $this->forward404If(!$directory->isAuthor());
     $this->forward404If(!$request->getParameter('name'));
-    $directory->setName($request['name']);
-    $directory->save();
+    $directory->modifyName($request['name']);
 
     $this->redirect('@directory_show?id='.$directory->getId());
   }
