@@ -14,7 +14,7 @@ file_create:
     sf_method: [post]
 
 file_download:
-  url: /file/download/:id
+  url: /file/:id/download
   class: sfDoctrineRoute
   options: { model: ManagedFile, type: object }
   param: { module: file, action: download }
@@ -22,7 +22,7 @@ file_download:
     id: \d+
 
 file_edit:
-  url: /file/edit/:id
+  url: /file/:id/edit
   class: sfDoctrineRoute
   options: { model: ManagedFile, type: object }
   param: { module: file, action: edit }
@@ -30,13 +30,17 @@ file_edit:
     id: \d+
 
 file_update:
-  url: /file/update/:id
+  url: /file/:id/update
   class: sfDoctrineRoute
   options: { model: ManagedFile, type: object }
   param: { module: file, action: update }
   requirements:
     sf_method: [post]
     id: \d+
+
+file_nodefaults:
+  url: /file/*
+  options: { module: default, action: error }
 
 #directory actions
 directory_show:
