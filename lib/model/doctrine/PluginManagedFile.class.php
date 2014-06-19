@@ -39,7 +39,7 @@ abstract class PluginManagedFile extends BaseManagedFile
    */
   public function isAuthor()
   {
-    return (bool)sfContext::getInstance()->getUser()->getMemberId() === $this->getMember()->getId();
+    return sfContext::getInstance()->getUser()->getMemberId() === $this->getMember()->getId();
   }
 
   /**
