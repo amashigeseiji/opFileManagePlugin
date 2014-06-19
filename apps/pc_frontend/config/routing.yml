@@ -1,6 +1,6 @@
 #file actions
 file_show:
-  url: /file/show/:id
+  url: /file/:id
   class: sfDoctrineRoute
   options: { model: ManagedFile, type: object }
   param: { module: file, action: show }
@@ -44,7 +44,7 @@ file_nodefaults:
 
 #directory actions
 directory_show:
-  url: /directory/show/:id
+  url: /directory/:id
   class: sfDoctrineRoute
   options: { model: FileDirectory, type: object }
   param: { module: directory, action: show }
