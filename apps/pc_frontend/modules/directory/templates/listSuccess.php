@@ -1,10 +1,11 @@
-<h3>Directory list</h3>
-<table>
+<h3>ディレクトリ一覧</h3>
+<ul>
 <?php foreach ($directories as $key => $directory): ?>
-<tr>
-<td>
-<?php echo link_to($directory->getName(), 'directory/show?id='.$directory->getId(), $directory) ?>
-</td>
-</tr>
+<li>
+<?php echo link_to($directory->getName(), '@directory_show?id='.$directory->getId()) ?>
+<?php if ($directory->isAuthor()): ?>
+ ( <?php echo $directory->getPublicLabel() ?> )
+<?php endif; ?>
+</li>
 <?php endforeach; ?>
-</table>
+</ul>
