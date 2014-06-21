@@ -32,11 +32,17 @@ class fileActions extends sfActions
 
     if ($file)
     {
-      $this->getUser()->setFlash('notice', 'ファイルをアップロードしました。');
-      $this->redirect('@file_show?id='.$file->id);
+      $notice = 'notice';
+      $message = 'ファイルをアップロードしました。';
     }
+    else
+    {
+      $notice = 'error';
+      $message = 'ファイルのアップロードに失敗しました。';
+    }
+    $this->getUser()->setFlash($notice, $message);
 
-    $this->setTemplate('upload');
+    $this->redirect('@directory_show?id='.$directory->getId());
   }
 
  /**
