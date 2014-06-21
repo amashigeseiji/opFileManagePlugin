@@ -12,9 +12,12 @@ file_upload:
   param: { module: file, action: upload }
 
 file_create:
-  url: /file/create
+  url: /file/create/directory/:id
+  class: sfDoctrineRoute
+  options: { model: FileDirectory, type: object }
   param: { module: file, action: create }
   requirements:
+    id: \d+
     sf_method: [post]
 
 file_download:
