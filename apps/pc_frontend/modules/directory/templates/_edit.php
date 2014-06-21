@@ -62,7 +62,7 @@ $(document).ready(function() {
 </div>
 
 <div class="file_upload_input hide">
-  <?php echo $fileForm->renderFormTag(url_for('file_create', $directory), array('method' => 'post')) ?>
+  <?php echo $fileForm->renderFormTag(url_for('file_upload', $directory), array('method' => 'post')) ?>
   <?php echo $fileForm ?>
   <input type="submit" class="btn btn-mini" value="<?php echo __('Upload') ?>" />
   </form>

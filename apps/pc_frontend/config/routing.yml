@@ -8,10 +8,6 @@ file_show:
     id: \d+
 
 file_upload:
-  url: /file/upload
-  param: { module: file, action: upload }
-
-file_create:
   url: /file/create/directory/:id
   class: sfDoctrineRoute
   options: { model: FileDirectory, type: object }

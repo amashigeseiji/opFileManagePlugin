@@ -10,16 +10,6 @@
 class fileActions extends sfActions
 {
  /**
-  * Executes upload action
-  *
-  * @param sfWebRequest $request A request object
-  */
-  public function executeUpload(sfWebRequest $request)
-  {
-    $this->form = new ManagedFileForm();
-  }
-
- /**
   * Executes create action
   *
   * @param sfWebRequest $request A request object
