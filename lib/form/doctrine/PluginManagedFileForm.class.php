@@ -3,10 +3,9 @@
 /**
  * PluginManagedFile form.
  *
- * @package    ##PROJECT_NAME##
+ * @package    OpenPNE
  * @subpackage form
- * @author     ##AUTHOR_NAME##
- * @version    SVN: $Id: sfDoctrineFormPluginTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+ * @author     Seiji Amashige <amashige@tejimaya.com>
  */
 abstract class PluginManagedFileForm extends BaseManagedFileForm
 {
@@ -16,6 +15,7 @@ abstract class PluginManagedFileForm extends BaseManagedFileForm
 
     unset(
       $this['member_id'], $this['file_id'],
+      $this['directory_id'],
       $this['created_at'], $this['updated_at']
     );
 
@@ -31,6 +31,7 @@ abstract class PluginManagedFileForm extends BaseManagedFileForm
 
     $this->getObject()->setFile($file);
     $this->getObject()->setMemberId(sfContext::getInstance()->getuser()->getMemberId());
+    $this->getObject()->setDirectoryId($this->getOption('directory')->getId());
 
     return parent::save();
   }

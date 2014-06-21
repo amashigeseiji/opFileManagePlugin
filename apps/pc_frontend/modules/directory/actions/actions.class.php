@@ -37,6 +37,7 @@ class directoryActions extends sfActions
     $this->forward404If(!$this->directory->isViewable());
     $this->files = Doctrine::getTable('ManagedFile')
       ->getFileListByDirectoryId($this->directory->getId());
+    $this->fileForm = new ManagedFileForm(array(), array('directory' => $this->directory));
   }
 
  /**

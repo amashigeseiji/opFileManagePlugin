@@ -5,7 +5,7 @@
   <?php endif; ?>
 </h3>
 <?php if ($directory->isAuthor()): ?>
-  <?php include_partial('directory/edit', array('directory' => $directory)) ?>
+  <?php include_partial('directory/edit', array('directory' => $directory, 'fileForm' => $fileForm)) ?>
 <?php endif; ?>
 <ul>
 <?php foreach ($files as $file): ?>

@@ -26,7 +26,8 @@ class fileActions extends sfActions
   */
   public function executeCreate(sfWebRequest $request)
   {
-    $this->form = new ManagedFileForm();
+    $directory = $this->getRoute()->getObject();
+    $this->form = new ManagedFileForm(array(), array('directory' => $directory));
     $file = $this->processForm($request, $this->form);
 
     if ($file)
