@@ -57,6 +57,8 @@ directory_show:
 directory_create:
   url: /directory/create
   param: { module: directory, action: create }
+  requirements:
+    sf_method: [post]
 
 directory_list:
   url: /directory/list

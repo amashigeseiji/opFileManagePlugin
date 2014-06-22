@@ -17,11 +17,8 @@ class directoryActions extends sfActions
   public function executeCreate(sfWebRequest $request)
   {
     $this->form = new FileDirectoryForm();
-
-    if ($request->isMethod('POST'))
+    if ($directory = $this->processForm($request, $this->form))
     {
-      $directory = $this->processForm($request, $this->form);
-
       $this->redirect('@directory_show?id='.$directory->getId());
     }
   }
