@@ -47,10 +47,8 @@ class directoryActions extends sfActions
   */
   public function executeList(sfWebRequest $request)
   {
-    $this->directories = Doctrine_Query::create()
-      ->from('FileDirectory f')
-      ->where('f.member_id = ?', $this->getUser()->getMemberId())
-      ->execute();
+    $this->directories = FileDirectoryTable::getInstance()
+      ->getDirectoryListByMemberId($this->getUser()->getMemberId());
   }
 
  /**

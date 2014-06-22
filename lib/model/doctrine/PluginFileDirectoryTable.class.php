@@ -16,4 +16,11 @@ class PluginFileDirectoryTable extends Doctrine_Table
   {
     return Doctrine_Core::getTable('PluginFileDirectory');
   }
+
+  public function getDirectoryListByMemberId($memberId)
+  {
+    return $this->createQuery()
+      ->where('member_id = ?', $memberId)
+      ->execute();
+  }
 }
