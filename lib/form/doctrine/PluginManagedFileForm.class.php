@@ -15,11 +15,10 @@ abstract class PluginManagedFileForm extends BaseManagedFileForm
 
     unset(
       $this['member_id'], $this['file_id'],
-      $this['directory_id'],
+      $this['directory_id'], $this['name'],
       $this['created_at'], $this['updated_at']
     );
 
-    $this->widgetSchema['name'] = new sfWidgetFormInput();
     $this->widgetSchema['file'] = new sfWidgetFormInputFile();
     $this->validatorSchema['file'] = new sfValidatorFile(array('required' => true));
   }
@@ -28,6 +27,10 @@ abstract class PluginManagedFileForm extends BaseManagedFileForm
   {
     $file = new File();
     $file->setFromValidatedFile($this->getValue('file'));
+    if (!$this->getObject()->getName())
+    {
+      $this->getObject()->setName($file->getOriginalFilename());
+    }
 
     $this->getObject()->setFile($file);
     $this->getObject()->setMemberId(sfContext::getInstance()->getuser()->getMemberId());
