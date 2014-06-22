@@ -1,45 +1,32 @@
 <script type="text/javascript">
 $(document).ready(function() {
+  var toggle = function(div, link, word) {
+    if (!div.hasClass('active')) {
+      div.addClass('active');
+      div.show();
+      link.html(word.to_close);
+    } else {
+      div.removeClass('active');
+      div.hide();
+      link.html(word.to_open);
+    }
+  };
+
   $('#directory_edit_name_show_link').on('click', function() {
     var
-      _self = $(this),
-      to_open = '名前を変更する',
-      to_close = '中止',
-      link = $('.directory_edit_name_form'),
-      href = link.attr('href'),
-      div = $('#directory_edit_name');
+      div = $('#directory_edit_name'),
+      link = div.find('a'),
+      href = link.attr('href');
 
-    $('.directory_edit_name_input').on('keyup', function () {
+    div.find('input[type=text]').on('keyup', function () {
       link.attr('href', href + '?name=' + this.value);
     });
 
-    if (!div.hasClass('active')) {
-      div.addClass('active');
-      div.show();
-      _self.html(to_close);
-    } else {
-      div.removeClass('active');
-      div.hide();
-      _self.html(to_open);
-    }
+    toggle(div, $(this), { to_open : '名前を変更する', to_close: '中止' });
   });
 
   $('#file_upload_show_link').on('click', function() {
-    var
-      _self = $(this),
-      div = $('.file_upload_input'),
-      to_open = '<?php echo __('Upload') ?>',
-      to_close = '中止';
-
-    if (!div.hasClass('active')) {
-      div.addClass('active');
-      div.show();
-      _self.html(to_close);
-    } else {
-      div.removeClass('active');
-      div.hide();
-      _self.html(to_open);
-    }
+    toggle($('.file_upload_input'), $(this), { to_open: '<?php echo __('Upload') ?>', to_close: '中止' });
   });
 });
 </script>
@@ -57,8 +44,8 @@ $(document).ready(function() {
 <a href="javascript:void(0)" id="directory_edit_name_show_link">名前を変更する</a>
 
 <div id="directory_edit_name" class="hide">
-  <input type="text" class="directory_edit_name_input" placeholder="フォルダ名を入力してください" />
-  <?php echo link_to('確定', '@directory_edit_name?id='.$directory->getId(), array('method' => 'put', 'class' => 'directory_edit_name_form btn btn-default')) ?>
+  <input type="text" placeholder="フォルダ名を入力してください" />
+  <?php echo link_to('確定', '@directory_edit_name?id='.$directory->getId(), array('method' => 'put', 'class' => 'btn btn-small')) ?>
 </div>
 
 <div class="file_upload_input hide">
