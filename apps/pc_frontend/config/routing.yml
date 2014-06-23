@@ -66,6 +66,8 @@ directory_list:
 
 directory_list_member:
   url: /directory/list/:id
+  class: sfDoctrineRoute
+  options: { model: Member, type: object }
   param: { module: directory, action: list }
   requirements:
     id: \d+

@@ -44,15 +44,13 @@ class directoryActions extends sfActions
   */
   public function executeList(sfWebRequest $request)
   {
-    if (!$memberId = $request->getParameter('id'))
-    {
-      $memberId = $this->getUser()->getMemberId();
-    }
+    $this->member = $request->getParameter('id') ?
+      $this->getRoute()->getObject() : $this->getUser()->getMember();
     // get all list or not
     $isOpenOnly =
-      ($memberId === $this->getUser()->getMemberId()) ? false : true;
+      ($this->member->getId() === $this->getUser()->getMemberId()) ? false : true;
     $this->directories = FileDirectoryTable::getInstance()
-      ->getDirectoryListByMemberId($memberId, $isOpenOnly);
+      ->getDirectoryListByMemberId($this->member->getId(), $isOpenOnly);
   }
 
  /**
