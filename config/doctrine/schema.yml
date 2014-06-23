@@ -50,3 +50,15 @@ FileDirectory:
     member_id_name_UNIQUE:
       fields: [member_id, name]
       type: unique
+
+DirectoryConfig:
+  columns:
+    id: { type: integer(4), primary: true, autoincrement: true, comment: "Serial number" }
+    directory_id: { type: integer(4), notnull: true, comment: "Directory id" }
+    name: { type: string(64), default: "", notnull: true, comment: "Configuration name" }
+    value: { type: string, comment: "Configuration value" }
+  relations:
+    FileDirectory:
+      local: directory_id
+      foreign: id
+      onDelete: cascade

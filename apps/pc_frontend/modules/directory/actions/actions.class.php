@@ -101,6 +101,17 @@ class directoryActions extends sfActions
 
     $this->redirect('@directory_list');
   }
+
+  public function executeConfig(sfWebRequest $request)
+  {
+    $this->directory = $this->getRoute()->getObject();
+    $this->form = new DirectoryConfigForm(array(), array('directory' => $this->directory));
+    if ($request->isMethod('post'))
+    {
+      $this->processForm($request, $this->form);
+    }
+  }
+
  /**
   * process form
   *
