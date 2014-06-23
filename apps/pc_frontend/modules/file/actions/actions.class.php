@@ -107,6 +107,29 @@ class fileActions extends sfActions
   }
 
  /**
+  * Executes delete action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeDelete(sfWebRequest $request)
+  {
+    $request->checkCSRFProtection();
+
+    $this->file = $this->getRoute()->getObject();
+    $this->forward404If(!$this->file->isAuthor());
+    $directoryId = $this->file->getFileDirectory()->getId();
+    if ($this->file->delete())
+    {
+      $this->getUser()->setFlash('notice', 'ファイルを削除しました。');
+      $this->redirect('@directory_show?id='.$directoryId);
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'ファイルの削除に失敗しました。');
+    }
+  }
+
+ /**
   * process form
   *
   * @param sfWebRequest $request A request object

@@ -17,9 +17,14 @@
 <ul>
 <?php foreach ($files as $file): ?>
   <li>
-    <a href="<?php echo url_for('file_download', $file) ?>" class="btn btn-small">
-      <i class="icon-download-alt"></i>
-    </a>
+    <div class="btn-group">
+      <a href="<?php echo url_for('file_download', $file) ?>" class="btn btn-small">
+        <i class="icon-download-alt"></i>
+      </a>
+      <?php if ($file->isAuthor()): ?>
+        <?php echo link_to('<i class="icon-trash"></i>', '@file_delete?id='.$file->getId(), array('method' => 'delete', 'class' => 'btn btn-small')) ?>
+      <?php endif; ?>
+    </div>
     <?php echo link_to($file->getFileNameWithExtension(), 'file_show', $file) ?>
   </li>
 <?php endforeach; ?>

@@ -41,6 +41,15 @@ file_update:
     sf_method: [post]
     id: \d+
 
+file_delete:
+  url: /file/:id/delete
+  class: sfDoctrineRoute
+  options: { model: ManagedFile, type: object }
+  param: { module: file, action: delete }
+  requirements:
+    sf_method: [delete]
+    id: \d+
+
 file_nodefaults:
   url: /file/*
   options: { module: default, action: error }
