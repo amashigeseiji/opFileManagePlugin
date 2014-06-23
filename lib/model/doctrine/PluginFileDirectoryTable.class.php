@@ -17,10 +17,16 @@ class PluginFileDirectoryTable extends Doctrine_Table
     return Doctrine_Core::getTable('PluginFileDirectory');
   }
 
-  public function getDirectoryListByMemberId($memberId)
+  public function getDirectoryListByMemberId($memberId, $isOpenOnly = false)
   {
-    return $this->createQuery()
-      ->where('member_id = ?', $memberId)
-      ->execute();
+    $q = $this->createQuery()
+      ->where('member_id = ?', $memberId);
+
+    if ($isOpenOnly)
+    {
+      $q->andWhere('is_open = ?', true);
+    }
+
+    return $q->execute();
   }
 }
