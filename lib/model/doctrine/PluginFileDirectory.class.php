@@ -21,7 +21,7 @@ abstract class PluginFileDirectory extends BaseFileDirectory
    */
   public function isAuthor()
   {
-    return sfContext::getInstance()->getUser()->getMemberId() === $this->getMember()->getId();
+    return sfContext::getInstance()->getUser()->getMemberId() === $this->getMemberId();
   }
 
   /**
