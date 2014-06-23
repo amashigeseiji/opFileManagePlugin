@@ -1,6 +1,8 @@
 <h4>
 フォルダ一覧
+<?php if (!$sf_request->getParameter('id') || $sf_user->getMemberId() === $sf_request->getParameter('id')): ?>
 <small><a href="javascript:void(0)" id="directory_create_link">フォルダを追加する</a></small>
+<?php endif; ?>
 </h4>
 
 <ul>

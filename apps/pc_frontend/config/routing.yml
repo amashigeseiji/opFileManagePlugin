@@ -67,6 +67,8 @@ directory_list:
 directory_list_member:
   url: /directory/list/:id
   param: { module: directory, action: list }
+  requirements:
+    id: \d+
 
 directory_edit_name:
   url: /directory/:id/edit
