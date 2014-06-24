@@ -24,3 +24,9 @@
   <td><?php echo $file->getDateTimeObject('created_at')->format('Y年m月d日') ?></td>
 </tr>
 </table>
+
+<?php if ($file->isImage()): ?>
+<div class="thumnail">
+  <?php echo op_image_tag_sf_image($file->getFile()->getName()) ?>
+</div>
+<?php endif; ?>
