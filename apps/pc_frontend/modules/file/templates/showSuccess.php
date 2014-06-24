@@ -25,8 +25,6 @@
 </tr>
 </table>
 
-<?php if ($file->isImage()): ?>
 <div class="thumnail">
-  <?php echo op_image_tag_sf_image($file->getFile()->getName()) ?>
+<?php include_partial('file/thumnail', array('file' => $file)) ?>
 </div>
-<?php endif; ?>

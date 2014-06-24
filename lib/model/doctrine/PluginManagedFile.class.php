@@ -57,8 +57,31 @@ abstract class PluginManagedFile extends BaseManagedFile
     return round($size, 2).$units[$i];
   }
 
+  /**
+   * @return bool
+   */
   public function isImage()
   {
     return $this->getFile()->isImage();
+  }
+
+  /**
+   * @return bool
+   */
+  public function isText()
+  {
+    $type = $this->getFile()->getType();
+    if ($type === 'text/plain'
+      || $type === 'text/html')
+    {
+      return true;
+    }
+
+    return false;
+  }
+
+  public function getBin()
+  {
+    return $this->getFile()->getFileBin()->bin;
   }
 }
