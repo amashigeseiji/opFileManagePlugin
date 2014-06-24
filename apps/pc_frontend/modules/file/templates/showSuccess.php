@@ -1,5 +1,5 @@
 <h3>ファイル情報</h3>
-<table>
+<table class="table">
 <tr>
   <th>ファイル名 &nbsp;</th>
   <td>
@@ -25,6 +25,6 @@
 </tr>
 </table>
 
-<div class="thumnail">
+<div class="thumbnail" style="text-align: center">
 <?php include_partial('file/thumnail', array('file' => $file)) ?>
 </div>
