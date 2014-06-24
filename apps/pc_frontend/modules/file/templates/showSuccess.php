@@ -3,7 +3,7 @@
 <tr>
   <th>ファイル名 &nbsp;</th>
   <td>
-    <?php echo $file->getFileNameWithExtension() ?> ( <?php echo $file->getFile()->getType() ?> )
+    <?php echo $file->getName() ?> ( <?php echo $file->getFile()->getType() ?> )
     <?php echo link_to('<i class="icon-download-alt"></i>', '@file_download?id='.$file->id, array('class' => 'btn btn-default')) ?>
   </td>
 </tr>

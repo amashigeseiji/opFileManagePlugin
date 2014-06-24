@@ -29,7 +29,7 @@
         <?php echo link_to('<i class="icon-trash"></i>', '@file_delete?id='.$file->getId(), array('method' => 'delete', 'class' => 'btn btn-small')) ?>
       <?php endif; ?>
     </div>
-    <?php echo link_to($file->getFileNameWithExtension(), 'file_show', $file) ?>
+    <?php echo link_to($file->getName(), 'file_show', $file) ?>
   </li>
 <?php endforeach; ?>
 </ul>

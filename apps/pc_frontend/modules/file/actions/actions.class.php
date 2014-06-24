@@ -95,7 +95,7 @@ class fileActions extends sfActions
     $this->getResponse()->setHttpHeader('Content-Type', $file->getFile()->getType());
     $this->getResponse()->setHttpHeader('Content-Length', strlen($data));
 
-    $filename = $file->getFileNameWithExtension();
+    $filename = $file->getName();
     // for ie
     if (1 === preg_match('/MSIE/', $request->getHttpHeader('User-Agent')))
     {
