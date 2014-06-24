@@ -18,7 +18,7 @@ $(document).ready( function() {
 
 <?php if ($file->isImage()): ?>
 <div class="thumnail">
-  <?php echo op_image_tag_sf_image($file->getName()) ?>
+  <?php echo op_image_tag_sf_image($file->getFile()->getName()) ?>
 </div>
 <?php elseif ($file->isText()): ?>
 <a href="javascript:void(0)" class="toggle-text">テキストを表示する</a>
