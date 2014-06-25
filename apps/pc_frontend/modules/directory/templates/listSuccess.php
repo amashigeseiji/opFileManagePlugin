@@ -11,7 +11,7 @@
 </thead>
 
 <tbody>
-<?php foreach ($directories as $key => $directory): ?>
+<?php foreach ($pager as $directory): ?>
 <tr>
 <td>
 <?php echo link_to($directory->getName(), '@directory_show?id='.$directory->getId()) ?>
@@ -26,4 +26,5 @@
 </tbody>
 </table>
 
+<?php op_include_pager_navigation($pager, '@directory_list?page=%d'); ?>
 <?php include_component('directory', 'formModal', array('trigger' => '#directory_create_link')) ?>

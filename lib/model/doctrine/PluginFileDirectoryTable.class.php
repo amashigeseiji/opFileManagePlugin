@@ -19,14 +19,31 @@ class PluginFileDirectoryTable extends Doctrine_Table
 
   public function getDirectoryListByMemberId($memberId, $isOpenOnly = false)
   {
+    return $this->getListQueryByMemberId($memberId, $isOpenOnly)->execute();
+  }
+
+  public function getMemberDirectoryListPager($memberId, $isOpenOnly = false, $size = 10, $page)
+  {
+    $q = $this->getListQueryByMemberId($memberId, $isOpenOnly);
+
+    $pager = new sfDoctrinePager('FileDirectory', $size);
+    $pager->setQuery($q);
+    $pager->setPage($page, 1);
+
+    return $pager;
+  }
+
+  public function getListQueryByMemberId($memberId, $isOpenOnly = false)
+  {
     $q = $this->createQuery()
-      ->where('member_id = ?', $memberId);
+      ->where('member_id = ?', $memberId)
+      ->orderBy('created_at DESC');
 
     if ($isOpenOnly)
     {
       $q->andWhere('is_open = ?', true);
     }
 
-    return $q->execute();
+    return $q;
   }
 }
