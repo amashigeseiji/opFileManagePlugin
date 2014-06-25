@@ -1,11 +1,23 @@
-<h3>ファイル情報</h3>
-<table class="table">
+<table class="table table-striped">
+<thead>
+<tr>
+  <th>ファイル情報</th>
+  <td>
+    <?php include_partial('file/operationButton', array('file' => $file)) ?>
+  </td>
+</tr>
+</thead>
+
+<tbody>
 <tr>
   <th>ファイル名 &nbsp;</th>
   <td>
-    <?php echo $file->getName() ?> ( <?php echo $file->getFile()->getType() ?> )
-    <?php echo link_to('<i class="icon-download-alt"></i>', '@file_download?id='.$file->id, array('class' => 'btn btn-default')) ?>
+    <?php echo $file->getName() ?>
   </td>
+</tr>
+<tr>
+  <th>タイプ</th>
+  <td><?php echo $file->getFile()->getType() ?></td>
 </tr>
 <tr>
   <th>サイズ</th>
@@ -23,6 +35,7 @@
   <th>アップロード日時 &nbsp;</th>
   <td><?php echo $file->getDateTimeObject('created_at')->format('Y年m月d日') ?></td>
 </tr>
+</tbody>
 </table>
 
 <div class="thumbnail" style="text-align: center">

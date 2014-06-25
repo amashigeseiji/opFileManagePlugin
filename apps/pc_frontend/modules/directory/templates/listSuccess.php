@@ -1,19 +1,29 @@
-<h4>
+<table class="table table-striped">
+<thead>
+<th>
 <?php echo $member->getName() ?>のフォルダ一覧
+</th>
 <?php if ($sf_user->getMemberId() === $member->getId()): ?>
-<small><a href="javascript:void(0)" id="directory_create_link">フォルダを追加する</a></small>
+<td>
+<a href="javascript:void(0)" id="directory_create_link">フォルダを追加する</a>
+</td>
 <?php endif; ?>
-</h4>
+</thead>
 
-<ul>
+<tbody>
 <?php foreach ($directories as $key => $directory): ?>
-<li>
+<tr>
+<td>
 <?php echo link_to($directory->getName(), '@directory_show?id='.$directory->getId()) ?>
+</td>
 <?php if ($directory->isAuthor()): ?>
- ( <?php echo $directory->getPublicLabel() ?> )
+<td>
+<?php echo $directory->getPublicLabel() ?>
+</td>
 <?php endif; ?>
-</li>
+</tr>
 <?php endforeach; ?>
-</ul>
+</tbody>
+</table>
 
 <?php include_component('directory', 'formModal', array('trigger' => '#directory_create_link')) ?>

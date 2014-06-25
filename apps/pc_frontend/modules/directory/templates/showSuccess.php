@@ -33,20 +33,7 @@
       <?php echo link_to($file->getName(), 'file_show', $file) ?>
     </td>
     <td>
-      <span class="btn-group">
-        <a href="<?php echo url_for('file_download', $file) ?>" class="btn btn-small">
-          <i class="icon-download-alt"></i>
-        </a>
-        <?php if ($file->isAuthor()): ?>
-          <?php echo link_to(
-            '<i class="icon-trash"></i>',
-            '@file_delete?id='.$file->getId(),
-            array('method' => 'delete',
-                  'class' => 'btn btn-small',
-                  'confirm' => 'ファイル名: '.$file->getName().'\n本当に削除してもよろしいですか？')
-          ) ?>
-        <?php endif; ?>
-      </span>
+      <?php include_partial('file/operationButton', array('file' => $file)) ?>
     </td>
   </tr>
 <?php endforeach; ?>
