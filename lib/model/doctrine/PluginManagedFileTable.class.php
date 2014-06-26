@@ -19,9 +19,27 @@ class PluginManagedFileTable extends Doctrine_Table
 
   public function getFileListByDirectoryId($directoryId)
   {
-    return $this->createQuery()
-      ->from('ManagedFile f')
-      ->where('f.directory_id = ?', $directoryId)
+    return $this->getFileListQueryByDirectoryId($directoryId)
       ->execute();
+  }
+
+  public function getFileListPager($directoryId, $page = null)
+  {
+    $q = $this->getFileListQueryByDirectoryId($directoryId);
+
+    $size = sfConfig::get('app_filelist_max_size', 2);
+
+    $pager = new sfDoctrinePager('ManagedFile', $size);
+    $pager->setQuery($q);
+    $pager->setPage($page, 1);
+
+    return $pager;
+  }
+
+  public function getFileListQueryByDirectoryId($directoryId)
+  {
+    return $this->createQuery()
+      ->where('directory_id = ?', $directoryId)
+      ->orderBy('created_at DESC');
   }
 }

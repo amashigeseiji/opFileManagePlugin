@@ -27,7 +27,7 @@
 </tr>
 </thead>
 <tbody>
-<?php foreach ($files as $file): ?>
+<?php foreach ($pager as $file): ?>
   <tr>
     <td>
       <?php echo link_to($file->getName(), 'file_show', $file) ?>
@@ -39,10 +39,13 @@
 <?php endforeach; ?>
 </tbody>
 </table>
-  <?php if ($directory->getisOpen() || $directory->isAuthor()): ?>
-    <?php include_partial('file/fileUploadModal', array(
-      'form' => $fileForm,
-      'url' => url_for('file_upload', $directory),
-      'trigger' => '#file_upload_show_link')
-    ) ?>
-  <?php endif; ?>
+
+<?php op_include_pager_navigation($pager, '@directory_show?id='.$directory->id.'&page=%d'); ?>
+
+<?php if ($directory->getisOpen() || $directory->isAuthor()): ?>
+  <?php include_partial('file/fileUploadModal', array(
+    'form' => $fileForm,
+    'url' => url_for('file_upload', $directory),
+    'trigger' => '#file_upload_show_link')
+  ) ?>
+<?php endif; ?>
