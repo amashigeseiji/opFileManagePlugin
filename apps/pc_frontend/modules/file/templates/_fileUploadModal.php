@@ -1,6 +1,6 @@
 <?php include_partial('file/formModal', array(
-  'form'    => $form,
-  'url'     => $url,
+  'form'    => new ManagedFileForm(array(), array('directory' => $directory)),
+  'url'     => url_for('file_upload', $directory),
   'id'      => 'file_upload_form',
   'title'   => 'ファイルをアップロードする',
   'widgets' => array('file'),

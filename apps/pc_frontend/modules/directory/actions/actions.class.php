@@ -35,7 +35,6 @@ class directoryActions extends sfActions
     $this->pager = Doctrine::getTable('ManagedFile')
       ->getFileListPager($this->directory->getId(), $request->getParameter('page'));
     $this->pager->init();
-    $this->fileForm = new ManagedFileForm(array(), array('directory' => $this->directory));
   }
 
  /**

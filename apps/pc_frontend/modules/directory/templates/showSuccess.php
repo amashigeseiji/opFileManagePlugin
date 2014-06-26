@@ -40,7 +40,7 @@
 </tbody>
 </table>
 
-<?php if ($pager->getNbResult()): ?>
+<?php if ($pager->getNbResults()): ?>
   <?php op_include_pager_navigation($pager, '@directory_show?id='.$directory->id.'&page=%d'); ?>
 <?php else: ?>
   <?php op_include_box('directoryShow', 'ファイルが存在しません。') ?>
@@ -48,8 +48,7 @@
 
 <?php if ($directory->getisOpen() || $directory->isAuthor()): ?>
   <?php include_partial('file/fileUploadModal', array(
-    'form' => $fileForm,
-    'url' => url_for('file_upload', $directory),
-    'trigger' => '#file_upload_show_link')
+    'directory' => $directory,
+    'trigger'   => '#file_upload_show_link')
   ) ?>
 <?php endif; ?>
