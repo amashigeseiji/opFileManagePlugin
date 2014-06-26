@@ -11,6 +11,7 @@
 </thead>
 
 <tbody>
+<?php if ($pager->getNbResult()): ?>
 <?php foreach ($pager as $directory): ?>
 <tr>
 <td>
@@ -23,8 +24,14 @@
 <?php endif; ?>
 </tr>
 <?php endforeach; ?>
+<?php endif; ?>
 </tbody>
 </table>
 
+<?php if ($pager->getNbResult()): ?>
 <?php op_include_pager_navigation($pager, '@directory_list?page=%d'); ?>
+<?php else: ?>
+<?php op_include_box('DirectoryList', 'フォルダがありません。') ?>
+<?php endif; ?>
+
 <?php include_component('directory', 'formModal', array('trigger' => '#directory_create_link')) ?>
