@@ -29,7 +29,9 @@
 </table>
 
 <?php if ($pager->getNbResults()): ?>
-<?php op_include_pager_navigation($pager, '@directory_list?page=%d'); ?>
+<?php $uri = $sf_request->getParameter('id') ?
+  '@directory_list_member?id='.$member->getId().'&page=%d' : '@directory_list?page=%d' ?>
+<?php op_include_pager_navigation($pager, $uri); ?>
 <?php else: ?>
 <?php op_include_box('DirectoryList', 'フォルダがありません。') ?>
 <?php endif; ?>
