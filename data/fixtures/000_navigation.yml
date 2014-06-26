@@ -1,0 +1,10 @@
+Navigation:
+  directory_navigation:
+    type: "default"
+    uri: "@directory_list"
+    sort_order: 50
+    Translation:
+      en:
+        caption: "My Folder"
+      ja_JP:
+        caption: "マイフォルダ"
