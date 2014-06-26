@@ -34,4 +34,4 @@
 <?php op_include_box('DirectoryList', 'フォルダがありません。') ?>
 <?php endif; ?>
 
-<?php include_component('directory', 'formModal', array('trigger' => '#directory_create_link')) ?>
+<?php include_component('directory', 'directoryCreateModal', array('trigger' => '#directory_create_link')) ?>

@@ -9,7 +9,7 @@
  */
 class directoryComponents extends sfcomponents
 {
-  public function executeFormModal()
+  public function executeDirectoryCreateModal()
   {
     $this->form = new FileDirectoryForm();
   }
