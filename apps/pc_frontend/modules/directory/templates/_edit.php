@@ -44,7 +44,7 @@ $(document).ready(function() {
   <a href="javascript:void(0)" id="directory_edit_name_show_link" class="btn btn-mini">名前を変更する</a>
 </div>
 
-<div id="directory_edit_name" class="hide">
+<div id="directory_edit_name" class="hide form form-inline">
   <input type="text" placeholder="フォルダ名を入力してください" />
-  <?php echo link_to('確定', '@directory_edit_name?id='.$directory->getId(), array('method' => 'put', 'class' => 'btn btn-small')) ?>
+  <?php echo link_to('確定', '@directory_edit_name?id='.$directory->getId(), array('method' => 'put', 'class' => 'btn btn-small btn-primary', 'style' => 'color: #ffffff')) ?>
 </div>

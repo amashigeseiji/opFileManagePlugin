@@ -20,7 +20,7 @@
   <td>
     <?php if ($directory->getisOpen() || $directory->isAuthor()): ?>
       <a href="javascript:void(0)" id="file_upload_show_link" class="btn btn-mini btn-info" style="color: #ffffff">
-        <?php echo 'アップロード' ?>
+        アップロード
       </a>
     <?php endif; ?>
   </td>
