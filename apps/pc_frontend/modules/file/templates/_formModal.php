@@ -9,15 +9,23 @@ $(document).ready(function() {
 </script>
 
 <?php echo $form->renderFormTag($url, array('class' => 'modal hide', 'id' => $id)) ?>
-  <div class="modal-header">
+  <div class="modal-header text-center">
     <strong><?php echo $title ?></strong>
   </div>
 
   <div class="modal-body">
-    <?php echo $form ?>
+    <table style="width: 80%; margin: 0 auto;">
+    <?php foreach ($widgets as $widget): ?>
+      <tr>
+        <th><?php echo $form[$widget]->renderLabel() ?></th>
+        <td><?php echo $form[$widget] ?></td>
+      </tr>
+    <?php endforeach; ?>
+    </table>
   </div>
 
   <div class="modal-footer" style="text-align:center;">
+    <?php echo $form->renderHiddenFields() ?>
     <input type="submit" class="btn btn-primary" <?php if ($submit): ?>value="<?php echo __($submit) ?>"<?php endif; ?> />
   </div>
 
