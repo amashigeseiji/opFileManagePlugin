@@ -11,7 +11,7 @@
 <tbody>
 <tr>
   <th>ファイル名 &nbsp;</th>
-  <td>
+  <td class="filename_<?php echo $file->getId() ?>" style="width: 50%">
     <?php echo $file->getName() ?>
   </td>
 </tr>
