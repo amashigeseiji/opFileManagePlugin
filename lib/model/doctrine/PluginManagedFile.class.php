@@ -84,4 +84,10 @@ abstract class PluginManagedFile extends BaseManagedFile
   {
     return $this->getFile()->getFileBin()->bin;
   }
+
+  public function editName($name)
+  {
+    $this->setName($name);
+    $this->save();
+  }
 }

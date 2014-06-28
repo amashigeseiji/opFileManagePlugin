@@ -47,8 +47,7 @@ class fileActions extends sfActions
     $file = $this->getRoute()->getObject();
     $this->forward404If(!$file->isAuthor());
     $this->forward404If(!$request->hasParameter('name'));
-    $file->setName($request->getParameter('name'));
-    $file->save();
+    $file->editName($request->getParameter('name'));
 
     $this->redirect('@file_show?id='.$file->getId());
   }
