@@ -1,47 +1,72 @@
 <script type="text/javascript">
 $(document).ready(function() {
-  var fileId = "<?php echo $file->getId() ?>";
-  var trigger = $("<?php echo $trigger ?>");
-
-  var toggle = function(td, div, filename) {
-    if (!div.hasClass('active')) {
-      div.addClass('active');
-      td.html(div.html());
-    } else {
-      div.removeClass('active');
-      td.html(filename)
+  var util = {
+    create: function(prototype) {
+      function f() {}
+      f.prototype = prototype;
+      return new f;
+    },
+    bind: function(eventType, trigger, data, event) {
+      trigger.bind(eventType, data, event);
     }
   }
 
-  var
-    td = $('.filename_' + fileId),
-    filename = td.html();
+  var Editor = {
+    isActive: false,
+    init: function(selector) {
+      util.bind('click', $(selector.trigger), {editor: this}, this.onClick);
+      this.root = $(selector.root);
+      this.contents = {
+        active:   $(selector.activeContents).html(),
+        inactive: this.root.html()
+      };
+    },
+    toggle: function() {
+      if (this.isActive) {
+        this.isActive = false;
+        this.root.html(this.contents.inactive)
+      } else {
+        this.isActive = true;
+        this.root.html(this.contents.active);
+        util.create(EditorInput).init(this.root);
+      }
+    },
+    onClick: function(event) { event.data.editor.toggle(); }
+  };
 
-  trigger.on('click', function() {
-    toggle(td, $('#file_edit_name_' + fileId), filename);
+  var EditorInput = {
+    init: function(root) {
+      this.link = root.find('a');
+      var data = {
+        link: this.link,
+        href: this.link.attr('href')
+      }
+      util.bind('keyup', root.find('input[type=text]'), data, this.onChangeText);
+    },
+    onChangeText: function(event) {
+      event.data.link.attr('href', event.data.href + '?name=' + this.value);
+    }
+  };
 
-    var
-      editlink = td.find('a'),
-      href = editlink.attr('href');
-
-    td.find('input[type=text]').on('keyup', function() {
-      editlink.attr('href', href + '?name=' + this.value);
-    });
-  });
+  var selector = {
+    root:'.filename_<?php echo $file->id ?>',
+    activeContents:'#file_edit_name_<?php echo $file->id ?>',
+    trigger: '<?php echo $trigger ?>'
+  };
+  util.create(Editor).init(selector);
 });
 </script>
 
+<?php
+$options = array(
+  'method'  => 'put',
+  'class'   => 'btn btn-small btn-primary',
+  'style'   => 'color: #ffffff'
+);
+?>
 <div id="file_edit_name_<?php echo $file->getId() ?>" class="hide">
   <span class="form form-inline">
     <input type="text" placeholder="<?php echo $file->getName() ?>" />
-    <?php echo link_to(
-      '確定',
-      '@file_edit_name?id='.$file->getId(),
-      array(
-        'method'  => 'put',
-        'class'   => 'btn btn-small btn-primary',
-        'style'   => 'color: #ffffff'
-      )
-    ) ?>
+    <?php echo link_to('確定', '@file_edit_name?id='.$file->getId(), $options) ?>
   </span>
 </div>
