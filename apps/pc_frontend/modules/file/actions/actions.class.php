@@ -42,31 +42,15 @@ class fileActions extends sfActions
   */
   public function executeEdit(sfWebRequest $request)
   {
-    $this->file = $this->getRoute()->getObject();
-    $this->forward404If(!$this->file->isAuthor());
-    $this->form = new ManagedFileForm($this->file);
-  }
+    $request->checkCSRFProtection();
 
- /**
-  * Executes update action
-  *
-  * @param sfWebRequest $request A request object
-  */
-  public function executeUpdate(sfWebRequest $request)
-  {
     $file = $this->getRoute()->getObject();
-    $this->form = new ManagedFileForm($file);
     $this->forward404If(!$file->isAuthor());
+    $this->forward404If(!$request->hasParameter('name'));
+    $file->setName($request->getParameter('name'));
+    $file->save();
 
-    $this->file = $this->processForm($request, $this->form);
-
-    if ($this->file)
-    {
-      $this->getUser()->setFlash('notice', 'ファイルを編集しました。');
-      $this->redirect('@file_show?id='.$file->id);
-    }
-
-    $this->setTemplate('edit');
+    $this->redirect('@file_show?id='.$file->getId());
   }
 
  /**

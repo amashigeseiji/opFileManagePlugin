@@ -24,13 +24,14 @@ file_download:
   requirements:
     id: \d+
 
-file_edit:
+file_edit_name:
   url: /file/:id/edit
   class: sfDoctrineRoute
   options: { model: ManagedFile, type: object }
   param: { module: file, action: edit }
   requirements:
     id: \d+
+    sf_method: [put]
 
 file_update:
   url: /file/:id/update
