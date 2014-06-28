@@ -1,23 +1,31 @@
 <script type="text/javascript">
 $(document).ready(function() {
-  var toggle = function(div, link, word) {
-    if (div.hasClass('hide')) {
-      div.removeClass('hide');
+  var fileId = "<?php echo $file->getId() ?>";
+
+  var toggle = function(td, div, filename) {
+    if (!div.hasClass('active')) {
+      div.addClass('active');
+      td.html(div.html());
     } else {
-      div.addClass('hide');
+      div.removeClass('active');
+      td.html(filename)
     }
   }
-  $('#file_edit_name_link').on('click', function() {
+
+  var
+    td = $('.filename_' + fileId),
+    filename = td.html();
+
+  $('#file_edit_name_link_' + fileId).on('click', function() {
+    toggle(td, $('#file_edit_name_' + fileId), filename);
+
     var
-      div = $('#file_edit_name'),
-      link = div.find('a'),
-      href = link.attr('href');
+      editlink = td.find('a'),
+      href = editlink.attr('href');
 
-    div.find('input[type=text]').on('keyup', function() {
-      link.attr('href', href + '?name=' + this.value);
+    td.find('input[type=text]').on('keyup', function() {
+      editlink.attr('href', href + '?name=' + this.value);
     });
-
-    toggle(div, $(this), { to_open : '名前を変更する', to_close: '中止' });
   });
 });
 </script>
@@ -36,23 +44,25 @@ $(document).ready(function() {
             'class' => 'btn btn-small',
             'confirm' => 'ファイル名: '.$file->getName().'\n本当に削除してもよろしいですか？')
     ) ?>
-    <a href="javascript:void(0)" id="file_edit_name_link" class="btn btn-small">
+    <a href="javascript:void(0)" id="file_edit_name_link_<?php echo $file->getId() ?>" class="btn btn-small">
       <i class="icon-edit"></i>
     </a>
   <?php endif; ?>
 </span>
 
 <?php if ($file->isAuthor()): ?>
-<div id="file_edit_name" class="hide form form-inline" placeholder="ファイル名を入力してください。">
-<input type="text" />
-<?php echo link_to(
-  '確定',
-  '@file_edit_name?id='.$file->getId(),
-  array(
-    'method' => 'put',
-    'class' => 'btn btn-small btn-primary',
-    'style' => 'color: #ffffff'
-  )
-) ?>
+<div id="file_edit_name_<?php echo $file->getId() ?>" class="hide">
+  <span class="form form-inline">
+    <input type="text" placeholder="<?php echo $file->getName() ?>" />
+    <?php echo link_to(
+      '確定',
+      '@file_edit_name?id='.$file->getId(),
+      array(
+        'method'  => 'put',
+        'class'   => 'btn btn-small btn-primary',
+        'style'   => 'color: #ffffff'
+      )
+    ) ?>
+  </span>
 </div>
 <?php endif; ?>
