@@ -1,4 +1,4 @@
-<?php use_javascript('/opFileManagePlugin/js/bootstrap-modal', 'last') ?>
+<?php use_javascript('/opFileManagePlugin/js/lib/vendor/bootstrap-modal', 'last') ?>
 
 <script type="text/javascript">
 $(document).ready(function() {
