@@ -39,7 +39,7 @@ class PluginFileDirectoryTable extends Doctrine_Table
       ->where('member_id = ?', $memberId)
       ->orderBy('created_at DESC');
 
-    if ($isOpenOnly)
+    if ($isOpenOnly || !opFileManageConfig::get('use_private_directory'))
     {
       $q->andWhere('is_open = ?', true);
     }
