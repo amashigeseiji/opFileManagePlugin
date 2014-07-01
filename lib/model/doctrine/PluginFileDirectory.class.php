@@ -13,6 +13,11 @@ abstract class PluginFileDirectory extends BaseFileDirectory
    */
   public function isViewable()
   {
+    if (!opFileManageConfig::get('use_private_directory') && !$this->getIsOpen())
+    {
+      return false;
+    }
+
     return $this->isAuthor() ? true : (bool)$this->getIsOpen();
   }
 
