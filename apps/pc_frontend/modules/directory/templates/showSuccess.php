@@ -9,7 +9,7 @@
 <thead>
 <tr>
   <th>
-    <?php echo $directory->getName() ?>のファイル
+    <span class="dirname_<?php echo $directory->id ?>"><?php echo $directory->getName() ?></span>のファイル
     <?php if ($directory->isAuthor()): ?>
       <span class="normal">
       (<?php echo $directory->getPublicLabel() ?>)
