@@ -37,8 +37,11 @@ abstract class PluginFileDirectory extends BaseFileDirectory
    */
   public function publish($publish = null)
   {
-    $this->setIsOpen($publish ? true : false);
-    $this->save();
+    if (opFileManageConfig::get('use_private_directory'))
+    {
+      $this->setIsOpen($publish ? true : false);
+      $this->save();
+    }
   }
 
   public function modifyName($name)
