@@ -15,10 +15,16 @@
 <?php foreach ($pager as $directory): ?>
 <tr>
 <td>
+<?php if ($directory->isAuthor()): ?>
+<a href="javascript:void(0)" id="edit_directory_name_show_link_<?php echo $directory->getId() ?>" class="btn btn-mini"><i class="icon-edit"></i></a>
+  <?php include_partial('directory/editDirectoryNameBox', array('directory' => $directory, 'trigger' => '#edit_directory_name_show_link_'.$directory->getId())) ?>
+<?php endif; ?>
+<span class="dirname_<?php echo $directory->id ?>">
 <?php echo link_to($directory->getName(), '@directory_show?id='.$directory->getId()) ?>
+</span>
 </td>
 <?php if ($directory->isAuthor()): ?>
-<td>
+<td style="width: 40%">
 <?php echo $directory->getPublicLabel() ?>
 </td>
 <?php endif; ?>
