@@ -1,0 +1,3 @@
+opFileManagePlugin:
+  url: /opFileManagePlugin
+  param: { module: opFileManagePlugin, action: index}
