@@ -49,7 +49,7 @@ class fileActions extends sfActions
     $this->forward404If(!$request->hasParameter('name'));
     $file->editName($request->getParameter('name'));
 
-    $this->redirect('@file_show?id='.$file->getId());
+    $this->redirect($request->getParameter('redirect', '@file_show?id='.$file->getId()));
   }
 
  /**

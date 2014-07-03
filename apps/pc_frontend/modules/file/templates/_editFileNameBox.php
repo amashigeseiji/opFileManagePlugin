@@ -21,6 +21,6 @@ $options = array(
 <div id="file_edit_name_<?php echo $file->getId() ?>" class="hide">
   <span class="form form-inline">
     <input type="text" placeholder="<?php echo $file->getName() ?>" />
-    <?php echo link_to('確定', '@file_edit_name?id='.$file->getId(), $options) ?>
+    <?php echo link_to('確定', '@file_edit_name?id='.$file->getId().'&redirect='.$sf_request->getUri(), $options) ?>
   </span>
 </div>
