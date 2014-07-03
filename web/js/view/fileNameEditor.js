@@ -30,10 +30,16 @@ define(['jquery', 'util'], function($, util) {
         href: this.link.attr('href')
       }
       util.bind('keyup', root.find('input[type=text]'), data, this.onChangeText);
+      util.bind('keypress', root.find('input[type=text]'), data, this.onKeyPressEnter);
     },
     onChangeText: function(event) {
       var andValue = (event.data.href.indexOf('?') === -1) ? '?name=' + this.value : '&name=' + this.value;
       event.data.link.attr('href', event.data.href + andValue);
+    },
+    onKeyPressEnter: function(event) {
+      if (event.which === 13) {
+        event.data.link.click();
+      }
     }
   };
 
