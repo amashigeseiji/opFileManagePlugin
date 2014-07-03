@@ -67,7 +67,7 @@ class directoryActions extends sfActions
     $this->forward404If(!$directory->isAuthor());
     $directory->publish($request['private'] ? false : true);
 
-    $this->redirect('@directory_show?id='.$directory->getId());
+    $this->redirect($request->getParameter('redirect', '@directory_show?id='.$directory->getId()));
   }
 
  /**
@@ -84,7 +84,7 @@ class directoryActions extends sfActions
     $this->forward404If(!$request->getParameter('name'));
     $directory->modifyName($request['name']);
 
-    $this->redirect('@directory_show?id='.$directory->getId());
+    $this->redirect($request->getParameter('redirect', '@directory_show?id='.$directory->getId()));
   }
 
  /**

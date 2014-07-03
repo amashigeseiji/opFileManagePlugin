@@ -21,6 +21,6 @@ $options = array(
 <div id="directory_edit_name_<?php echo $directory->id ?>" class="hide">
 <span class="form form-horizontal">
   <input type="text" placeholder="<?php echo $directory->getName() ?>" class="font-size: small; height: 15px" />
-  <?php echo link_to('変更', '@directory_edit_name?id='.$directory->getId(), $options) ?>
+  <?php echo link_to('変更', '@directory_edit_name?id='.$directory->getId().'&redirect='.$sf_request->getUri(), $options) ?>
   </span>
 </div>

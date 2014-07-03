@@ -32,7 +32,8 @@ define(['jquery', 'util'], function($, util) {
       util.bind('keyup', root.find('input[type=text]'), data, this.onChangeText);
     },
     onChangeText: function(event) {
-      event.data.link.attr('href', event.data.href + '?name=' + this.value);
+      var andValue = (event.data.href.indexOf('?') === -1) ? '?name=' + this.value : '&name=' + this.value;
+      event.data.link.attr('href', event.data.href + andValue);
     }
   };
 
