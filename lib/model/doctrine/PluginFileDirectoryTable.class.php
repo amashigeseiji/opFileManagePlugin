@@ -22,9 +22,11 @@ class PluginFileDirectoryTable extends Doctrine_Table
     return $this->getListQueryByMemberId($memberId, $isOpenOnly)->execute();
   }
 
-  public function getMemberDirectoryListPager($memberId, $isOpenOnly = false, $size = 10, $page)
+  public function getMemberDirectoryListPager($memberId, $isOpenOnly = false, $page = null)
   {
     $q = $this->getListQueryByMemberId($memberId, $isOpenOnly);
+
+    $size = sfConfig::get('app_directory_list_max_size', 10);
 
     $pager = new sfDoctrinePager('FileDirectory', $size);
     $pager->setQuery($q);

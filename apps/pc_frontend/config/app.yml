@@ -1,0 +1,3 @@
+all:
+  file_list_max_size: 10
+  directory_list_max_size: 10
