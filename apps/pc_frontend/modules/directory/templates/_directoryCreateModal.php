@@ -4,6 +4,10 @@
   {
     $option[] = 'is_open';
   }
+  if (opFileManageConfig::get('use_community_directory'))
+  {
+    $option[] = 'community';
+  }
 ?>
 <?php include_partial('file/formModal', array(
   'form'    => new FileDirectoryForm(),
