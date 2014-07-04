@@ -27,7 +27,7 @@ class PluginManagedFileTable extends Doctrine_Table
   {
     $q = $this->getFileListQueryByDirectoryId($directoryId);
 
-    $size = sfConfig::get('app_filelist_max_size', 2);
+    $size = sfConfig::get('app_file_list_max_size', 10);
 
     $pager = new sfDoctrinePager('ManagedFile', $size);
     $pager->setQuery($q);

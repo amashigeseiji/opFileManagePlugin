@@ -50,7 +50,7 @@ class directoryActions extends sfActions
     $isOpenOnly =
       ($this->member->getId() === $this->getUser()->getMemberId()) ? false : true;
     $this->pager = FileDirectoryTable::getInstance()
-      ->getMemberDirectoryListPager($this->member->getId(), $isOpenOnly, 10, $request->getParameter('page'));
+      ->getMemberDirectoryListPager($this->member->getId(), $isOpenOnly, $request->getParameter('page'));
     $this->pager->init();
   }
 
