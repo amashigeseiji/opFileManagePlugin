@@ -8,6 +8,7 @@
  */
 abstract class PluginFileDirectory extends BaseFileDirectory
 {
+  private $config;
   /**
    * @return bool
    */
@@ -53,5 +54,15 @@ abstract class PluginFileDirectory extends BaseFileDirectory
   {
     $this->setName($name);
     $this->save();
+  }
+
+  public function getConfig()
+  {
+    if (!$this->config)
+    {
+      $this->config = new opDirectoryConfig($this->id);
+    }
+
+    return $this->config;
   }
 }
