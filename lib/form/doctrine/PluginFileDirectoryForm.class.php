@@ -43,7 +43,16 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
     if (opFileManageConfig::get('use_community_directory')
       && $communityId = $this->getValue('community_id'))
     {
-      Doctrine::getTable('DirectoryConfig')->save($this->getObject()->id, $communityId);
+      $directoryConfig = $this->getObject()->getConfig();
+
+      if ($directoryConfig->has('community_id'))
+      {
+        $directoryConfig->updateCommunityId($communityId);
+      }
+      else
+      {
+        $directoryConfig->create($communityId);
+      }
     }
 
     return $result;

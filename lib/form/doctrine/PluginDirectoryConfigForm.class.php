@@ -24,7 +24,14 @@ abstract class PluginDirectoryConfigForm extends BaseDirectoryConfigForm
 
   public function save()
   {
-    return Doctrine::getTable('DirectoryConfig')
-      ->save($this->getOption('directory')->id, $this->getValue('community_id'));
+    $directoryConfig = $this->getOption('directory')->getConfig();
+    if ($directoryConfig->has('community_id'))
+    {
+      return $directoryConfig->updateCommunityId($this->getValue('community_id'));
+    }
+    else
+    {
+      return $directoryConfig->create($this->getValue('community_id'));
+    }
   }
 }
