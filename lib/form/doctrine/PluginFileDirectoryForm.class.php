@@ -38,6 +38,14 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
       $this->getObject()->setIsOpen(true);
     }
 
-    return parent::save();
+    $result = parent::save();
+
+    if (opFileManageConfig::get('use_community_directory')
+      && $communityId = $this->getValue('community_id'))
+    {
+      Doctrine::getTable('DirectoryConfig')->save($this->getObject()->id, $communityId);
+    }
+
+    return $result;
   }
 }
