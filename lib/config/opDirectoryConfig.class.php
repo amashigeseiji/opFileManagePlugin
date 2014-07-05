@@ -27,6 +27,7 @@ class opDirectoryConfig
   {
     return $this->baseQuery
       ->fetchOne()
+      ->andWhere('community_id <> ""')
       ->getCommunityId();
   }
 
@@ -41,6 +42,7 @@ class opDirectoryConfig
   public function getCommunity()
   {
     return $this->baseQuery
+      ->andWhere('community_id <> ""')
       ->fetchOne()
       ->getCommunity();
   }
