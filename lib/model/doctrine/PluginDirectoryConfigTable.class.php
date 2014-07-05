@@ -19,4 +19,31 @@ class PluginDirectoryConfigTable extends Doctrine_Table
   {
     return Doctrine_Core::getTable('PluginDirectoryConfig');
   }
+
+  public function getCommunityConfigByDirectoryId($directoryId)
+  {
+    return $this->getDirectoryConfigQuery($directoryId)
+      ->andWhere('community_id <> ""')
+      ->fetchOne();
+  }
+
+  public function getDirectoryConfigQuery($directoryId)
+  {
+    return $this->createQuery()
+      ->where('directory_id = ?', $directoryId);
+  }
+
+  public function save($directoryId, $communityId)
+  {
+    $config = $this->getCommunityConfigByDirectoryId($directoryId);
+
+    if (!$config)
+    {
+      $config = new DirectoryConfig();
+      $config->setDirectoryId($directoryId);
+    }
+    $config->setCommunityId($communityId);
+
+    return $config->save();
+  }
 }
