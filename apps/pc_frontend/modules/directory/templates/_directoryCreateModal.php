@@ -6,7 +6,7 @@
   }
   if (opFileManageConfig::get('use_community_directory'))
   {
-    $option[] = 'community';
+    $option[] = 'community_id';
   }
 ?>
 <?php include_partial('file/formModal', array(

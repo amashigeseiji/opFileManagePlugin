@@ -24,8 +24,8 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
     if (opFileManageConfig::get('use_community_directory'))
     {
       $memberId = sfContext::getInstance()->getUser()->getMemberId();
-      $this->setWidget('community', new opWidgetFormSelectCommunity(array('type' => 'join', 'member_id' => $memberId)));
-      $this->setValidator('community', new opValidatorSelectCommunity(array('type' => 'join', 'join_member_id' => $memberId)));
+      $this->setWidget('community_id', new opWidgetFormSelectCommunity(array('type' => 'join', 'member_id' => $memberId)));
+      $this->setValidator('community_id', new opValidatorSelectCommunity(array('type' => 'join', 'join_member_id' => $memberId)));
     }
   }
 
