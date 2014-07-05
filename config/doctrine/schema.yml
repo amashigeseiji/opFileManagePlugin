@@ -50,3 +50,24 @@ FileDirectory:
     member_id_name_UNIQUE:
       fields: [member_id, name]
       type: unique
+
+DirectoryConfig:
+  columns:
+    id: { type: integer(4), primary: true, autoincrement: true }
+    directory_id: { type: integer(4), notnull: true }
+    community_id: { type: integer(4) }
+  relations:
+    FileDirectory:
+      local: directory_id
+      foreign: id
+      type: one
+      foreignType: many
+      onDelete: cascade
+    Community:
+      local: community_id
+      foreign: id
+      onDelete: cascade
+    indexes:
+      directory_id_community_id_UNIQUE:
+        fields: [ directory_id, community_id ]
+        type: unique
