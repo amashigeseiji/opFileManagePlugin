@@ -10,4 +10,18 @@
  */
 abstract class PluginDirectoryConfig extends BaseDirectoryConfig
 {
+  public function create($directoryId, $communityId = null)
+  {
+    $this->setDirectoryId($directoryId);
+    $this->setCommunityId($communityId);
+
+    return $this->save();
+  }
+
+  public function updateCommunityId($communityId)
+  {
+    $this->setCommunityId($communityId);
+
+    return $this->save();
+  }
 }

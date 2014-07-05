@@ -35,15 +35,15 @@ class PluginDirectoryConfigTable extends Doctrine_Table
 
   public function save($directoryId, $communityId)
   {
-    $config = $this->getCommunityConfigByDirectoryId($directoryId);
-
-    if (!$config)
+    if ($config = $this->getCommunityConfigByDirectoryId($directoryId))
+    {
+      return $config->updateCommunityId($communityId);
+    }
+    else
     {
       $config = new DirectoryConfig();
-      $config->setDirectoryId($directoryId);
-    }
-    $config->setCommunityId($communityId);
 
-    return $config->save();
+      return $config->create($directoryId, $communityId);
+    }
   }
 }
