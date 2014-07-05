@@ -21,7 +21,7 @@ class opValidatorSelectCommunity extends sfValidatorBase
     {
       if (Doctrine::getTable('CommunityMember')->isMember($this->getOption('join_member_id'), $value))
       {
-        return true;
+        return $value;
       }
 
       return false;
