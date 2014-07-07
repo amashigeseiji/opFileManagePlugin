@@ -17,6 +17,7 @@ class directoryActions extends sfActions
   public function executeCreate(sfWebRequest $request)
   {
     $this->form = new FileDirectoryForm();
+    $this->forward404If(!$directory->isEditable($this->getUser()->getMember()));
     if ($directory = $this->processForm($request, $this->form))
     {
       $this->redirect('@directory_show?id='.$directory->getId());
@@ -64,7 +65,7 @@ class directoryActions extends sfActions
     $request->checkCSRFProtection();
 
     $directory = $this->getRoute()->getObject();
-    $this->forward404If(!$directory->isAuthor());
+    $this->forward404If(!$directory->isEditable($this->getUser()->getMember()));
     $directory->publish($request['private'] ? false : true);
 
     $this->redirect($request->getParameter('redirect', '@directory_show?id='.$directory->getId()));
@@ -80,7 +81,7 @@ class directoryActions extends sfActions
     $request->checkCSRFProtection();
 
     $directory = $this->getRoute()->getObject();
-    $this->forward404If(!$directory->isAuthor());
+    $this->forward404If(!$directory->isEditable($this->getUser()->getMember()));
     $this->forward404If(!$request->getParameter('name'));
     $directory->modifyName($request['name']);
 
@@ -97,7 +98,7 @@ class directoryActions extends sfActions
     $request->checkCSRFProtection();
 
     $directory = $this->getRoute()->getObject();
-    $this->forward404If(!$directory->isAuthor());
+    $this->forward404If(!$directory->isEditable($this->getUser()->getMember()));
     $directory->delete();
 
     $this->redirect('@directory_list');
