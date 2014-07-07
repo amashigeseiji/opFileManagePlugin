@@ -14,12 +14,21 @@ abstract class PluginFileDirectory extends BaseFileDirectory
    */
   public function isViewable()
   {
-    if (!opFileManageConfig::get('use_private_directory') && !$this->getIsOpen())
+    if ($this->isAuthor())
     {
-      return false;
+      return true;
     }
 
-    return $this->isAuthor() ? true : (bool)$this->getIsOpen();
+    if (opFileManageConfig::get('use_community_directory')
+     && $communityId = $this->getConfig()->getCommunityId())
+    {
+      $memberId = sfContext::getInstance()->getUser()->getMemberId();
+
+      return Doctrine::getTable('CommunityMember')
+        ->isMember($memberId, $communityId);
+    }
+
+    return (bool)$this->getIsOpen();
   }
 
   /**
