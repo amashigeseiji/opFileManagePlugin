@@ -29,14 +29,9 @@ abstract class PluginManagedFile extends BaseManagedFile
   /**
    * @return bool
    */
-  public function isViewable()
+  public function isViewable(Member $member)
   {
-    if (!opFileManageConfig::get('use_private_directory') && !$this->getFileDirectory()->getIsOpen())
-    {
-      return false;
-    }
-
-    return $this->isAuthor() ? true : (bool)$this->getFileDirectory()->getIsOpen();
+    return $this->getFileDirectory()->isViewable($member);
   }
 
   /**

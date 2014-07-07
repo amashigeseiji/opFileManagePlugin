@@ -60,7 +60,7 @@ class fileActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->file = $this->getRoute()->getObject();
-    $this->forward404If(!$this->file->isViewable($this->getUser()->getMemberId()));
+    $this->forward404If(!$this->file->isViewable($this->getUser()->getMember()));
     $this->directory = $this->file->getFileDirectory();
   }
 
@@ -72,7 +72,7 @@ class fileActions extends sfActions
   public function executeDownload(sfWebRequest $request)
   {
     $file = $this->getRoute()->getObject();
-    $this->forward404If(!$file->isViewable());
+    $this->forward404If(!$file->isViewable($this->getUser()->getMember()));
     $data = $file->getFile()->getFileBin()->getBin();
 
     $this->getResponse()->setHttpHeader('Content-Type', $file->getFile()->getType());

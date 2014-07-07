@@ -6,29 +6,15 @@
  * @package    opFileManagedPlugin
  * @author     Seiji Amashige <amashige@tejimaya.com>
  */
-abstract class PluginFileDirectory extends BaseFileDirectory
+abstract class PluginFileDirectory extends BaseFileDirectory implements opAccessControlRecordInterface
 {
   private $config;
   /**
    * @return bool
    */
-  public function isViewable()
+  public function isViewable(Member $member)
   {
-    if ($this->isAuthor())
-    {
-      return true;
-    }
-
-    if (opFileManageConfig::get('use_community_directory')
-     && $communityId = $this->getConfig()->getCommunityId())
-    {
-      $memberId = sfContext::getInstance()->getUser()->getMemberId();
-
-      return Doctrine::getTable('CommunityMember')
-        ->isMember($memberId, $communityId);
-    }
-
-    return (bool)$this->getIsOpen();
+    return $this->isAllowed($member, 'view');
   }
 
   /**
@@ -73,5 +59,19 @@ abstract class PluginFileDirectory extends BaseFileDirectory
     }
 
     return $this->config;
+  }
+
+  public function generateRoleId(Member $member)
+  {
+    if ($this->getMemberId() === $member->id)
+    {
+      return 'author';
+    }
+    elseif (Doctrine::getTable('CommunityMember')->isMember($member->id, $this->getConfig()->getCommunityId()))
+    {
+      return 'member';
+    }
+
+    return 'everyone';
   }
 }

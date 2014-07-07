@@ -31,7 +31,7 @@ class directoryActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->directory = $this->getRoute()->getObject();
-    $this->forward404If(!$this->directory->isViewable());
+    $this->forward404If(!$this->directory->isViewable($this->getUser()->getMember()));
     $this->pager = Doctrine::getTable('ManagedFile')
       ->getFileListPager($this->directory->getId(), $request->getParameter('page'));
     $this->pager->init();
