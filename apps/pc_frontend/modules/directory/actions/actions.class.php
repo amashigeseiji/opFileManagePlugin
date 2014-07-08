@@ -17,7 +17,6 @@ class directoryActions extends sfActions
   public function executeCreate(sfWebRequest $request)
   {
     $this->form = new FileDirectoryForm();
-    $this->forward404If(!$directory->isEditable($this->getUser()->getMember()));
     if ($directory = $this->processForm($request, $this->form))
     {
       $this->redirect('@directory_show?id='.$directory->getId());
