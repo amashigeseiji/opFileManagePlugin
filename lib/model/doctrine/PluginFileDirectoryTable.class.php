@@ -66,6 +66,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
   {
     $acl->allow('member', $resource, 'view');
     $acl->allow('member', $resource, 'edit');
+    $acl->allow('member', $resource, 'upload');
     if ($resource && 'public' === $resource->getType())
     {
       $acl->allow('everyone', $resource, 'view');

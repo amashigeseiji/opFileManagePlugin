@@ -22,6 +22,11 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
     return $this->isAllowed($member, 'edit');
   }
 
+  public function isUploadable(Member $member)
+  {
+    return $this->isAllowed($member, 'upload');
+  }
+
   /**
    * @return bool
    */
