@@ -1,7 +1,7 @@
 <?php
 
 /**
- * opWidgetFormCommunity represents a community widget.
+ * opWidgetFormSelectCommunity represents a community widget.
  *
  * @package    OpenPNE
  * @subpackage widget
