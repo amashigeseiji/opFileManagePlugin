@@ -7,6 +7,12 @@
  */
 class PluginFileDirectoryTable extends opAccessControlDoctrineTable
 {
+  private static $types = array(
+    'private'   => 'private',
+    'community' => 'community',
+    'public'    => 'public'
+  );
+
   /**
    * Returns an instance of this class.
    *
@@ -62,5 +68,20 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     }
 
     return $acl;
+  }
+
+  public function getTypes()
+  {
+    $types = self::$types;
+    if (!opFileManageConfig::get('use_private_directory'))
+    {
+      unset($types['private']);
+    }
+    if (!opFileManageConfig::get('use_community_directory'))
+    {
+      unset($types['community']);
+    }
+
+    return $types;
   }
 }
