@@ -65,7 +65,7 @@ class directoryActions extends sfActions
 
     $directory = $this->getRoute()->getObject();
     $this->forward404If(!$directory->isEditable($this->getUser()->getMember()));
-    $directory->publish($request['private'] ? false : true);
+    $directory->publish($request['publish']);
 
     $this->redirect($request->getParameter('redirect', '@directory_show?id='.$directory->getId()));
   }

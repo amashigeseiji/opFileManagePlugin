@@ -53,14 +53,22 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
   }
 
   /**
-   * @param bool|null $publish 公開フラグ
+   * @param string $publish 公開フラグ
    */
-  public function publish($publish = null)
+  public function publish($publish)
   {
     if (opFileManageConfig::get('use_private_directory'))
     {
-      $this->setIsOpen($publish ? true : false);
-      $this->save();
+      $validator = new sfValidatorChoice(array('choices' => Doctrine::getTable('FileDirectory')->getTypes(), 'required' => true));
+      try
+      {
+        $this->setType($validator->clean($publish));
+        $this->save();
+      }
+      catch (sfValidatorError $e)
+      {
+        throw $e;
+      }
     }
   }
 
