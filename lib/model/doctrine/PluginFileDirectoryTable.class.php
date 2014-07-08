@@ -17,11 +17,6 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     return Doctrine_Core::getTable('PluginFileDirectory');
   }
 
-  public function getDirectoryListByMemberId($memberId, $isOpenOnly = false)
-  {
-    return $this->getListQueryByMemberId($memberId, $isOpenOnly)->execute();
-  }
-
   public function getMemberDirectoryListPager($memberId, $isOpenOnly = false, $page = null)
   {
     $q = $this->getListQueryByMemberId($memberId, $isOpenOnly);
