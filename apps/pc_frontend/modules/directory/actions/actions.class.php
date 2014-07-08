@@ -119,6 +119,7 @@ class directoryActions extends sfActions
     {
       return $form->save();
     }
+  }
 
   public function executeConfig(sfWebRequest $request)
   {
