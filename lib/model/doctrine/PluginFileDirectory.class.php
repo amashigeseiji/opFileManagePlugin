@@ -25,9 +25,11 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
   /**
    * @return bool
    */
-  public function isAuthor()
+  public function isAuthor(Member $member = null)
   {
-    return sfContext::getInstance()->getUser()->getMemberId() === $this->getMemberId();
+    $member = $member ? $member : sfContext::getInstance()->getUser()->getMember();
+
+    return (bool)('author' === $this->generateRoleId($member));
   }
 
   /**
