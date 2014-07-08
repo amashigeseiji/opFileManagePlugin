@@ -47,10 +47,10 @@ class directoryActions extends sfActions
     $this->member = $request->getParameter('id') ?
       $this->getRoute()->getObject() : $this->getUser()->getMember();
     // get all list or not
-    $isOpenOnly =
-      ($this->member->getId() === $this->getUser()->getMemberId()) ? false : true;
+    $type =
+      ($this->member->getId() === $this->getUser()->getMemberId()) ? null : 'public';
     $this->pager = FileDirectoryTable::getInstance()
-      ->getMemberDirectoryListPager($this->member->getId(), $isOpenOnly, $request->getParameter('page'));
+      ->getMemberDirectoryListPager($this->member->getId(), $type, $request->getParameter('page'));
     $this->pager->init();
   }
 
