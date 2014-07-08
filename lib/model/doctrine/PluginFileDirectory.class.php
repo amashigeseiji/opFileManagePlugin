@@ -101,4 +101,12 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
 
     return 'everyone';
   }
+
+  /**
+   * @return bool
+   */
+  public function isPrivate()
+  {
+    return 'private' === $this->type;
+  }
 }
