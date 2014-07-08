@@ -50,4 +50,22 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
 
     return $result;
   }
+
+  /**
+   * @return array
+   */
+  public function getRenderWidgetNames()
+  {
+    $widgets = array('name');
+    if (!$this['type']->isHidden())
+    {
+      $widgets[] = 'type';
+    }
+    if (opFileManageConfig::get('use_community_directory'))
+    {
+      $widgets[] = 'community_id';
+    }
+
+    return $widgets;
+  }
 }

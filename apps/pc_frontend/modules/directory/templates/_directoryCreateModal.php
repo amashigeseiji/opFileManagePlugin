@@ -1,19 +1,11 @@
 <?php
-  $option = array('name');
-  if (opFileManageConfig::get('use_private_directory'))
-  {
-    $option[] = 'is_open';
-  }
-  if (opFileManageConfig::get('use_community_directory'))
-  {
-    $option[] = 'community_id';
-  }
+$form = new FileDirectoryForm();
 ?>
 <?php include_partial('file/formModal', array(
-  'form'    => new FileDirectoryForm(),
+  'form'    => $form,
   'url'     => url_for('directory_create'),
   'title'   => 'フォルダを追加する',
-  'widgets' => $option,
+  'widgets' => $form->getRenderWidgetNames(),
   'id'      => 'directory_create_form',
   'trigger' => $trigger
 )) ?>
