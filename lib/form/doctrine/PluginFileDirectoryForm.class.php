@@ -16,10 +16,6 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
       $this['member_id'], $this['created_at'], $this['updated_at']
     );
 
-    if (!opFileManageConfig::get('use_private_directory'))
-    {
-      unset($this['is_open']);
-    }
 
     if (opFileManageConfig::get('use_community_directory'))
     {
@@ -32,11 +28,6 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
   public function save()
   {
     $this->getObject()->setMemberId(sfContext::getInstance()->getUser()->getMemberId());
-
-    if (!opFileManageConfig::get('use_private_directory'))
-    {
-      $this->getObject()->setIsOpen(true);
-    }
 
     $result = parent::save();
 
