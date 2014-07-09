@@ -73,20 +73,8 @@ class fileActions extends sfActions
   {
     $file = $this->getRoute()->getObject();
     $this->forward404If(!$file->isViewable($this->getUser()->getMember()));
-    $data = $file->getFile()->getFileBin()->getBin();
 
-    $this->getResponse()->setHttpHeader('Content-Type', $file->getFile()->getType());
-    $this->getResponse()->setHttpHeader('Content-Length', strlen($data));
-
-    $filename = $file->getName();
-    // for ie
-    if (1 === preg_match('/MSIE/', $request->getHttpHeader('User-Agent')))
-    {
-      $filename = mb_convert_encoding($filename, 'sjis-win', 'utf8');
-    }
-    $this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename="'.$filename.'"');
-
-    return $this->renderText($data);
+    return opToolkit::fileDownload($file->getName(), $file->getFile()->getFileBin()->getBin());
   }
 
  /**
