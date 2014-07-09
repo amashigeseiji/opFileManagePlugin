@@ -33,7 +33,7 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
 
     $result = parent::save();
 
-    if (opFileManageConfig::get('use_community_directory')
+    if ('community' === $this->getValue('type')
       && $communityId = $this->getValue('community_id'))
     {
       $directoryConfig = $this->getObject()->getConfig();
