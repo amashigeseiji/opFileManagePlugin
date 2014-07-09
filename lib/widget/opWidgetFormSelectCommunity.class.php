@@ -15,7 +15,7 @@ class opWidgetFormSelectCommunity extends sfWidgetFormSelect
     $this->addOption('member_id', $options['member_id']);
     if ('join' === $options['type'])
     {
-      $this->addOption('choices', $this->getJoinCommunityChoices());
+      $this->addOption('choices', array_merge(array(null), $this->getJoinCommunityChoices()));
     }
   }
 
