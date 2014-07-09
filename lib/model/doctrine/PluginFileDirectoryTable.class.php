@@ -25,7 +25,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
 
   public function getMemberDirectoryListPager($memberId, $type = null, $page = null)
   {
-    $q = $this->getListQueryByMemberId($memberId, $type);
+    $q = FileDirectoryQuery::getListQueryByMemberId($memberId, $type);
 
     $size = sfConfig::get('app_directory_list_max_size', 10);
 
@@ -34,24 +34,6 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     $pager->setPage($page, 1);
 
     return $pager;
-  }
-
-  public function getListQueryByMemberId($memberId, $type = null)
-  {
-    $q = $this->createQuery()
-      ->where('member_id = ?', $memberId)
-      ->orderBy('created_at DESC');
-
-    if ($type)
-    {
-      $q->andWhere('type = ?', $type);
-    }
-    elseif (!opFileManageConfig::get('use_private_directory'))
-    {
-      $q->andWhere('type = ?', 'public');
-    }
-
-    return $q;
   }
 
   public function appendRoles(Zend_Acl $acl)
