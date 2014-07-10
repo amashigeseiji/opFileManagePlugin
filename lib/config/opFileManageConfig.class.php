@@ -76,4 +76,20 @@ class opFileManageConfig
 
     return (bool)self::$formConfig->has($key);
   }
+
+  /**
+   * @return bool
+   */
+  public function isUsePrivate()
+  {
+    return (bool)self::get('use_private_directory');
+  }
+
+  /**
+   * @return bool
+   */
+  public function isUseCommunity()
+  {
+    return (bool)self::get('use_community_directory');
+  }
 }

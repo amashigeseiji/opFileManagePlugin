@@ -60,11 +60,11 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
   public function getTypes()
   {
     $types = self::$types;
-    if (!opFileManageConfig::get('use_private_directory'))
+    if (!opFileManageConfig::isUsePrivate())
     {
       unset($types['private']);
     }
-    if (!opFileManageConfig::get('use_community_directory'))
+    if (!opFileManageConfig::isUseCommunity())
     {
       unset($types['community']);
     }

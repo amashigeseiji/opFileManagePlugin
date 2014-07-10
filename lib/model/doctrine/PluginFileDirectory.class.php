@@ -64,7 +64,7 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
    */
   public function publish($publish)
   {
-    if (opFileManageConfig::get('use_private_directory'))
+    if (opFileManageConfig::isUsePrivate())
     {
       $validator = new sfValidatorChoice(array('choices' => Doctrine::getTable('FileDirectory')->getTypes(), 'required' => true));
       try

@@ -27,16 +27,16 @@ class FileDirectoryQuery extends Doctrine_Query
       return $this->andWhere('type = ?', $type);
     }
 
-    if (!opFileManageConfig::get('use_private_directory')
-      && !opFileManageConfig::get('use_community_directory'))
+    if (!opFileManageConfig::isUsePrivate()
+      && !opFileManageConfig::isUseCommunity())
     {
       $this->andWhere('type = "public"');
     }
-    elseif (!opFileManageConfig::get('use_community_directory'))
+    elseif (!opFileManageConfig::isUseCommunity())
     {
       $this->andWhere('type <> "community"');
     }
-    elseif (!opFileManageConfig::get('use_private_directory'))
+    elseif (!opFileManageConfig::isUseCommunity())
     {
       $this->andWhere('type <> "private"');
     }

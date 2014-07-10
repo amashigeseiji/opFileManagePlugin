@@ -19,7 +19,7 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
     $this->widgetSchema['type'] = new opWidgetFormSelectDirectoryType();
     $this->validatorSchema['type'] = new sfValidatorChoice(array('choices' => Doctrine::getTable('FileDirectory')->getTypes()));
 
-    if (opFileManageConfig::get('use_community_directory'))
+    if (opFileManageConfig::isUseCommunity())
     {
       $memberId = sfContext::getInstance()->getUser()->getMemberId();
       $this->setWidget('community_id', new opWidgetFormSelectCommunity(array('type' => 'join', 'member_id' => $memberId)));
@@ -61,7 +61,7 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
     {
       $widgets[] = 'type';
     }
-    if (opFileManageConfig::get('use_community_directory'))
+    if (opFileManageConfig::isUseCommunity())
     {
       $widgets[] = 'community_id';
     }
