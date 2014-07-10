@@ -1,4 +1,3 @@
-<?php if ($isCommunityMember): ?>
 <tr>
 <th>
 共有フォルダ
@@ -17,4 +16,3 @@
 <?php endif; ?>
 </td>
 </tr>
-<?php endif; ?>
