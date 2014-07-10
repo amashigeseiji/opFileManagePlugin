@@ -32,4 +32,21 @@ class opWidgetFormSelectCommunity extends sfWidgetFormSelect
 
     return $choices;
   }
+
+  public function render($name, $value = null, $attributes = array(), $errors = array())
+  {
+    if ($this->isHidden())
+    {
+      $attributes['type'] = 'hidden';
+      $attributes['value'] = $this->getDefault();
+
+      return $this->renderContentTag(
+        'input',
+        null,
+        array_merge(array('name' => $name), $attributes)
+      );
+    }
+
+    return parent::render($name, $value, $attributes, $errors);
+  }
 }
