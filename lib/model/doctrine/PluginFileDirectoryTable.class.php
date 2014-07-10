@@ -29,6 +29,23 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
 
     $size = sfConfig::get('app_directory_list_max_size', 10);
 
+    return $this->getPager($q, $size, $page);
+  }
+
+  public function getCommunityDirectoryListPager($communityId, $size = null, $page = null)
+  {
+    $q = FileDirectoryQuery::getListQueryByCommunityId($communityId);
+
+    if (!$size)
+    {
+      $size = sfConfig::get('app_directory_list_max_size', 10);
+    }
+
+    return $this->getPager($q, $size, $page);
+  }
+
+  private function getPager(Doctrine_Query $q, $size, $page = null)
+  {
     $pager = new sfDoctrinePager('FileDirectory', $size);
     $pager->setQuery($q);
     $pager->setPage($page, 1);
