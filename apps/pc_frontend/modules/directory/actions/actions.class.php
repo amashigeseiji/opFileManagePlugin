@@ -21,6 +21,8 @@ class directoryActions extends sfActions
     {
       $this->redirect('@directory_show?id='.$directory->getId());
     }
+
+    $this->redirect('@directory_list');
   }
 
  /**
