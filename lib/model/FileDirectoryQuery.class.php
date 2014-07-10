@@ -51,4 +51,30 @@ class FileDirectoryQuery extends Doctrine_Query
       ->addOrderBy()
       ->addType($type);
   }
+
+  public function getListQueryByCommunityId($communityId)
+  {
+    $directoryIds = Doctrine_Query::create()
+      ->from('DirectoryConfig c')
+      ->where('c.community_id = ?', $communityId)
+      ->addSelect('c.directory_id')
+      ->fetchArray();
+
+    $max = count($directoryIds);
+    if (!$max)
+    {
+      return null;
+    }
+
+    $ids = array();
+    for ($i = 0; $i <= $max; $i++)
+    {
+      $ids[] = $directoryIds[$i]['directory_id'];
+    }
+
+    return self::create()
+      ->addOrderBy()
+      ->addType('community')
+      ->whereIn('id', $ids);
+  }
 }
