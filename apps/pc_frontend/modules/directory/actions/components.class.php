@@ -3,10 +3,12 @@ class directoryComponents extends sfComponents
 {
   public function executeCommunityDirectoryList()
   {
-    $id = sfContext::getInstance()->getRequest()->getParameter('id');
-    $community = Doctrine::getTable('Community')->find($id);
+    $this->isCommunityMember = Doctrine::getTable('CommunityMember')->isMember(sfContext::getInstance()->getUser()->getMemberId(), $this->community->id);
 
-    $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryListPager($community->id, 4);
-    $this->pager->init();
+    if ($this->isCommunityMember)
+    {
+      $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryListPager($this->community->id, 4);
+      $this->pager->init();
+    }
   }
 }
