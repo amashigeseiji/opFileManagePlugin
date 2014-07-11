@@ -3,6 +3,11 @@ class directoryComponents extends sfComponents
 {
   public function executeCommunityDirectoryList()
   {
+    if (!opFileManageConfig::isUseCommunity())
+    {
+      return sfView::NONE;
+    }
+
     $isCommunityMember = Doctrine::getTable('CommunityMember')->isMember(sfContext::getInstance()->getUser()->getMemberId(), $this->community->id);
 
     if (!$isCommunityMember)
