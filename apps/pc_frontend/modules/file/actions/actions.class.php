@@ -60,7 +60,7 @@ class fileActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->file = $this->getRoute()->getObject();
-    $this->forward404If(!$this->file->isViewable($this->getUser()->getMemberId()));
+    $this->forward404If(!$this->file->isViewable($this->getUser()->getMember()));
     $this->directory = $this->file->getFileDirectory();
   }
 
@@ -72,21 +72,9 @@ class fileActions extends sfActions
   public function executeDownload(sfWebRequest $request)
   {
     $file = $this->getRoute()->getObject();
-    $this->forward404If(!$file->isViewable());
-    $data = $file->getFile()->getFileBin()->getBin();
+    $this->forward404If(!$file->isViewable($this->getUser()->getMember()));
 
-    $this->getResponse()->setHttpHeader('Content-Type', $file->getFile()->getType());
-    $this->getResponse()->setHttpHeader('Content-Length', strlen($data));
-
-    $filename = $file->getName();
-    // for ie
-    if (1 === preg_match('/MSIE/', $request->getHttpHeader('User-Agent')))
-    {
-      $filename = mb_convert_encoding($filename, 'sjis-win', 'utf8');
-    }
-    $this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename="'.$filename.'"');
-
-    return $this->renderText($data);
+    return opToolkit::fileDownload($file->getName(), $file->getFile()->getFileBin()->getBin());
   }
 
  /**

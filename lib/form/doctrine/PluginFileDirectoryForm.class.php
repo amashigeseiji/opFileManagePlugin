@@ -16,9 +16,15 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
       $this['member_id'], $this['created_at'], $this['updated_at']
     );
 
-    if (!opFileManageConfig::get('use_private_directory'))
+    $this->widgetSchema['type'] = new opWidgetFormSelectDirectoryType();
+    $this->validatorSchema['type'] = new sfValidatorChoice(array('choices' => Doctrine::getTable('FileDirectory')->getTypes()));
+
+    if (opFileManageConfig::isUseCommunity())
     {
-      unset($this['is_open']);
+      $memberId = sfContext::getInstance()->getUser()->getMemberId();
+      $this->setWidget('community_id', new opWidgetFormSelectCommunity(array('type' => 'join', 'member_id' => $memberId)));
+      $this->setValidator('community_id', new opValidatorSelectCommunity(array('type' => 'join', 'join_member_id' => $memberId, 'required' => false)));
+      $this->mergePostValidator(new opFileDirectoryValidatorSchema());
     }
   }
 
@@ -26,11 +32,40 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
   {
     $this->getObject()->setMemberId(sfContext::getInstance()->getUser()->getMemberId());
 
-    if (!opFileManageConfig::get('use_private_directory'))
+    $result = parent::save();
+
+    if ('community' === $this->getValue('type'))
     {
-      $this->getObject()->setIsOpen(true);
+      $directoryConfig = $this->getObject()->getConfig();
+
+      if ($directoryConfig->has('community_id'))
+      {
+        $directoryConfig->updateCommunityId($this->getValue('community_id'));
+      }
+      else
+      {
+        $directoryConfig->create($this->getValue('community_id'));
+      }
     }
 
-    return parent::save();
+    return $result;
+  }
+
+  /**
+   * @return array
+   */
+  public function getRenderWidgetNames()
+  {
+    $widgets = array('name');
+    if (!$this['type']->isHidden())
+    {
+      $widgets[] = 'type';
+    }
+    if (opFileManageConfig::isUseCommunity() && !$this['community_id']->isHidden())
+    {
+      $widgets[] = 'community_id';
+    }
+
+    return $widgets;
   }
 }

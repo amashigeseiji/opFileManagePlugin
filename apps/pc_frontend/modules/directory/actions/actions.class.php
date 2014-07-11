@@ -21,6 +21,8 @@ class directoryActions extends sfActions
     {
       $this->redirect('@directory_show?id='.$directory->getId());
     }
+
+    $this->redirect('@directory_list');
   }
 
  /**
@@ -31,7 +33,7 @@ class directoryActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->directory = $this->getRoute()->getObject();
-    $this->forward404If(!$this->directory->isViewable());
+    $this->forward404If(!$this->directory->isViewable($this->getUser()->getMember()));
     $this->pager = Doctrine::getTable('ManagedFile')
       ->getFileListPager($this->directory->getId(), $request->getParameter('page'));
     $this->pager->init();
@@ -47,10 +49,10 @@ class directoryActions extends sfActions
     $this->member = $request->getParameter('id') ?
       $this->getRoute()->getObject() : $this->getUser()->getMember();
     // get all list or not
-    $isOpenOnly =
-      ($this->member->getId() === $this->getUser()->getMemberId()) ? false : true;
+    $type =
+      ($this->member->getId() === $this->getUser()->getMemberId()) ? null : 'public';
     $this->pager = FileDirectoryTable::getInstance()
-      ->getMemberDirectoryListPager($this->member->getId(), $isOpenOnly, $request->getParameter('page'));
+      ->getMemberDirectoryListPager($this->member->getId(), $type, $request->getParameter('page'));
     $this->pager->init();
   }
 
@@ -64,8 +66,8 @@ class directoryActions extends sfActions
     $request->checkCSRFProtection();
 
     $directory = $this->getRoute()->getObject();
-    $this->forward404If(!$directory->isAuthor());
-    $directory->publish($request['private'] ? false : true);
+    $this->forward404If(!$directory->isEditable($this->getUser()->getMember()));
+    $directory->publish($request['publish']);
 
     $this->redirect($request->getParameter('redirect', '@directory_show?id='.$directory->getId()));
   }
@@ -80,7 +82,7 @@ class directoryActions extends sfActions
     $request->checkCSRFProtection();
 
     $directory = $this->getRoute()->getObject();
-    $this->forward404If(!$directory->isAuthor());
+    $this->forward404If(!$directory->isEditable($this->getUser()->getMember()));
     $this->forward404If(!$request->getParameter('name'));
     $directory->modifyName($request['name']);
 
@@ -97,7 +99,7 @@ class directoryActions extends sfActions
     $request->checkCSRFProtection();
 
     $directory = $this->getRoute()->getObject();
-    $this->forward404If(!$directory->isAuthor());
+    $this->forward404If(!$directory->isEditable($this->getUser()->getMember()));
     $directory->delete();
 
     $this->redirect('@directory_list');
@@ -117,6 +119,16 @@ class directoryActions extends sfActions
     if ($form->isValid())
     {
       return $form->save();
+    }
+  }
+
+  public function executeConfig(sfWebRequest $request)
+  {
+    $this->directory = $this->getRoute()->getObject();
+    $this->form = new DirectoryConfigForm(array(), array('directory' => $this->directory));
+    if ($request->isMethod('post'))
+    {
+      $this->processForm($request, $this->form);
     }
   }
 }

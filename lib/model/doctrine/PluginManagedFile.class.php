@@ -9,34 +9,11 @@
 abstract class PluginManagedFile extends BaseManagedFile
 {
   /**
-   * @return string
-   */
-  public function getFileNameWithExtension()
-  {
-    return $this->getName().'.'.$this->getExtension();
-  }
-
-  /**
-   * @return string
-   */
-  public function getExtension()
-  {
-    $filename = $this->getFile()->getOriginalFilename();
-
-    return substr($filename, strrpos($filename, '.') + 1);
-  }
-
-  /**
    * @return bool
    */
-  public function isViewable()
+  public function isViewable(Member $member)
   {
-    if (!opFileManageConfig::get('use_private_directory') && !$this->getFileDirectory()->getIsOpen())
-    {
-      return false;
-    }
-
-    return $this->isAuthor() ? true : (bool)$this->getFileDirectory()->getIsOpen();
+    return $this->getFileDirectory()->isViewable($member);
   }
 
   /**

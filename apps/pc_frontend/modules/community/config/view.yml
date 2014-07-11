@@ -1,0 +1,7 @@
+homeSuccess:
+  customize:
+    communityDirecotryList:
+      template: [directory, communityDirectoryList]
+      parts: [communityHome]
+      target: [lastRow]
+      is_component: true

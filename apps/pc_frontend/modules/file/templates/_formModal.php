@@ -26,7 +26,7 @@ $(document).ready(function() {
 
   <div class="modal-footer" style="text-align:center;">
     <?php echo $form->renderHiddenFields() ?>
-    <input type="submit" class="btn btn-primary" <?php if ($submit): ?>value="<?php echo __($submit) ?>"<?php endif; ?> />
+    <input type="submit" class="btn btn-primary" <?php if (isset($submit)): ?>value="<?php echo __($submit) ?>"<?php endif; ?> />
   </div>
 
 </form>

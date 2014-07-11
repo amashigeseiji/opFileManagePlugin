@@ -6,27 +6,35 @@
  * @package    opFileManagedPlugin
  * @author     Seiji Amashige <amashige@tejimaya.com>
  */
-abstract class PluginFileDirectory extends BaseFileDirectory
+abstract class PluginFileDirectory extends BaseFileDirectory implements opAccessControlRecordInterface
 {
+  private $config;
   /**
    * @return bool
    */
-  public function isViewable()
+  public function isViewable(Member $member)
   {
-    if (!opFileManageConfig::get('use_private_directory') && !$this->getIsOpen())
-    {
-      return false;
-    }
+    return $this->isAllowed($member, 'view');
+  }
 
-    return $this->isAuthor() ? true : (bool)$this->getIsOpen();
+  public function isEditable(Member $member)
+  {
+    return $this->isAllowed($member, 'edit');
+  }
+
+  public function isUploadable(Member $member)
+  {
+    return $this->isAllowed($member, 'upload');
   }
 
   /**
    * @return bool
    */
-  public function isAuthor()
+  public function isAuthor(Member $member = null)
   {
-    return sfContext::getInstance()->getUser()->getMemberId() === $this->getMemberId();
+    $member = $member ? $member : sfContext::getInstance()->getUser()->getMember();
+
+    return (bool)('author' === $this->generateRoleId($member));
   }
 
   /**
@@ -34,18 +42,40 @@ abstract class PluginFileDirectory extends BaseFileDirectory
    */
   public function getPublicLabel()
   {
-    return $this->getIsOpen() ? '公開' : '非公開';
+    switch($this->getType())
+    {
+      case 'private':
+        return '非公開';
+        break;
+      case 'public':
+        return '公開';
+        break;
+      case 'community':
+        return 'コミュニティ';
+        break;
+      default:
+        throw new Exception();
+        break;
+    }
   }
 
   /**
-   * @param bool|null $publish 公開フラグ
+   * @param string $publish 公開フラグ
    */
-  public function publish($publish = null)
+  public function publish($publish)
   {
-    if (opFileManageConfig::get('use_private_directory'))
+    if (opFileManageConfig::isUsePrivate())
     {
-      $this->setIsOpen($publish ? true : false);
-      $this->save();
+      $validator = new sfValidatorChoice(array('choices' => Doctrine::getTable('FileDirectory')->getTypes(), 'required' => true));
+      try
+      {
+        $this->setType($validator->clean($publish));
+        $this->save();
+      }
+      catch (sfValidatorError $e)
+      {
+        throw $e;
+      }
     }
   }
 
@@ -53,5 +83,37 @@ abstract class PluginFileDirectory extends BaseFileDirectory
   {
     $this->setName($name);
     $this->save();
+  }
+
+  public function getConfig()
+  {
+    if (!$this->config)
+    {
+      $this->config = new opDirectoryConfig($this->id);
+    }
+
+    return $this->config;
+  }
+
+  public function generateRoleId(Member $member)
+  {
+    if ($this->getMemberId() === $member->id)
+    {
+      return 'author';
+    }
+    elseif (Doctrine::getTable('CommunityMember')->isMember($member->id, $this->getConfig()->getCommunityId()))
+    {
+      return 'member';
+    }
+
+    return 'everyone';
+  }
+
+  /**
+   * @return bool
+   */
+  public function isPrivate()
+  {
+    return 'private' === $this->type;
   }
 }

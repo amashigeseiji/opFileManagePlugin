@@ -18,7 +18,7 @@
     <?php endif; ?>
   </th>
   <td>
-    <?php if ($directory->getisOpen() || $directory->isAuthor()): ?>
+    <?php if ($directory->isUploadable(sfContext::getInstance()->getUser()->getMember())): ?>
       <a href="javascript:void(0)" id="file_upload_show_link" class="btn btn-mini btn-info" style="color: #ffffff">
         アップロード
       </a>
@@ -46,7 +46,7 @@
   <?php op_include_box('directoryShow', 'ファイルが存在しません。') ?>
 <?php endif; ?>
 
-<?php if ($directory->getisOpen() || $directory->isAuthor()): ?>
+<?php if ($directory->isUploadable(sfContext::getInstance()->getUser()->getMember())): ?>
   <?php include_partial('file/fileUploadModal', array(
     'directory' => $directory,
     'trigger'   => '#file_upload_show_link')
