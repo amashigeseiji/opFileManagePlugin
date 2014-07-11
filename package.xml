@@ -14,10 +14,10 @@
   <active>yes</active>
  </lead>
  <date>2014-07-12</date>
- <time>02:13:07</time>
+ <time>02:26:46</time>
  <version>
-  <release>0.8.0</release>
-  <api>0.8.0</api>
+  <release>0.8.1</release>
+  <api>0.8.1</api>
  </version>
  <stability>
   <release>devel</release>
@@ -114,6 +114,21 @@ under devlopment.
    <version>
     <release>0.8.0</release>
     <api>0.8.0</api>
+   </version>
+   <stability>
+    <release>devel</release>
+    <api>devel</api>
+   </stability>
+   <date>2014-07-12</date>
+   <license>Apache</license>
+   <notes>
+under devlopment.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.8.1</release>
+    <api>0.8.1</api>
    </version>
    <stability>
     <release>devel</release>
