@@ -48,11 +48,13 @@ class directoryActions extends sfActions
   {
     $this->member = $request->getParameter('id') ?
       $this->getRoute()->getObject() : $this->getUser()->getMember();
-    // get all list or not
-    $type =
-      ($this->member->getId() === $this->getUser()->getMemberId()) ? null : 'public';
+    $types = array('public');
+    if (opFileManageConfig::isUsePrivate() && $this->member->getId() === $this->getUser()->getMemberId())
+    {
+      $types[] = 'private';
+    }
     $this->pager = FileDirectoryTable::getInstance()
-      ->getMemberDirectoryListPager($this->member->getId(), $type, $request->getParameter('page'));
+      ->getMemberDirectoryListPager($this->member->getId(), $types, $request->getParameter('page'));
     $this->pager->init();
   }
 

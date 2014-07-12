@@ -20,11 +20,11 @@ class FileDirectoryQuery extends Doctrine_Query
     return $this->orderBy($orderBy ? $orderBy : 'created_at DESC');
   }
 
-  public function addType($type = null)
+  public function addType($types = array())
   {
-    if ($type)
+    if ($types)
     {
-      return $this->andWhere('type = ?', $type);
+      return $this->andWhereIn('type', $types);
     }
 
     if (!opFileManageConfig::isUsePrivate()
@@ -44,12 +44,12 @@ class FileDirectoryQuery extends Doctrine_Query
     return $this;
   }
 
-  public function getListQueryByMemberId($memberId, $type = null)
+  public function getListQueryByMemberId($memberId, $types = array())
   {
     return self::create()
       ->addMemberId($memberId)
       ->addOrderBy()
-      ->addType($type);
+      ->addType($types);
   }
 
   public function getListQueryByCommunityId($communityId)
