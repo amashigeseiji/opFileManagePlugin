@@ -16,8 +16,12 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
       $this['member_id'], $this['created_at'], $this['updated_at']
     );
 
-    $this->widgetSchema['type'] = new opWidgetFormSelectDirectoryType();
-    $this->validatorSchema['type'] = new sfValidatorChoice(array('choices' => Doctrine::getTable('FileDirectory')->getTypes()));
+    $choices = $this->getOption('directoryTypeChoices') ?
+      $this->getOption('directoryTypeChoices') :
+      Doctrine::getTable('FileDirectory')->getTypes();
+
+    $this->widgetSchema['type'] = new opWidgetFormSelectDirectoryType(array('choices' => $choices));
+    $this->validatorSchema['type'] = new sfValidatorChoice(array('choices' => $this->getWidget('type')->getChoices()));
 
     if (opFileManageConfig::isUseCommunity())
     {
