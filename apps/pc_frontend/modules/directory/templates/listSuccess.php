@@ -25,6 +25,12 @@
 <?php if ($directory->isAuthor()): ?>
 <td style="width: 30%">
 <?php echo $directory->getPublicLabel() ?>
+<?php if ('private' === $directory->getType() || 'public' === $directory->getType()): ?>
+<?php $word = ($directory->isPrivate()) ? '公開する' : '非公開にする' ?>
+<?php $url  = '@directory_publish?id='.$directory->getId().'&redirect='.urlencode($sf_request->getUri()) ?>
+<?php $url .= ($directory->isPrivate()) ? '&publish=public' : '&publish=private'?>
+&nbsp;<small>(<?php echo link_to($word, $url, array('method' => 'put')) ?>)</small>
+<?php endif; ?>
 </td>
 <?php endif; ?>
 </tr>
