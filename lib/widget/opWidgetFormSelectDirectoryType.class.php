@@ -11,11 +11,9 @@ class opWidgetFormSelectDirectoryType extends sfWidgetFormSelectRadio
 {
   protected function configure($options = array(), $attributes = array())
   {
-    $types = Doctrine::getTable('FileDirectory')->getTypes();
-    $this->addOption('choices', $types);
     $this->setDefault('public');
 
-    if (1 === count($types))
+    if (1 === count($options['choices']))
     {
       $this->setHidden(true);
     }
