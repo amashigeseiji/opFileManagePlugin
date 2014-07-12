@@ -61,10 +61,6 @@ class FileDirectoryQuery extends Doctrine_Query
       ->fetchArray();
 
     $max = count($directoryIds);
-    if (!$max)
-    {
-      return null;
-    }
 
     $ids = array();
     for ($i = 0; $i <= $max; $i++)
