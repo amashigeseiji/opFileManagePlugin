@@ -18,4 +18,28 @@ class directoryComponents extends sfComponents
     $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryListPager($this->community->id, 4);
     $this->pager->init();
   }
+
+  public function executeDirectoryCreateModal()
+  {
+    $this->form = new FileDirectoryForm();
+    if (opFileManageConfig::isUseCommunity())
+    {
+      $this->form->getWidget('community_id')->setHidden(true);
+      $this->form->getWidget('community_id')->setDefault(null);
+    }
+  }
+
+  public function executeCommunityDirectoryCreateModal()
+  {
+    if (!opFileManageConfig::isUseCommunity())
+    {
+      return sfView::NONE;
+    }
+
+    $this->form = new FileDirectoryForm();
+    $this->form->getWidget('type')->setHidden(true);
+    $this->form->getWidget('type')->setDefault('community');
+    $this->form->getWidget('community_id')->setHidden(true);
+    $this->form->getWidget('community_id')->setDefault($this->community->id);
+  }
 }

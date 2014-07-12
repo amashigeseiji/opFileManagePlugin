@@ -19,6 +19,6 @@
 <a href="javascript:void(0)" id="directory_create_link">フォルダを追加する</a>
 </li>
 </ul>
-<?php include_partial('directory/communityDirectoryCreateModal', array('trigger' => '#directory_create_link', 'community' => $community)) ?>
+<?php include_component('directory', 'communityDirectoryCreateModal', array('trigger' => '#directory_create_link', 'community' => $community)) ?>
 </td>
 </tr>
