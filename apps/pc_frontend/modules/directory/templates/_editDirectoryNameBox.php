@@ -1,4 +1,8 @@
 <?php use_javascript('/opFileManagePlugin/js/lib/vendor/require.js', 'first', array('data-main' => '/opFileManagePlugin/js/app.js')) ?>
+<?php if ($sf_request->isSmartphone()): ?>
+<?php use_helper('opAsset') ?>
+<?php op_smt_use_javascript('/opFileManagePlugin/js/lib/vendor/require.js', 'first', array('data-main' => '/opFileManagePlugin/js/app.js')) ?>
+<?php endif; ?>
 
 <script type="text/javascript">
 if (typeof(selector) === 'undefined') {
