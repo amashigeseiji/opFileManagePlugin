@@ -46,10 +46,6 @@ FileDirectory:
       type: one
       foreignType: many
       onDelete: cascade
-  indexes:
-    member_id_name_UNIQUE:
-      fields: [member_id, name]
-      type: unique
 
 DirectoryConfig:
   columns:
