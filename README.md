@@ -5,7 +5,7 @@
 *this is 開発ちゅう*
 
 ##install
-    $ php symfony opPlugin:install opFileManagePlugin -r 0.8.0  
+    $ php symfony opPlugin:install opFileManagePlugin -r 0.8.2  
 
 または手動の場合は以下
 
@@ -21,3 +21,4 @@
 ##機能
 * ファイルのアップロード・ダウンロード  
 * コミュニティ内でのファイル共有  
+* プライベートフォルダの作成  
