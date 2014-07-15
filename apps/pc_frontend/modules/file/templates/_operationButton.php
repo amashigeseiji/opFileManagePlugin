@@ -1,4 +1,4 @@
-<span class="btn-group">
+<span class="span btn-group">
   <?php echo link_to(
     '<i class="icon-download-alt"></i>',
     url_for('file_download', $file),
