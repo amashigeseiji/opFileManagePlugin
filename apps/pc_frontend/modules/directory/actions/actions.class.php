@@ -73,9 +73,14 @@ class directoryActions extends sfActions
   public function executeListCommunity(sfWebRequest $request)
   {
     $this->forward404If(!opFileManageConfig::isUseCommunity());
+
     $this->community = $this->getRoute()->getObject();
     $this->forward404If(!Doctrine::getTable('CommunityMember')
       ->isMember($this->getUser()->getMemberId(), $this->community->id));
+
+    sfConfig::set('sf_nav_type', 'community');
+    sfConfig::set('sf_nav_id', $this->community->getId());
+
     $this->pager = FileDirectoryTable::getInstance()
       ->getCommunityDirectoryListPager($this->community->getId(), null, $request->getParameter('page'));
     $this->pager->init();
