@@ -9,6 +9,14 @@
  */
 class directoryActions extends sfActions
 {
+  public function preExecute()
+  {
+    if ($this->getRequest()->isSmartphone())
+    {
+      $this->setLayout('smtLayoutSns');
+    }
+  }
+
  /**
   * Executes create action
   *
@@ -34,6 +42,13 @@ class directoryActions extends sfActions
   {
     $this->directory = $this->getRoute()->getObject();
     $this->forward404If(!$this->directory->isViewable($this->getUser()->getMember()));
+
+    if ('community' === $this->directory->type)
+    {
+      sfConfig::set('sf_nav_type', 'community');
+      sfConfig::set('sf_nav_id', $this->directory->getConfig()->getCommunityId());
+    }
+
     $this->pager = Doctrine::getTable('ManagedFile')
       ->getFileListPager($this->directory->getId(), $request->getParameter('page'));
     $this->pager->init();
@@ -55,6 +70,27 @@ class directoryActions extends sfActions
     }
     $this->pager = FileDirectoryTable::getInstance()
       ->getMemberDirectoryListPager($this->member->getId(), $types, $request->getParameter('page'));
+    $this->pager->init();
+  }
+
+ /**
+  * Executes list action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeListCommunity(sfWebRequest $request)
+  {
+    $this->forward404If(!opFileManageConfig::isUseCommunity());
+
+    $this->community = $this->getRoute()->getObject();
+    $this->forward404If(!Doctrine::getTable('CommunityMember')
+      ->isMember($this->getUser()->getMemberId(), $this->community->id));
+
+    sfConfig::set('sf_nav_type', 'community');
+    sfConfig::set('sf_nav_id', $this->community->getId());
+
+    $this->pager = FileDirectoryTable::getInstance()
+      ->getCommunityDirectoryListPager($this->community->getId(), null, $request->getParameter('page'));
     $this->pager->init();
   }
 

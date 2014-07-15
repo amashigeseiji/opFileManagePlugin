@@ -1,0 +1,5 @@
+Gadget:
+  smartphone_community_directory_list:
+    type: "smartphoneCommunityContents"
+    name: "communityDirectoryList"
+    sort_order: 150

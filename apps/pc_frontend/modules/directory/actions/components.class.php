@@ -19,6 +19,26 @@ class directoryComponents extends sfComponents
     $this->pager->init();
   }
 
+  public function executeSmtCommunityDirectoryList()
+  {
+    if (!$this->getRequest()->isSmartphone())
+    {
+      return sfView::NONE;
+    }
+
+    $this->community = Doctrine::getTable('Community')->find($this->getRequest()->getParameter('id'));
+
+    $isCommunityMember = Doctrine::getTable('CommunityMember')->isMember(sfContext::getInstance()->getUser()->getMemberId(), $this->community->id);
+
+    if (!$isCommunityMember)
+    {
+      return sfView::NONE;
+    }
+
+    $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryListPager($this->community->id, 4);
+    $this->pager->init();
+  }
+
   public function executeDirectoryCreateModal()
   {
     $choices = Doctrine::getTable('FileDirectory')->getTypes();

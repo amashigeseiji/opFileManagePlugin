@@ -1,0 +1,30 @@
+thead {
+  margin-bottom: 15px;
+}
+
+#page_directory_listCommunity td>*,
+#page_directory_list td>* {
+  padding: 5px;
+}
+
+#page_directory_listCommunity td,
+#page_directory_list td {
+  vertical-align: inherit;
+}
+
+#page_directory_listCommunity tr,
+#page_directory_list tr {
+  height: 30px;
+}
+
+#page_directory_listCommunity .btn,
+#page_directory_list .btn {
+  height: 12px;
+}
+
+#page_directory_listCommunity .dirname-list .operation-button,
+#page_directory_listCommunity .dirname-list .dirname,
+#page_directory_list .dirname-list .operation-button,
+#page_directory_list .dirname-list .dirname {
+  float: left;
+}
