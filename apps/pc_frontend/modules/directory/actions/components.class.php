@@ -21,6 +21,11 @@ class directoryComponents extends sfComponents
 
   public function executeSmtCommunityDirectoryList()
   {
+    if (!opFileManageConfig::isUseCommunity())
+    {
+      return sfView::NONE;
+    }
+
     if (!$this->getRequest()->isSmartphone())
     {
       return sfView::NONE;
