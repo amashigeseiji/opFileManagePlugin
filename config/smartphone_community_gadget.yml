@@ -1,0 +1,6 @@
+communityDirectoryList:
+  caption:
+    ja_JP: 'コミュニティのフォルダ'
+  description:
+    ja_JP: 'コミュニティのフォルダを新着順に表示します。'
+  component: [directory, smtCommunityDirectoryList]
