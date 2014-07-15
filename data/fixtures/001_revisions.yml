@@ -1,0 +1,4 @@
+SnsConfig:
+  op_filemanage_plugin_current_revision:
+    name: "opFileManagePlugin_revision"
+    value: 1
