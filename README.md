@@ -5,7 +5,7 @@
 *this is 開発ちゅう*
 
 ##install
-    $ php symfony opPlugin:install opFileManagePlugin -r 0.8.3  
+    $ php symfony opPlugin:install opFileManagePlugin -r 0.8.5  
     $ php symfony openpne:migrate --target=opFileManagePlugin  
 
 または手動の場合は以下
@@ -13,7 +13,7 @@
     $ cd $openpne_dir/plugins  
     $ git clone https://github.com/amashigeseiji/opFileManagePlugin  
     $ cd opFileManagePlugin  
-    $ git checkout 0.8.3  
+    $ git checkout 0.8.5  
     $ cd ../../  
     $ mysql -uroot $dbname -p -e "INSERT INTO sns_config (name, value) VALUES ('opFileManagePlugin_needs_data_load', '1');"  
     $ php symfony openpne:migrate --target=opFileManagedPlugin  

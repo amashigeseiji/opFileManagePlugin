@@ -17,10 +17,10 @@
   <active>yes</active>
  </lead>
  <date>2014-07-16</date>
- <time>02:54:45</time>
+ <time>02:58:40</time>
  <version>
-  <release>0.8.4</release>
-  <api>0.8.4</api>
+  <release>0.8.5</release>
+  <api>0.8.5</api>
  </version>
  <stability>
   <release>devel</release>
@@ -105,7 +105,7 @@ under development.
    <file baseinstalldir="/" md5sum="b9a632551266c6efda6d5eaf6eb0709c" name="web/js/lib/vendor/bootstrap-modal.js" role="data" />
    <file baseinstalldir="/" md5sum="a0fb07562ceae36e8342f297e427f28e" name="web/js/lib/vendor/require.js" role="data" />
    <file baseinstalldir="/" md5sum="4d5f7ec184b06e758bc749b29a5fd59d" name="web/js/view/fileNameEditor.js" role="data" />
-   <file baseinstalldir="/" md5sum="2ceb6b2998f49ca722fef28c0824ab26" name="README.md" role="data" />
+   <file baseinstalldir="/" md5sum="c377ab81ead9fb32a1c45c500e985c1d" name="README.md" role="data" />
   </dir>
  </contents>
  <dependencies>
@@ -184,6 +184,21 @@ under development.
    <version>
     <release>0.8.4</release>
     <api>0.8.4</api>
+   </version>
+   <stability>
+    <release>devel</release>
+    <api>devel</api>
+   </stability>
+   <date>2014-07-16</date>
+   <license>Apache</license>
+   <notes>
+under development.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.8.5</release>
+    <api>0.8.5</api>
    </version>
    <stability>
     <release>devel</release>
