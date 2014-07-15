@@ -16,11 +16,11 @@
   <email />
   <active>yes</active>
  </lead>
- <date>2014-07-14</date>
- <time>11:50:25</time>
+ <date>2014-07-16</date>
+ <time>02:36:33</time>
  <version>
-  <release>0.8.2</release>
-  <api>0.8.2</api>
+  <release>0.8.3</release>
+  <api>0.8.3</api>
  </version>
  <stability>
   <release>devel</release>
@@ -28,7 +28,7 @@
  </stability>
  <license>Apache</license>
  <notes>
-under devlopment.
+under development.
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -36,32 +36,38 @@ under devlopment.
    <file baseinstalldir="/" md5sum="9b007313dab58620a1980dfe8c641f68" name="apps/pc_backend/modules/opFileManagePlugin/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="79f60803db7fcf6a5e484cc7b438ce5e" name="apps/pc_backend/modules/opFileManagePlugin/templates/indexSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="a2e4734a4e3fdea0ebca55c7b8d0dc22" name="apps/pc_frontend/config/app.yml" role="data" />
-   <file baseinstalldir="/" md5sum="8d4b11b8b49541224f2582e5bbaaf87f" name="apps/pc_frontend/config/routing.yml" role="data" />
+   <file baseinstalldir="/" md5sum="6bbe5ef4bab590d4e758c1b1f933eae3" name="apps/pc_frontend/config/routing.yml" role="data" />
    <file baseinstalldir="/" md5sum="23a85a877ba78a09b520b19d03c3650c" name="apps/pc_frontend/config/security.yml" role="data" />
    <file baseinstalldir="/" md5sum="e362dc9c9954a6f92d59445d9f9e3204" name="apps/pc_frontend/modules/community/config/view.yml" role="data" />
-   <file baseinstalldir="/" md5sum="046b2698df00e1e08a5861c47b1d7b99" name="apps/pc_frontend/modules/directory/actions/actions.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="a7bbbe7ec51a8c61afdf729a8c5e0462" name="apps/pc_frontend/modules/directory/actions/components.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="e90455fa725bb23091e16c9de94171b4" name="apps/pc_frontend/modules/directory/actions/actions.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="9f68df89cfa8a742419336800a9dd69a" name="apps/pc_frontend/modules/directory/actions/components.class.php" role="data" />
    <file baseinstalldir="/" md5sum="c5691a4d094027f537d26504dcbeff8a" name="apps/pc_frontend/modules/directory/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="935550c06a81f514743f4db8c00302f0" name="apps/pc_frontend/modules/directory/templates/configSuccess.php" role="data" />
-   <file baseinstalldir="/" md5sum="eb145fab5a2b76109bf4a29005d5513f" name="apps/pc_frontend/modules/directory/templates/listSuccess.php" role="data" />
+   <file baseinstalldir="/" md5sum="738c1a7552017778f54490bf85804142" name="apps/pc_frontend/modules/directory/templates/listCommunitySuccess.php" role="data" />
+   <file baseinstalldir="/" md5sum="00f6d3f4afd8eb706fc653d9a33ff1bc" name="apps/pc_frontend/modules/directory/templates/listSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="05f916d66365981e4bc38d1872e7bd85" name="apps/pc_frontend/modules/directory/templates/showSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="4955e6055540d6676fc161350568eeb0" name="apps/pc_frontend/modules/directory/templates/_communityDirectoryCreateModal.php" role="data" />
-   <file baseinstalldir="/" md5sum="f444f1a439577b11134499637e1d4e69" name="apps/pc_frontend/modules/directory/templates/_communityDirectoryList.php" role="data" />
+   <file baseinstalldir="/" md5sum="99784f7bdad5a8ebfdbc342ecc0583b6" name="apps/pc_frontend/modules/directory/templates/_communityDirectoryList.php" role="data" />
    <file baseinstalldir="/" md5sum="96c0ef66aee663a878e930c47832cd83" name="apps/pc_frontend/modules/directory/templates/_directoryCreateModal.php" role="data" />
-   <file baseinstalldir="/" md5sum="25453c0809845b07d66df9b17ba7cfe9" name="apps/pc_frontend/modules/directory/templates/_edit.php" role="data" />
-   <file baseinstalldir="/" md5sum="c9ea585dc72597d1b5972c1cfe9602be" name="apps/pc_frontend/modules/directory/templates/_editDirectoryNameBox.php" role="data" />
-   <file baseinstalldir="/" md5sum="2b7cf9cc04242ec64e07dd347324b79c" name="apps/pc_frontend/modules/file/actions/actions.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="bae7e43f2d7903ea1e4e9b374a044cce" name="apps/pc_frontend/modules/directory/templates/_edit.php" role="data" />
+   <file baseinstalldir="/" md5sum="c0b4e5f8b7b12a7a22313b7293c14e58" name="apps/pc_frontend/modules/directory/templates/_editDirectoryNameBox.php" role="data" />
+   <file baseinstalldir="/" md5sum="357c1f3c1479d59e4666319345293465" name="apps/pc_frontend/modules/directory/templates/_listRow.php" role="data" />
+   <file baseinstalldir="/" md5sum="4af3500af1f6e101174e19fc0104ccb3" name="apps/pc_frontend/modules/directory/templates/_smtCommunityDirectoryList.php" role="data" />
+   <file baseinstalldir="/" md5sum="c73ddf9d4ba5e988cab0c045a48aae72" name="apps/pc_frontend/modules/file/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="c5691a4d094027f537d26504dcbeff8a" name="apps/pc_frontend/modules/file/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="47cc5d032eb58a98631870510332d67c" name="apps/pc_frontend/modules/file/templates/editSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="65067efdc181306b2285cc4069eaa2f1" name="apps/pc_frontend/modules/file/templates/showSuccess.php" role="data" />
-   <file baseinstalldir="/" md5sum="6c208f66f564e320b8c2c64cd1e14a79" name="apps/pc_frontend/modules/file/templates/_editFileNameBox.php" role="data" />
+   <file baseinstalldir="/" md5sum="b5fe4445e1ffb9fcf60978fef977def7" name="apps/pc_frontend/modules/file/templates/_editFileNameBox.php" role="data" />
    <file baseinstalldir="/" md5sum="00d09b542c21f93991b90e59e79b0579" name="apps/pc_frontend/modules/file/templates/_fileUploadModal.php" role="data" />
-   <file baseinstalldir="/" md5sum="b644d071c27cf38308a182892e1507b4" name="apps/pc_frontend/modules/file/templates/_formModal.php" role="data" />
-   <file baseinstalldir="/" md5sum="dc9df69882820089fa68dd4fa73a53ba" name="apps/pc_frontend/modules/file/templates/_operationButton.php" role="data" />
+   <file baseinstalldir="/" md5sum="7ad993fb7975831af8664bd00f114ba6" name="apps/pc_frontend/modules/file/templates/_formModal.php" role="data" />
+   <file baseinstalldir="/" md5sum="d00b0a1999386b2f15f23a69029b4b31" name="apps/pc_frontend/modules/file/templates/_operationButton.php" role="data" />
    <file baseinstalldir="/" md5sum="907c4516531ab5c2955000c22bab8db6" name="apps/pc_frontend/modules/file/templates/_thumbnail.php" role="data" />
    <file baseinstalldir="/" md5sum="c254216c798d401d600c4e0b06e5371f" name="config/app.yml" role="data" />
-   <file baseinstalldir="/" md5sum="09651e43734a8672aa73ced3c36fbb6a" name="config/doctrine/schema.yml" role="data" />
-   <file baseinstalldir="/" md5sum="a5a55578c2d0a9f7e2ef2c49247f70c8" name="data/fixtures/000_navigation.yml" role="data" />
+   <file baseinstalldir="/" md5sum="46d4f3e5e17c3c2270aa457430d6207c" name="config/opFileManagePluginConfiguration.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="440d3fcf76e3c62796139af5d714c28f" name="config/smartphone_community_gadget.yml" role="data" />
+   <file baseinstalldir="/" md5sum="701a38266721a6cdd5f9a578476c6e67" name="config/doctrine/schema.yml" role="data" />
+   <file baseinstalldir="/" md5sum="aba43356bc7197be7375cc52b2744c26" name="data/fixtures/010_gadget.yml" role="data" />
+   <file baseinstalldir="/" md5sum="a5a55578c2d0a9f7e2ef2c49247f70c8" name="data/fixtures/020_navigation.yml" role="data" />
    <file baseinstalldir="/" md5sum="7acb90a3801216f5e0747809efc516ce" name="lib/config/opDirectoryConfig.class.php" role="data" />
    <file baseinstalldir="/" md5sum="9e2b6c49d05f88d536ca239c7a529660" name="lib/config/opFileManageConfig.class.php" role="data" />
    <file baseinstalldir="/" md5sum="47700076d328e1a45a4fee688b61c619" name="lib/filter/doctrine/PluginDirectoryConfigFormFilter.class.php" role="data" />
@@ -91,6 +97,7 @@ under devlopment.
    <file baseinstalldir="/" md5sum="52440ab0abcc01c98551283f1e9942e1" name="test/unit/model/SkeletonTest.php" role="data" />
    <file baseinstalldir="/" md5sum="08f2256002f66a415dbc2e8afb722d70" name="web/css/bootstrap.css" role="data" />
    <file baseinstalldir="/" md5sum="557b85d1a929a59cbde86c5984bf39be" name="web/css/communityModal.css" role="data" />
+   <file baseinstalldir="/" md5sum="8eefe157827281dfe446954bd9a96462" name="web/css/smt.css" role="data" />
    <file baseinstalldir="/" md5sum="9bbc6e9602998a385c2ea13df56470fd" name="web/img/glyphicons-halflings-white.png" role="data" />
    <file baseinstalldir="/" md5sum="2516339970d710819585f90773aebe0a" name="web/img/glyphicons-halflings.png" role="data" />
    <file baseinstalldir="/" md5sum="8c7f89926c6172a2aa7d63e6781bcd9c" name="web/js/app.js" role="data" />
@@ -156,6 +163,21 @@ under devlopment.
    <license>Apache</license>
    <notes>
 under devlopment.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.8.3</release>
+    <api>0.8.3</api>
+   </version>
+   <stability>
+    <release>devel</release>
+    <api>devel</api>
+   </stability>
+   <date>2014-07-16</date>
+   <license>Apache</license>
+   <notes>
+under development.
    </notes>
   </release>
  </changelog>
