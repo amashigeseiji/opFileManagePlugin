@@ -2,25 +2,11 @@
 
 ファイルを管理する
 
-*this is 開発ちゅう*
-
 ##install
-    $ php symfony opPlugin:install opFileManagePlugin -r 0.8.5  
-    $ php symfony openpne:migrate --target=opFileManagePlugin  
-
-または手動の場合は以下
-
-    $ cd $openpne_dir/plugins  
-    $ git clone https://github.com/amashigeseiji/opFileManagePlugin  
-    $ cd opFileManagePlugin  
-    $ git checkout 0.8.5  
-    $ cd ../../  
-    $ mysql -uroot $dbname -p -e "INSERT INTO sns_config (name, value) VALUES ('opFileManagePlugin_needs_data_load', '1');"  
-    $ php symfony openpne:migrate --target=opFileManagedPlugin  
-    $ php symfony plugin:publish-assets  
+see <https://github.com/amashigeseiji/opFileManagePlugin/wiki#how-to-install>
 
 ##機能
-* ファイルのアップロード・ダウンロード  
+* 各種ファイルのアップロード・ダウンロード  
 * コミュニティ内でのファイル共有  
 * プライベートフォルダの作成  
 
