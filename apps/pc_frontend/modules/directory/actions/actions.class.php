@@ -16,6 +16,7 @@ class directoryActions extends sfActions
       $this->setLayout('smtLayoutSns');
     }
   }
+
  /**
   * Executes create action
   *
@@ -41,6 +42,13 @@ class directoryActions extends sfActions
   {
     $this->directory = $this->getRoute()->getObject();
     $this->forward404If(!$this->directory->isViewable($this->getUser()->getMember()));
+
+    if ('community' === $this->directory->type)
+    {
+      sfConfig::set('sf_nav_type', 'community');
+      sfConfig::set('sf_nav_id', $this->directory->getConfig()->getCommunityId());
+    }
+
     $this->pager = Doctrine::getTable('ManagedFile')
       ->getFileListPager($this->directory->getId(), $request->getParameter('page'));
     $this->pager->init();
@@ -85,6 +93,7 @@ class directoryActions extends sfActions
       ->getCommunityDirectoryListPager($this->community->getId(), null, $request->getParameter('page'));
     $this->pager->init();
   }
+
  /**
   * Executes publish action
   *

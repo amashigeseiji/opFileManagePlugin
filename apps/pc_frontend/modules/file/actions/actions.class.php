@@ -16,6 +16,7 @@ class fileActions extends sfActions
       $this->setLayout('smtLayoutSns');
     }
   }
+
  /**
   * Executes create action
   *
@@ -68,6 +69,14 @@ class fileActions extends sfActions
   {
     $this->file = $this->getRoute()->getObject();
     $this->forward404If(!$this->file->isViewable($this->getUser()->getMember()));
+
+    $directory = $this->file->FileDirectory;
+    if ('community' === $directory->type)
+    {
+      sfConfig::set('sf_nav_type', 'community');
+      sfConfig::set('sf_nav_id', $directory->getConfig()->getCommunityId());
+    }
+
     $this->directory = $this->file->getFileDirectory();
   }
 
