@@ -82,6 +82,14 @@ directory_list_member:
   requirements:
     id: \d+
 
+directory_list_community:
+  url: /directory/listCommunity/:id
+  class: sfDoctrineRoute
+  options: { model: community, type: object }
+  param: { module: directory, action: listCommunity }
+  requirements:
+    id: \d+
+
 directory_edit_name:
   url: /directory/:id/edit
   class: sfDoctrineRoute

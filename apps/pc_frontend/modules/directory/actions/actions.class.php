@@ -66,6 +66,21 @@ class directoryActions extends sfActions
   }
 
  /**
+  * Executes list action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeListCommunity(sfWebRequest $request)
+  {
+    $this->forward404If(!opFileManageConfig::isUseCommunity());
+    $this->community = $this->getRoute()->getObject();
+    $this->forward404If(!Doctrine::getTable('CommunityMember')
+      ->isMember($this->getUser()->getMemberId(), $this->community->id));
+    $this->pager = FileDirectoryTable::getInstance()
+      ->getCommunityDirectoryListPager($this->community->getId(), null, $request->getParameter('page'));
+    $this->pager->init();
+  }
+ /**
   * Executes publish action
   *
   * @param sfWebRequest $request A request object
