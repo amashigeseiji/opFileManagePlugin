@@ -7,7 +7,7 @@
 <?php echo link_to($directory->getName(), '@directory_show?id='.$directory->getId()) ?>
 </span>
 </td>
-<?php if ($directory->isAuthor() || !'community' !== $directory->type): ?>
+<?php if ($directory->isAuthor() && 'community' !== $directory->type): ?>
 <td style="width: 30%">
 <?php echo $directory->getPublicLabel() ?>
 <?php if ('private' === $directory->getType() || 'public' === $directory->getType()): ?>
