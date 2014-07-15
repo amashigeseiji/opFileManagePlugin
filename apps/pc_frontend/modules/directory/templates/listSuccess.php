@@ -1,3 +1,7 @@
+<?php if ($sf_request->isSmartphone()): ?>
+<?php op_smt_use_stylesheet('/opFileManagePlugin/css/smt') ?>
+<?php endif; ?>
+
 <table class="table table-striped">
 <thead>
 <th>
@@ -14,11 +18,11 @@
 <?php if ($pager->getNbResults()): ?>
 <?php foreach ($pager as $directory): ?>
 <tr>
-<td>
+<td class="dirname-list">
 <?php if ($directory->isAuthor()): ?>
 <?php include_partial('directory/edit', array('directory' => $directory)) ?>
 <?php endif; ?>
-<span class="dirname_<?php echo $directory->id ?>">
+<span class="dirname_<?php echo $directory->id ?> dirname">
 <?php echo link_to($directory->getName(), '@directory_show?id='.$directory->getId()) ?>
 </span>
 </td>

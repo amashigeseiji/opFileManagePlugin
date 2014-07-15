@@ -1,4 +1,7 @@
 <?php use_javascript('/opFileManagePlugin/js/lib/vendor/bootstrap-modal', 'last') ?>
+<?php if ($sf_request->isSmartphone()): ?>
+<?php op_smt_use_javascript('/opFileManagePlugin/js/lib/vendor/bootstrap-modal', 'last') ?>
+<?php endif; ?>
 
 <script type="text/javascript">
 $(document).ready(function() {
