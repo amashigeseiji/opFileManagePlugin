@@ -9,6 +9,13 @@
  */
 class directoryActions extends sfActions
 {
+  public function preExecute()
+  {
+    if ($this->getRequest()->isSmartphone())
+    {
+      $this->setLayout('smtLayoutSns');
+    }
+  }
  /**
   * Executes create action
   *
