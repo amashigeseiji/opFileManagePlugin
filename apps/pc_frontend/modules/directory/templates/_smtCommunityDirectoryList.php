@@ -1,5 +1,5 @@
 <div class="gadget_header span12 row">
-<?php __('Shared directory') ?>
+<?php echo __('Shared directory') ?>
 </div>
 
 <div class="row">
