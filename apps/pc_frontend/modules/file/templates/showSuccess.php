@@ -14,7 +14,7 @@
 
 <tbody>
 <tr>
-  <th>ファイル名 &nbsp;</th>
+  <th>ファイル名</th>
   <td class="filename_<?php echo $file->getId() ?>" style="width: 50%">
     <?php echo $file->getName() ?>
   </td>
@@ -28,15 +28,15 @@
   <td><?php echo $file->getFilesize() ?></td>
 </tr>
 <tr>
-  <th>フォルダ &nbsp;</th>
+  <th>フォルダ</th>
   <td><?php echo link_to($directory->getName(), 'directory_show', $directory) ?> ( <?php echo $directory->getPublicLabel() ?> )</td>
 </tr>
 <tr>
-  <th>メンバー &nbsp;</th>
+  <th>メンバー</th>
   <td><?php echo $file->getMember()->getName() ?></td>
 </tr>
 <tr>
-  <th>アップロード日時 &nbsp;</th>
+  <th>アップロード日時</th>
   <td><?php echo $file->getDateTimeObject('created_at')->format('Y年m月d日') ?></td>
 </tr>
 </tbody>
