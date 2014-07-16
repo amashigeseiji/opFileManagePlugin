@@ -42,21 +42,7 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
    */
   public function getPublicLabel()
   {
-    switch($this->getType())
-    {
-      case 'private':
-        return '非公開';
-        break;
-      case 'public':
-        return '公開';
-        break;
-      case 'community':
-        return 'コミュニティ';
-        break;
-      default:
-        throw new Exception();
-        break;
-    }
+    return ucfirst($this->type);
   }
 
   /**

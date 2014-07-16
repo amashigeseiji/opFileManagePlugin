@@ -17,20 +17,20 @@ $(document).ready( function() {
   }
 
   $('.toggle-text').on('click', function () {
-    toggle($('.text'), $(this), { to_open: 'テキストを表示する', to_close: 'テキストを隠す' });
+    toggle($('.text'), $(this), { to_open: "<?php echo __('Preview') ?>", to_close: "<?php echo __('Hide') ?>" });
   });
 
   $('.toggle-image').on('click', function() {
-    toggle($('.preview-image'), $(this), { to_open: '画像を表示する', to_close: '画像を隠す' });
+    toggle($('.preview-image'), $(this), { to_open: "<?php echo __('Preview') ?>", to_close: "<?php echo __('Hide') ?>" });
   });
 });
 </script>
 
 <?php if ($file->isImage()): ?>
-  <a href="javascript:void(0)" class="toggle-image">画像を表示する</a>
+  <a href="javascript:void(0)" class="toggle-image"><?php echo __('Preview') ?></a>
   <?php echo op_image_tag_sf_image($file->getFile()->getName(), array('size' => '320x320', 'class' => 'hide preview-image')) ?>
 <?php elseif ($file->isText()): ?>
-<a href="javascript:void(0)" class="toggle-text">テキストを表示する</a>
+<a href="javascript:void(0)" class="toggle-text"><?php echo __('Preview') ?></a>
 <div class="text hide">
 <pre class="prettyprint linenums">
 <?php echo $file->getBin() ?>

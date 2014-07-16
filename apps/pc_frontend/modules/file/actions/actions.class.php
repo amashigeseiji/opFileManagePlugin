@@ -31,12 +31,12 @@ class fileActions extends sfActions
     if ($file)
     {
       $notice = 'notice';
-      $message = 'ファイルをアップロードしました。';
+      $message = 'File is uploaded.';
     }
     else
     {
       $notice = 'error';
-      $message = 'ファイルのアップロードに失敗しました。';
+      $message = 'Failed to upload.';
     }
     $this->getUser()->setFlash($notice, $message);
 
@@ -107,12 +107,12 @@ class fileActions extends sfActions
     $directoryId = $this->file->getFileDirectory()->getId();
     if ($this->file->delete())
     {
-      $this->getUser()->setFlash('notice', 'ファイルを削除しました。');
+      $this->getUser()->setFlash('notice', 'File is deleted.');
       $this->redirect('@directory_show?id='.$directoryId);
     }
     else
     {
-      $this->getUser()->setFlash('error', 'ファイルの削除に失敗しました。');
+      $this->getUser()->setFlash('error', 'Failed to delete.');
     }
   }
 

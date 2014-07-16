@@ -2,7 +2,7 @@
   'form'    => new ManagedFileForm(array(), array('directory' => $directory)),
   'url'     => url_for('file_upload', $directory),
   'id'      => 'file_upload_form',
-  'title'   => 'ファイルをアップロードする',
+  'title'   => __('File upload'),
   'widgets' => array('file'),
   'trigger' => $trigger,
   'submit'  => __('Upload')

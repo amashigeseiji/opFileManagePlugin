@@ -9,7 +9,9 @@
 <thead>
 <tr>
   <th>
-    <span class="dirname_<?php echo $directory->id ?>"><?php echo $directory->getName() ?></span>のファイル
+    <?php echo __('File list of %1%', array(
+      '%1%' => '<span class="dirname_'.$directory->id.'">'.$directory->getName().'</span>'
+    )) ?>
     <?php if ('community' === $directory->type): ?>
       <span class="normal">
       (<?php echo $directory->getConfig()->getCommunity()->name ?>)
@@ -17,7 +19,7 @@
       </span>
     <?php elseif ($directory->isAuthor()): ?>
       <span class="normal">
-      (<?php echo $directory->getPublicLabel() ?>)
+      (<?php echo __($directory->getPublicLabel()) ?>)
       <?php include_partial('directory/edit', array('directory' => $directory)) ?>
       </span>
     <?php endif; ?>
@@ -25,7 +27,7 @@
   <td>
     <?php if ($directory->isUploadable(sfContext::getInstance()->getUser()->getMember())): ?>
       <a href="javascript:void(0)" id="file_upload_show_link" class="btn btn-mini btn-info" style="color: #ffffff">
-        アップロード
+      <?php echo __('Upload') ?>
       </a>
     <?php endif; ?>
   </td>
@@ -48,7 +50,7 @@
 <?php if ($pager->getNbResults()): ?>
   <?php op_include_pager_navigation($pager, '@directory_show?id='.$directory->id.'&page=%d'); ?>
 <?php else: ?>
-  <?php op_include_box('directoryShow', 'ファイルが存在しません。') ?>
+  <?php op_include_box('directoryShow', __('There is no file.')) ?>
 <?php endif; ?>
 
 <?php if ($directory->isUploadable(sfContext::getInstance()->getUser()->getMember())): ?>

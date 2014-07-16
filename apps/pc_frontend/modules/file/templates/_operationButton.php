@@ -10,7 +10,7 @@
       '@file_delete?id='.$file->getId(),
       array('method' => 'delete',
             'class' => 'btn btn-small',
-            'confirm' => 'ファイル名: '.$file->getName().'\n本当に削除してもよろしいですか？')
+            'confirm' => __('File name').': '.$file->getName().'\n'.__('Are you sure you want to remove this completely?'))
     ) ?>
     <a href="javascript:void(0)" id="file_edit_name_link_<?php echo $file->getId() ?>" class="btn btn-small">
       <i class="icon-edit"></i>

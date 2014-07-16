@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<xliff version="1.0">
+  <file orginal="global" source-language="en" datatype="plaintext">
+    <body>
+      <trans-unit id="">
+        <source>Create directory</source>
+        <target>フォルダを作成する</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>There is no directory.</source>
+        <target>フォルダがありません。</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>There is no file.</source>
+        <target>ファイルが存在しません。</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Directory list of %1%</source>
+        <target>%1%のフォルダ一覧</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>File list of %1%</source>
+        <target>%1%のファイル</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Shared directory</source>
+        <target>共有フォルダ</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Directory name</source>
+        <target>フォルダ名</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Files in directory will be deleted.\nIs it OK?</source>
+        <target>フォルダの中のファイルも全て削除されます。\nよろしいですか？</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Modify</source>
+        <target>変更</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>File information</source>
+        <target>ファイル情報</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>File name</source>
+        <target>ファイル名</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>File type</source>
+        <target>ファイルタイプ</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>File size</source>
+        <target>ファイルサイズ</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Directory</source>
+        <target>フォルダ</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Uploaded at</source>
+        <target>アップロード日時</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>File upload</source>
+        <target>ファイルをアップロードする</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Are you sure you want to remove this completely?</source>
+        <target>本当に削除してもよろしいですか？</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Preview</source>
+        <target>プレビュー</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Hide</source>
+        <target>隠す</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>File is uploaded.</source>
+        <target>ファイルをアップロードしました。</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Failed to upload.</source>
+        <target>ファイルのアップロードに失敗しました。</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>File is deleted.</source>
+        <target>ファイルを削除しました。</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Failed to delete.</source>
+        <target>ファイルの削除に失敗しました。</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Public</source>
+        <target>公開</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Private</source>
+        <target>非公開</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Publish</source>
+        <target>公開する</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Take private</source>
+        <target>非公開にする</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

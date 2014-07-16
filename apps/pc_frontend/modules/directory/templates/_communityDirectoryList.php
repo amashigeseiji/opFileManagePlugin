@@ -1,6 +1,6 @@
 <tr>
 <th>
-共有フォルダ
+<?php echo __('Shared directory') ?>
 </th>
 <td>
 <?php if ($pager->getNbResults()): ?>
@@ -16,7 +16,7 @@
 <?php endif; ?>
 <ul class="moreInfo" style="float: right;">
 <li>
-<a href="javascript:void(0)" id="directory_create_link">フォルダを追加する</a>
+<a href="javascript:void(0)" id="directory_create_link"><?php echo __('Create directory') ?></a>
 </li>
 <li>
 <?php echo link_to(__('More'), '@directory_list_community?id='.$community->id) ?>

@@ -1,4 +1,4 @@
-<h2>opFileManagePlugin Configuration</h2>
+<h2><?php echo __('opFileManagePlugin Configuration') ?></h2>
 
 <form action="<?php echo url_for('@opFileManagePlugin') ?>" method="post">
 <table>

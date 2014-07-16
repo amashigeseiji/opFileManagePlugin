@@ -1,5 +1,5 @@
 <div class="gadget_header span12 row">
-共有フォルダ
+<?php __('Shared directory') ?>
 </div>
 
 <div class="row">
@@ -18,7 +18,7 @@
   <?php endif; ?>
 
   <div class="btn-group" style="float: right;">
-    <a href="javascript:void(0)" id="directory_create_link" class="btn">フォルダを追加する</a>
+    <a href="javascript:void(0)" id="directory_create_link" class="btn"><?php echo __('Create directory') ?></a>
     <a class="btn" href="<?php echo url_for('@directory_list_community?id='.$community->id) ?>"><?php echo __('More') ?></a>
   </div>
 
