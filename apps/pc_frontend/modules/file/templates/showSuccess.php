@@ -1,3 +1,7 @@
+<?php if ($sf_request->isSmartphone()): ?>
+<?php op_smt_use_stylesheet('/opFileManagePlugin/css/smt', 'last') ?>
+<?php endif; ?>
+
 <table class="table table-striped">
 <thead>
 <tr>

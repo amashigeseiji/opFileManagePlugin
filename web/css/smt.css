@@ -28,3 +28,12 @@ thead {
 #page_directory_list .dirname-list .dirname {
   float: left;
 }
+
+/* because of smt_main.css line 381 override bootstrap */
+.table tbody td {
+  border-top: 1px solid #ddd !important;
+}
+
+.table td {
+  vertical-align: middle;
+}
