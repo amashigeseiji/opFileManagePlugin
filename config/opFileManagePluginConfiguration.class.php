@@ -10,9 +10,11 @@ class opFileManagePluginConfiguration extends sfPluginConfiguration
   {
     $context = sfContext::getInstance();
     $request = $context->getRequest();
-    if ($request->isSmartphone())
+    $moduleName = $context->getModuleName();
+    if ($request->isSmartphone() && ('directory' === $moduleName || 'file' === $moduleName))
     {
       $context->getConfiguration()->loadHelpers(array('opAsset'));
+      $context->getResponse()->addSmtStylesheet('/opFileManagePlugin/css/smt');
     }
   }
 }
