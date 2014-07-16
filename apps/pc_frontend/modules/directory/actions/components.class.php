@@ -67,6 +67,16 @@ class directoryComponents extends sfComponents
       return sfView::NONE;
     }
 
+    if (!$this->community)
+    {
+      $this->community = $this->getRequest()->getAttribute('sf_route')->getObject();
+    }
+
+    if (!$this->community || !$this->community instanceof Community)
+    {
+      throw new opRuntimeException('CommunityDirectoryCreateModal: Community object does not set.');
+    }
+
     $this->form = new FileDirectoryForm();
     $this->form->getWidget('type')->setHidden(true);
     $this->form->getWidget('type')->setDefault('community');
