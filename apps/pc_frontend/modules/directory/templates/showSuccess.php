@@ -10,7 +10,12 @@
 <tr>
   <th>
     <span class="dirname_<?php echo $directory->id ?>"><?php echo $directory->getName() ?></span>のファイル
-    <?php if ($directory->isAuthor()): ?>
+    <?php if ('community' === $directory->type): ?>
+      <span class="normal">
+      (<?php echo $directory->getConfig()->getCommunity()->name ?>)
+      <?php include_partial('directory/edit', array('directory' => $directory)) ?>
+      </span>
+    <?php elseif ($directory->isAuthor()): ?>
       <span class="normal">
       (<?php echo $directory->getPublicLabel() ?>)
       <?php include_partial('directory/edit', array('directory' => $directory)) ?>
