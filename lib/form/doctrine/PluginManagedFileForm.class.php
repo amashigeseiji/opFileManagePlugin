@@ -21,6 +21,7 @@ abstract class PluginManagedFileForm extends BaseManagedFileForm
 
     $this->widgetSchema['file'] = new sfWidgetFormInputFile();
     $this->validatorSchema['file'] = new sfValidatorFile(array('required' => true));
+    $this->widgetSchema{'file'}->setLabel('File name');
   }
 
   public function save()
