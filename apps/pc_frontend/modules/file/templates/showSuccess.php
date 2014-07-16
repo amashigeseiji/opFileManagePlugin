@@ -29,7 +29,7 @@
 </tr>
 <tr>
   <th><?php echo __('Directory') ?></th>
-  <td><?php echo link_to($directory->getName(), 'directory_show', $directory) ?> ( <?php echo $directory->getPublicLabel() ?> )</td>
+  <td><?php echo link_to($directory->getName(), 'directory_show', $directory) ?> ( <?php echo __($directory->getPublicLabel()) ?> )</td>
 </tr>
 <tr>
   <th><?php echo __('Member') ?></th>
