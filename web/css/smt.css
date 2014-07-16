@@ -7,21 +7,6 @@ thead {
   padding: 5px;
 }
 
-#page_directory_listCommunity td,
-#page_directory_list td {
-  vertical-align: inherit;
-}
-
-#page_directory_listCommunity tr,
-#page_directory_list tr {
-  height: 30px;
-}
-
-#page_directory_listCommunity .btn,
-#page_directory_list .btn {
-  height: 12px;
-}
-
 #page_directory_listCommunity .dirname-list .operation-button,
 #page_directory_listCommunity .dirname-list .dirname,
 #page_directory_list .dirname-list .operation-button,
@@ -29,11 +14,13 @@ thead {
   float: left;
 }
 
-/* because of smt_main.css line 381 override bootstrap */
-.table tbody td {
-  border-top: 1px solid #ddd !important;
+.table tbody tr {
+  height: 50px;
 }
 
-.table td {
-  vertical-align: middle;
+.table tbody th, .table tbody td {
+  border-top: 1px solid #ddd !important;
+  border-bottom: 1px solid #ddd !important;
+  vertical-align: middle !important;
+  padding: auto;
 }
