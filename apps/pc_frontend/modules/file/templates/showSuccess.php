@@ -38,6 +38,4 @@
 </tbody>
 </table>
 
-<div class="thumbnail" style="text-align: center">
 <?php include_partial('file/thumbnail', array('file' => $file)) ?>
-</div>

@@ -1,3 +1,4 @@
+<?php if ($file->isText() || $file->isImage()): ?>
 <style>
 .hide {
   display: none !important;
@@ -16,24 +17,22 @@ $(document).ready( function() {
     }
   }
 
-  $('.toggle-text').on('click', function () {
-    toggle($('.text'), $(this), { to_open: "<?php echo __('Preview') ?>", to_close: "<?php echo __('Hide') ?>" });
-  });
-
-  $('.toggle-image').on('click', function() {
-    toggle($('.preview-image'), $(this), { to_open: "<?php echo __('Preview') ?>", to_close: "<?php echo __('Hide') ?>" });
+  $('.toggle').on('click', function() {
+    toggle($('.preview'), $(this), { to_open: "<?php echo __('Preview') ?>", to_close: "<?php echo __('Hide') ?>" });
   });
 });
 </script>
 
-<?php if ($file->isImage()): ?>
-  <a href="javascript:void(0)" class="toggle-image"><?php echo __('Preview') ?></a>
-  <?php echo op_image_tag_sf_image($file->getFile()->getName(), array('size' => '320x320', 'class' => 'hide preview-image')) ?>
-<?php elseif ($file->isText()): ?>
-<a href="javascript:void(0)" class="toggle-text"><?php echo __('Preview') ?></a>
-<div class="text hide">
-<pre class="prettyprint linenums">
-<?php echo $file->getBin() ?>
-</pre>
+<div class="thumbnail" style="text-align: center">
+  <a href="javascript:void(0)" class="toggle" style="display: block; width: 100%"><?php echo __('Preview') ?></a>
+  <?php if ($file->isImage()): ?>
+    <?php echo op_image_tag_sf_image($file->getFile()->getName(), array('size' => '320x320', 'class' => 'hide preview')) ?>
+  <?php elseif ($file->isText()): ?>
+    <div class="hide preview">
+      <pre class="prettyprint linenums">
+      <?php echo $file->getBin() ?>
+      </pre>
+    </div>
+  <?php endif; ?>
 </div>
 <?php endif; ?>
