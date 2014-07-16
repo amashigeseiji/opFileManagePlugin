@@ -25,7 +25,10 @@
 </tr>
 <tr>
   <th><?php echo __('Directory') ?></th>
-  <td><?php echo link_to($directory->getName(), 'directory_show', $directory) ?> ( <?php echo __($directory->getPublicLabel()) ?> )</td>
+  <td>
+    <?php echo link_to($directory->getName(), 'directory_show', $directory) ?>
+    ( <?php echo 'community' === $directory->type ? $directory->getConfig()->getCommunity()->name.'&nbsp;'.__('Community') : __($directory->getPublicLabel()) ?> )
+  </td>
 </tr>
 <tr>
   <th><?php echo __('Member') ?></th>

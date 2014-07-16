@@ -103,6 +103,10 @@
         <target>非公開</target>
       </trans-unit>
       <trans-unit id="">
+        <source>Community</source>
+        <target>コミュニティ</target>
+      </trans-unit>
+      <trans-unit id="">
         <source>Publish</source>
         <target>公開する</target>
       </trans-unit>
