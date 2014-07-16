@@ -159,14 +159,4 @@ class directoryActions extends sfActions
       return $form->save();
     }
   }
-
-  public function executeConfig(sfWebRequest $request)
-  {
-    $this->directory = $this->getRoute()->getObject();
-    $this->form = new DirectoryConfigForm(array(), array('directory' => $this->directory));
-    if ($request->isMethod('post'))
-    {
-      $this->processForm($request, $this->form);
-    }
-  }
 }
