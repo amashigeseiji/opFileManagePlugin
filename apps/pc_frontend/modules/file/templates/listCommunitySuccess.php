@@ -2,12 +2,7 @@
 
 <thead>
 <tr>
-  <th><?php echo $community->name ?>のファイル一覧</th>
-  <td>
-    <a href="javascript:void(0)" id="file_upload_show_link" class="btn btn-mini btn-info" style="color: #ffffff">
-    <?php echo __('Upload') ?>
-    </a>
-  </td>
+  <th column=2><?php echo $community->name ?>のファイル一覧</th>
 </tr>
 </thead>
 
@@ -17,3 +12,9 @@
 <?php endforeach; ?>
 </tbody>
 </table>
+
+<?php if ($pager->getNbResults()): ?>
+  <?php op_include_pager_navigation($pager, '@file_list_community?id='.$community->id.'&page=%d'); ?>
+<?php else: ?>
+  <?php op_include_box('directoryShow', __('There is no file.')) ?>
+<?php endif; ?>
