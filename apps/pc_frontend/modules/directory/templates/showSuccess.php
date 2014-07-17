@@ -26,9 +26,7 @@
   </th>
   <td>
     <?php if ($directory->isUploadable(sfContext::getInstance()->getUser()->getMember())): ?>
-      <a href="javascript:void(0)" id="file_upload_show_link" class="btn btn-mini btn-info" style="color: #ffffff">
-      <?php echo __('Upload') ?>
-      </a>
+    <?php include_partial('file/fileUploadModal', array('directory' => $directory)) ?>
     <?php endif; ?>
   </td>
 </tr>
@@ -51,11 +49,4 @@
   <?php op_include_pager_navigation($pager, '@directory_show?id='.$directory->id.'&page=%d'); ?>
 <?php else: ?>
   <?php op_include_box('directoryShow', __('There is no file.')) ?>
-<?php endif; ?>
-
-<?php if ($directory->isUploadable(sfContext::getInstance()->getUser()->getMember())): ?>
-  <?php include_partial('file/fileUploadModal', array(
-    'directory' => $directory,
-    'trigger'   => '#file_upload_show_link')
-  ) ?>
 <?php endif; ?>
