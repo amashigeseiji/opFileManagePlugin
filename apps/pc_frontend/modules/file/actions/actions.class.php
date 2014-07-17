@@ -79,6 +79,19 @@ class fileActions extends sfActions
   }
 
  /**
+  * Executes listCommunity action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeListCommunity(sfWebRequest $request)
+  {
+    $this->community = $this->getRoute()->getObject();
+    $this->pager = Doctrine::getTable('ManagedFile')
+      ->getCommunityFileListPager($this->community->id);
+    $this->pager->init();
+  }
+
+ /**
   * Executes download action
   *
   * @param sfWebRequest $request A request object
