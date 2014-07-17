@@ -88,6 +88,10 @@ class fileActions extends sfActions
     $this->community = $this->getRoute()->getObject();
     $this->forward404If(!Doctrine::getTable('CommunityMember')
       ->isMember($this->getUser()->getMemberId(), $this->community->id));
+
+    sfConfig::set('sf_nav_type', 'community');
+    sfConfig::set('sf_nav_id', $this->community->id);
+
     $this->pager = Doctrine::getTable('ManagedFile')
       ->getCommunityFileListPager($this->community->id);
     $this->pager->init();
