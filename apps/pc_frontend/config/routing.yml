@@ -33,15 +33,6 @@ file_edit_name:
     id: \d+
     sf_method: [put]
 
-file_update:
-  url: /file/:id/update
-  class: sfDoctrineRoute
-  options: { model: ManagedFile, type: object }
-  param: { module: file, action: update }
-  requirements:
-    sf_method: [post]
-    id: \d+
-
 file_delete:
   url: /file/:id/delete
   class: sfDoctrineRoute
