@@ -2,7 +2,7 @@
 
 <thead>
 <tr>
-  <th column=2><?php echo $community->name ?>のファイル一覧</th>
+  <th column=2><?php echo __('File list of %1%', array('%1%' => $community->name)) ?></th>
 </tr>
 </thead>
 

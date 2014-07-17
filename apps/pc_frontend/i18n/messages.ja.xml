@@ -20,7 +20,7 @@
       </trans-unit>
       <trans-unit id="">
         <source>File list of %1%</source>
-        <target>%1%のファイル</target>
+        <target>%1%のファイル一覧</target>
       </trans-unit>
       <trans-unit id="">
         <source>Shared directory</source>
