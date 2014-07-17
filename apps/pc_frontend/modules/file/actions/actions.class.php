@@ -86,6 +86,8 @@ class fileActions extends sfActions
   public function executeListCommunity(sfWebRequest $request)
   {
     $this->community = $this->getRoute()->getObject();
+    $this->forward404If(!Doctrine::getTable('CommunityMember')
+      ->isMember($this->getUser()->getMemberId(), $this->community->id));
     $this->pager = Doctrine::getTable('ManagedFile')
       ->getCommunityFileListPager($this->community->id);
     $this->pager->init();
