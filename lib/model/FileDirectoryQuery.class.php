@@ -44,7 +44,7 @@ class FileDirectoryQuery extends Doctrine_Query
     return $this;
   }
 
-  public function getListQueryByMemberId($memberId, $types = array())
+  public static function getListQueryByMemberId($memberId, $types = array())
   {
     return self::create()
       ->addMemberId($memberId)
@@ -52,25 +52,13 @@ class FileDirectoryQuery extends Doctrine_Query
       ->addType($types);
   }
 
-  public function getListQueryByCommunityId($communityId)
+  public static function getListQueryByCommunityId($communityId)
   {
-    $directoryIds = Doctrine_Query::create()
-      ->from('DirectoryConfig c')
-      ->where('c.community_id = ?', $communityId)
-      ->addSelect('c.directory_id')
-      ->fetchArray();
+    $directoryIds = Doctrine::getTable('DirectoryConfig')
+      ->getDirectoryIdsByCommunityId($communityId);
 
-    $max = count($directoryIds);
-
-    $ids = array();
-    for ($i = 0; $i <= $max; $i++)
-    {
-      $ids[] = $directoryIds[$i]['directory_id'];
-    }
-
-    return self::create()
-      ->addOrderBy()
-      ->addType('community')
-      ->whereIn('id', $ids);
+    return Doctrine_Query::create()
+      ->from('FileDirectory')
+      ->whereIn('id', $directoryIds);
   }
 }

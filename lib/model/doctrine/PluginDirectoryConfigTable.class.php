@@ -33,17 +33,19 @@ class PluginDirectoryConfigTable extends Doctrine_Table
       ->where('directory_id = ?', $directoryId);
   }
 
-  public function save($directoryId, $communityId)
+  public function getDirectoryIdsByCommunityId($communityId)
   {
-    if ($config = $this->getCommunityConfigByDirectoryId($directoryId))
+    $results = $this->createQuery()
+      ->where('community_id = ?', $communityId)
+      ->select('directory_id')
+      ->execute(array(), Doctrine::HYDRATE_NONE);
+    $max = count($results);
+    $ids = array();
+    for ($i = 0; $i < $max; $i++)
     {
-      return $config->updateCommunityId($communityId);
+      $ids[] = $results[$i][0];
     }
-    else
-    {
-      $config = new DirectoryConfig();
 
-      return $config->create($directoryId, $communityId);
-    }
+    return $ids;
   }
 }
