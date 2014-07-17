@@ -27,7 +27,9 @@
   <th><?php echo __('Directory') ?></th>
   <td>
     <?php echo link_to($directory->getName(), 'directory_show', $directory) ?>
-    ( <?php echo 'community' === $directory->type ? $directory->getConfig()->getCommunity()->name.'&nbsp;'.__('Community') : __($directory->getPublicLabel()) ?> )
+    ( <?php echo 'community' === $directory->type ?
+      link_to($directory->getConfig()->getCommunity()->name, '@community_home?id='.$directory->getConfig()->getCommunityid()) :
+      __($directory->getPublicLabel()) ?> )
   </td>
 </tr>
 <tr>
