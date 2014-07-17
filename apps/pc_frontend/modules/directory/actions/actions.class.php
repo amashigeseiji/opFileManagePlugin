@@ -50,7 +50,7 @@ class directoryActions extends sfActions
     }
 
     $this->pager = Doctrine::getTable('ManagedFile')
-      ->getFileListPager($this->directory->getId(), $request->getParameter('page'));
+      ->getDirectoryFileListPager($this->directory->getId(), $request->getParameter('page'));
     $this->pager->init();
   }
 

@@ -17,7 +17,7 @@ class PluginManagedFileTable extends Doctrine_Table
     return Doctrine_Core::getTable('PluginManagedFile');
   }
 
-  public function getFileListPager($directoryId, $page = null)
+  public function getDirectoryFileListPager($directoryId, $page = null)
   {
     $q = $this->getFileListQueryByDirectoryId($directoryId);
 
