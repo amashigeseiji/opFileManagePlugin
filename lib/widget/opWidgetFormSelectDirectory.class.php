@@ -27,22 +27,30 @@ class opWidgetFormSelectDirectory extends sfWidgetFormSelect
       $attributes['type'] = 'hidden';
       $attributes['value'] = $this->getDefault();
 
-      return $this->renderContentTag(
-        'input',
-        null,
-        array_merge(array('name' => $name), $attributes)
-      );
+      $tag = 'input';
+      $content = null;
+    }
+    else
+    {
+      $tag = 'select';
+      $content = "\n".implode("\n", $this->getOptionsForSelect())."\n";
     }
 
-    $choices = $this->getChoices();
+    $attributes['name'] = $name;
 
+    return $this->renderContentTag($tag, $content, $attributes);
+  }
+
+  protected function getOptionsForSelect()
+  {
     $options = array();
+    $choices = $this->getChoices();
     foreach ($choices as $key => $option)
     {
-      $attributes = array('value' => self::escapeOnce($option['id']));
-      $options[] = $this->renderContentTag('option', self::escapeOnce($option['name']), $attributes);
+      $attribute = array('value' => self::escapeOnce($option['id']));
+      $options[] = $this->renderContentTag('option', self::escapeOnce($option['name']), $attribute);
     }
 
-    return $this->renderContentTag('select', "\n".implode("\n", $options)."\n", array_merge(array('name' => $name), $attributes));
+    return $options;
   }
 }
