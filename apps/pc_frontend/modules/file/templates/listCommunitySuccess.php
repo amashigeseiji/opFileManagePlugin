@@ -9,7 +9,7 @@
 
 <tbody>
 <?php foreach ($pager as $file): ?>
-<?php include_partial('file/fileListRow', array('file' => $file)) ?>
+<?php include_partial('file/fileListRow', array('file' => $file, 'dirname' => true)) ?>
 <?php endforeach; ?>
 </tbody>
 </table>
