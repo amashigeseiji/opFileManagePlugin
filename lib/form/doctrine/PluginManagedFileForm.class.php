@@ -15,9 +15,17 @@ abstract class PluginManagedFileForm extends BaseManagedFileForm
 
     unset(
       $this['member_id'], $this['file_id'],
-      $this['directory_id'], $this['name'],
+      $this['name'],
       $this['created_at'], $this['updated_at']
     );
+
+    if (!$this->getOption('directoryChoices'))
+    {
+      throw new Exception('The directory choices are not specified.');
+    }
+
+    $this->widgetSchema['directory_id'] = new opWidgetFormSelectDirectory(array('choices' => $this->getOption('directoryChoices')));
+    $this->validatorSchema['directory_id'] = new opValidatorDirectory(array('required' => true));
 
     $this->widgetSchema['file'] = new sfWidgetFormInputFile();
     $this->validatorSchema['file'] = new sfValidatorFile(array('required' => true));
@@ -34,8 +42,6 @@ abstract class PluginManagedFileForm extends BaseManagedFileForm
     }
 
     $this->getObject()->setFile($file);
-    $this->getObject()->setMemberId(sfContext::getInstance()->getuser()->getMemberId());
-    $this->getObject()->setDirectoryId($this->getOption('directory')->getId());
 
     return parent::save();
   }
