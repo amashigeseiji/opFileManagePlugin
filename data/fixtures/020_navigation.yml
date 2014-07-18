@@ -8,3 +8,23 @@ Navigation:
         caption: "My Folder"
       ja_JP:
         caption: "マイフォルダ"
+
+  community_directory_navigation:
+    type: "community"
+    uri: "directory/listCommunity"
+    sort_order: 50
+    Translation:
+      ja_JP:
+        caption: "フォルダ"
+      en:
+        caption: "Directories"
+
+  community_file_navigation:
+    type: "community"
+    uri: "file/listCommunity"
+    sort_order: 50
+    Translation:
+      ja_JP:
+        caption: "ファイル"
+      en:
+        caption: "Files"
