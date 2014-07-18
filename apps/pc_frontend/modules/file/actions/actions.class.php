@@ -93,6 +93,8 @@ class fileActions extends sfActions
   */
   public function executeListCommunity(sfWebRequest $request)
   {
+    $this->forward404If(!opFileManageConfig::isUseCommunity());
+
     $this->community = $this->getRoute()->getObject();
     $this->forward404If(!Doctrine::getTable('CommunityMember')
       ->isMember($this->getUser()->getMemberId(), $this->community->id));
