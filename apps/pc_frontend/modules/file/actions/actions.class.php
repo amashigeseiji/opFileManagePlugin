@@ -101,7 +101,7 @@ class fileActions extends sfActions
     sfConfig::set('sf_nav_id', $this->community->id);
 
     $this->pager = Doctrine::getTable('ManagedFile')
-      ->getCommunityFileListPager($this->community->id);
+      ->getCommunityFileListPager($this->community->id, $request->getParameter('page'));
     $this->pager->init();
   }
 
