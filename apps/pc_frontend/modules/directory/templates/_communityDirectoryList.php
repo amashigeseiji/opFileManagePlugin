@@ -19,7 +19,7 @@
 <a href="javascript:void(0)" id="directory_create_link"><?php echo __('Create directory') ?></a>
 </li>
 <li>
-<?php echo link_to(__('More'), '@directory_list_community?id='.$community->id) ?>
+<?php echo link_to(__('Directory list of %1%', array('%1%' => $community->name)), '@directory_list_community?id='.$community->id) ?>
 </li>
 <li>
 <?php echo link_to(__('File list of %1%', array('%1%' => $community->name)), '@file_list_community?id='.$community->id) ?>
