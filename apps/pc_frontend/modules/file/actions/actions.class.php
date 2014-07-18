@@ -25,22 +25,30 @@ class fileActions extends sfActions
   public function executeCreate(sfWebRequest $request)
   {
     $directory = $this->getRoute()->getObject();
-    $this->form = new ManagedFileForm(array(), array('directory' => $directory));
-    $file = $this->processForm($request, $this->form);
+    $form = new ManagedFileForm(array(), array('directoryChoices' => array($directory->id)));
+    $form->getObject()->setMemberId($this->getUser()->getMemberId());
+    $this->processForm($request, $form);
 
-    if ($file)
-    {
-      $notice = 'notice';
-      $message = 'File is uploaded.';
-    }
-    else
-    {
-      $notice = 'error';
-      $message = 'Failed to upload.';
-    }
-    $this->getUser()->setFlash($notice, $message);
+    $this->redirect('@directory_show?id='.$directory->id);
+  }
 
-    $this->redirect('@directory_show?id='.$directory->getId());
+ /**
+  * Executes create community file action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeCreateFileCommunity(sfWebRequest $request)
+  {
+    $community = $this->getRoute()->getObject();
+    $choices = FileDirectoryQuery::getListQueryByCommunityId($community->id)
+      ->select('id, name')
+      ->fetchArray();
+    $form = new ManagedFileForm(array(), array('directoryChoices' => $choices));
+    $form->getObject()->setMemberId($this->getUser()->getMemberId());
+
+    $this->processForm($request, $form);
+
+    $this->redirect('@file_list_community?id='.$community->id);
   }
 
  /**
@@ -148,7 +156,16 @@ class fileActions extends sfActions
 
     if ($form->isValid())
     {
-      return $form->save($directory);
+      $result = $form->save();
+      $state = 'notice';
+      $message = 'File is uploaded.';
     }
+    else
+    {
+      $state = 'error';
+      $message = 'Failed to upload.';
+    }
+
+    $this->getUser()->setFlash($state, $message);
   }
 }
