@@ -3,11 +3,11 @@
 </a>
 
 <?php include_partial('file/formModal', array(
-  'form'    => new ManagedFileForm(array(), array('directory' => $directory)),
-  'url'     => url_for('file_upload', $directory),
+  'form'    => $form,
+  'url'     => url_for($url),
   'id'      => 'file_upload_form',
   'title'   => __('File upload'),
-  'widgets' => array('file'),
+  'widgets' => $widgets,
   'trigger' => '#file_upload_show_link',
   'submit'  => __('Upload')
 )) ?>
