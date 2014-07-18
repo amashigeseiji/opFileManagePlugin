@@ -26,7 +26,7 @@
   </th>
   <td>
     <?php if ($directory->isUploadable(sfContext::getInstance()->getUser()->getMember())): ?>
-    <?php include_partial('file/fileUploadModal', array('directory' => $directory)) ?>
+    <?php include_component('file', 'directoryFileUploadModal') ?>
     <?php endif; ?>
   </td>
 </tr>

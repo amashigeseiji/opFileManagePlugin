@@ -2,7 +2,8 @@
 
 <thead>
 <tr>
-  <th column=2><?php echo __('File list of %1%', array('%1%' => $community->name)) ?></th>
+  <th><?php echo __('File list of %1%', array('%1%' => $community->name)) ?></th>
+  <td><?php include_component('file', 'communityFileUploadModal') ?></td>
 </tr>
 </thead>
 
