@@ -17,10 +17,10 @@
   <active>yes</active>
  </lead>
  <date>2014-07-19</date>
- <time>07:49:24</time>
+ <time>08:54:35</time>
  <version>
-  <release>0.8.5.2</release>
-  <api>0.8.5.2</api>
+  <release>0.8.5.3</release>
+  <api>0.8.5.3</api>
  </version>
  <stability>
   <release>devel</release>
@@ -54,7 +54,7 @@ under development.
    <file baseinstalldir="/" md5sum="a1801764dfc084372aec87f5394aa3b4" name="apps/pc_frontend/modules/directory/templates/_editDirectoryNameBox.php" role="data" />
    <file baseinstalldir="/" md5sum="c0a7bfd345d56e914650cda0d759513a" name="apps/pc_frontend/modules/directory/templates/_listRow.php" role="data" />
    <file baseinstalldir="/" md5sum="608e0f80050d3a0c7a4aba4c755fb95a" name="apps/pc_frontend/modules/directory/templates/_smtCommunityDirectoryList.php" role="data" />
-   <file baseinstalldir="/" md5sum="73fc25049f77936dd91dc64d8db98531" name="apps/pc_frontend/modules/file/actions/actions.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="508f5deade11b4a644c1666527736995" name="apps/pc_frontend/modules/file/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="285f9e0baf8976524baeaa26a5eb4341" name="apps/pc_frontend/modules/file/actions/components.class.php" role="data" />
    <file baseinstalldir="/" md5sum="c5691a4d094027f537d26504dcbeff8a" name="apps/pc_frontend/modules/file/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="7fd355583bc91b405d5d45ec69dbbc9f" name="apps/pc_frontend/modules/file/templates/listCommunitySuccess.php" role="data" />
@@ -85,8 +85,8 @@ under development.
    <file baseinstalldir="/" md5sum="e9140bb33be681d18b026552c0615957" name="lib/model/ManagedFileQuery.class.php" role="data" />
    <file baseinstalldir="/" md5sum="8751d0f03f0037df968148071cd2fc1e" name="lib/model/doctrine/PluginDirectoryConfig.class.php" role="data" />
    <file baseinstalldir="/" md5sum="32952099925bab18194a8931fefb1d2e" name="lib/model/doctrine/PluginDirectoryConfigTable.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="e10ffeca39497f181ae978fd237c86c4" name="lib/model/doctrine/PluginFileDirectory.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="e5e769f8ea4afaddfce28c2aaceac7ef" name="lib/model/doctrine/PluginFileDirectoryTable.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="18ed711b4df075d7acdb2c5056f2707c" name="lib/model/doctrine/PluginFileDirectory.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="e07e787ca4391ad0053c4697300db161" name="lib/model/doctrine/PluginFileDirectoryTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="aadd9f2422ab8800b4932556c9a6ccc8" name="lib/model/doctrine/PluginManagedFile.class.php" role="data" />
    <file baseinstalldir="/" md5sum="567a39afefa2b02be37fc7e8cfb6d7fc" name="lib/model/doctrine/PluginManagedFileTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="9599fe6244f393c74744ee14efdecb2e" name="lib/validator/opFileDirectoryValidatorSchema.class.php" role="data" />
@@ -236,6 +236,21 @@ under development.
    <version>
     <release>0.8.5.2</release>
     <api>0.8.5.2</api>
+   </version>
+   <stability>
+    <release>devel</release>
+    <api>devel</api>
+   </stability>
+   <date>2014-07-19</date>
+   <license>Apache</license>
+   <notes>
+under development.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.8.5.3</release>
+    <api>0.8.5.3</api>
    </version>
    <stability>
     <release>devel</release>
