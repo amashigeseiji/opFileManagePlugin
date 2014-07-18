@@ -16,6 +16,15 @@ file_upload:
     id: \d+
     sf_method: [post]
 
+file_upload_community:
+  url: /file/create/community/:id
+  class: sfDoctrineRoute
+  options: { model: Community, type: object }
+  param: { module: file, action: createFileCommunity }
+  requirements:
+    id: \d+
+    sf_method: [post]
+
 file_download:
   url: /file/:id/download
   class: sfDoctrineRoute
