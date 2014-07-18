@@ -56,6 +56,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
   public function appendRoles(Zend_Acl $acl)
   {
     return $acl
+      ->addRole(new Zend_Acl_Role('reject'))
       ->addRole(new Zend_Acl_Role('everyone'))
       ->addRole(new Zend_Acl_Role('member'), 'everyone')
       ->addRole(new Zend_Acl_Role('author'), 'member');

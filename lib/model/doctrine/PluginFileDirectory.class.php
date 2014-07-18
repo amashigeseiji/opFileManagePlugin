@@ -83,6 +83,12 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
 
   public function generateRoleId(Member $member)
   {
+    if (!opFileManageConfig::isUsePrivate() && 'private' === $this->type
+    || !opFileManageConfig::isUseCommunity() && 'community' === $this->type)
+    {
+      return 'reject';
+    }
+
     if ($this->getMemberId() === $member->id)
     {
       return 'author';
