@@ -26,6 +26,12 @@ class fileComponents extends sfComponents
       ->select('id, name')
       ->fetchArray();
 
+    // If no directory is created for this community.
+    if (!$choices)
+    {
+      return sfView::NONE;
+    }
+
     $this->form = new ManagedFileForm(array(), array('directoryChoices' => $choices));
     $this->url = '@file_upload_community?id='.$this->community->id;
     $this->widgets = array('file', 'directory_id');
