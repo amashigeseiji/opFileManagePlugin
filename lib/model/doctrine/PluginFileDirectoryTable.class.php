@@ -71,6 +71,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     {
       $acl->allow('everyone', $resource, 'view');
     }
+    $acl->allow('author', $resource, 'delete');
 
     return $acl;
   }

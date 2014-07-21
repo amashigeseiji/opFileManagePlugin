@@ -27,6 +27,11 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
     return $this->isAllowed($member, 'upload');
   }
 
+  public function isDeletable(Member $member)
+  {
+    return $this->isAllowed($member, 'delete');
+  }
+
   /**
    * @return bool
    */
