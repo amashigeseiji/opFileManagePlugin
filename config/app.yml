@@ -17,3 +17,19 @@ all:
         validatorOptions:
           choices: [ 1, 0 ]
         default: 0
+      public_directory_edit_setting:
+        widget: sfWidgetFormSelectRadio
+        validator: sfValidatorChoice
+        widgetOptions:
+          choices: { author: Author only, everyone: Everyone in SNS }
+        validatorOptions:
+          choices: [ author, everyone ]
+        default: author
+      public_directory_upload_setting:
+        widget: sfWidgetFormSelectRadio
+        validator: sfValidatorChoice
+        widgetOptions:
+          choices: { author: Author only, everyone: Everyone in SNS }
+        validatorOptions:
+          choices: [ author, everyone ]
+        default: author

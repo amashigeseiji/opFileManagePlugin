@@ -22,6 +22,22 @@
         <source>Use community directory</source>
         <target>コミュニティ共有フォルダを使用する</target>
       </trans-unit>
+      <trans-unit id="">
+        <source>Public directory edit setting</source>
+        <target>公開フォルダの編集権限</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Public directory upload setting</source>
+        <target>公開フォルダへのアップロード権限</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Author only</source>
+        <target>作成者のみ</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Everyone in SNS</source>
+        <target>SNS内の全員</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
