@@ -49,16 +49,19 @@ class PluginManagedFileTable extends opAccessControlDoctrineTable
     return $acl
       ->addRole(new Zend_Acl_Role('reject'))
       ->addRole(new Zend_Acl_Role('everyone'))
-      ->addRole(new Zend_Acl_Role('author'), 'everyone')
-      ->addRole(new Zend_Acl_Role('directory_author'), 'author');
+      ->addRole(new Zend_Acl_Role('member'), 'everyone')
+      ->addRole(new Zend_Acl_Role('author'), 'member');
   }
 
   public function appendRules(Zend_Acl $acl, $resource = null)
   {
-    $acl->allow('author', $resource, 'view');
-    $acl->allow('author', $resource, 'edit');
+    $acl->allow('member', $resource, 'view');
+    $acl->allow('member', $resource, 'edit');
+    if ($resource && 'public' === $resource->FileDirectory->type)
+    {
+      $acl->allow('everyone', $resource, 'view');
+    }
     $acl->allow('author', $resource, 'delete');
-    $acl->allow('everyone', $resource, 'view');
 
     return $acl;
   }

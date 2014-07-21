@@ -97,13 +97,34 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
       return 'reject';
     }
 
-    if ($this->member_id === $member->id)
+    if ('community' === $this->FileDirectory->type)
     {
-      return 'author';
+      if (Doctrine::getTable('CommunityMember')
+        ->isMember($member->id, $this->FileDirectory->getConfig()->getCommunityId()))
+      {
+        if ($this->member_id === $member->id)
+        {
+          return 'author';
+        }
+        else
+        {
+          return 'member';
+        }
+      }
     }
-    elseif ($this->FileDirectory->member_id === $member->id)
+    else if ('private' === $this->FileDirectory->type)
     {
-      return 'directory_author';
+      if ($this->FileDirectory->member_id === $member->id)
+      {
+        return 'author';
+      }
+    }
+    else
+    {
+      if ($this->member_id === $member->id || $this->FileDirectory->member_id === $member->id)
+      {
+        return 'author';
+      }
     }
 
     return 'everyone';
