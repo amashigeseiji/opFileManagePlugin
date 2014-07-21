@@ -61,7 +61,7 @@ class fileActions extends sfActions
     $request->checkCSRFProtection();
 
     $file = $this->getRoute()->getObject();
-    $this->forward404If(!$file->isAuthor());
+    $this->forward404If(!$file->isEditable($this->getUser()->getMember()));
     $this->forward404If(!$request->hasParameter('name'));
     $file->editName($request->getParameter('name'));
 
@@ -130,7 +130,7 @@ class fileActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->file = $this->getRoute()->getObject();
-    $this->forward404If(!$this->file->isAuthor());
+    $this->forward404If(!$this->file->isDeletable($this->getUser()->getMember()));
     $directoryId = $this->file->getFileDirectory()->getId();
     if ($this->file->delete())
     {
