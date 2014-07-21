@@ -25,6 +25,6 @@ class opValidatorDirectory extends sfValidatorBase
       return $value;
     }
 
-    throw new sfValidatorError($this, 'Member  privilege does not belong to directory. MemberId: '.$member->id.', DirectoryId: '.$directory->id);
+    throw new sfValidatorError($this, 'Member privilege does not belong to directory. MemberId: '.$member->id.', DirectoryId: '.$directory->id);
   }
 }
