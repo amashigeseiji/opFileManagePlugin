@@ -24,9 +24,9 @@ class opValidatorSelectCommunity extends sfValidatorBase
         return $value;
       }
 
-      return false;
+      throw new sfValidatorError($this, 'Member does not belong to community.');
     }
 
-    return false;
+    throw new sfValidatorError($this, 'Invalid.');
   }
 }
