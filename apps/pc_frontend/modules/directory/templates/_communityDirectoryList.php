@@ -18,12 +18,14 @@
 <li>
 <a href="javascript:void(0)" id="directory_create_link"><?php echo __('Create directory') ?></a>
 </li>
+<?php if ($pager->getNbResults()): ?>
 <li>
 <?php echo link_to(__('Directory list of %1%', array('%1%' => $community->name)), '@directory_list_community?id='.$community->id) ?>
 </li>
 <li>
 <?php echo link_to(__('File list of %1%', array('%1%' => $community->name)), '@file_list_community?id='.$community->id) ?>
 </li>
+<?php endif; ?>
 </ul>
 <?php include_component('directory', 'communityDirectoryCreateModal', array('trigger' => '#directory_create_link', 'community' => $community)) ?>
 </td>
