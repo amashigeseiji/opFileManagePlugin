@@ -4,6 +4,22 @@
 <?php op_smt_use_javascript('/opFileManagePlugin/js/lib/vendor/bootstrap-modal', 'last') ?>
 <?php endif; ?>
 
+<style>
+.modal-body li {
+  display: table;
+  margin: 10px 0;
+}
+.modal-body li>span {
+  display: table-cell;
+}
+.modal-body li>span.form-label {
+  width: 80px;
+}
+.modal-body li>span select {
+  vertical-align: baseline;
+}
+</style>
+
 <script type="text/javascript">
 $(document).ready(function() {
   $('<?php echo $trigger ?>').on('click', function() {
@@ -18,14 +34,14 @@ $(document).ready(function() {
   </div>
 
   <div class="modal-body">
-    <table style="width: 80%; margin: 0 auto;">
+    <ul>
     <?php foreach ($widgets as $widget): ?>
-      <tr>
-        <th><?php echo $form[$widget]->renderLabel() ?></th>
-        <td><?php echo $form[$widget] ?></td>
-      </tr>
+      <li>
+        <span class="form-label"><?php echo $form[$widget]->renderLabel() ?></span>
+        <span><?php echo $form[$widget] ?></span>
+      </li>
     <?php endforeach; ?>
-    </table>
+    </ul>
   </div>
 
   <div class="modal-footer" style="text-align:center;">
