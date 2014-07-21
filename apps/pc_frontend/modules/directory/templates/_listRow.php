@@ -5,8 +5,8 @@
 <?php echo link_to($directory->getName(), '@directory_show?id='.$directory->getId()) ?>
 </span>
 </td>
-<?php if ($directory->isAuthor() && 'community' !== $directory->type): ?>
 <td style="width: 30%">
+<?php if ($directory->isAuthor() && 'community' !== $directory->type): ?>
 <?php echo __($directory->getPublicLabel()) ?>
 <?php if (opFileManageConfig::isUsePrivate()): ?>
 <?php if ('private' === $directory->getType() || 'public' === $directory->getType()): ?>
@@ -16,6 +16,6 @@
 &nbsp;<small>(<?php echo link_to($word, $url, array('method' => 'put')) ?>)</small>
 <?php endif; ?>
 <?php endif; ?>
-</td>
 <?php endif; ?>
+</td>
 </tr>
