@@ -63,6 +63,10 @@
         <target>アップロード日時</target>
       </trans-unit>
       <trans-unit id="">
+        <source>Download link</source>
+        <target>ダウンロードリンク</target>
+      </trans-unit>
+      <trans-unit id="">
         <source>File upload</source>
         <target>ファイルをアップロードする</target>
       </trans-unit>
