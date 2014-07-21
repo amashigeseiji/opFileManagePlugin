@@ -1,8 +1,6 @@
 <tr>
-<td class="dirname-list"<?php if ('community' === $directory->type || !$directory->isAuthor()): ?> colspan=2<?php endif; ?>>
-<?php if ($directory->isAuthor()): ?>
+<td class="dirname-list">
 <?php include_partial('directory/edit', array('directory' => $directory)) ?>
-<?php endif; ?>
 <span class="dirname_<?php echo $directory->id ?> dirname">
 <?php echo link_to($directory->getName(), '@directory_show?id='.$directory->getId()) ?>
 </span>
