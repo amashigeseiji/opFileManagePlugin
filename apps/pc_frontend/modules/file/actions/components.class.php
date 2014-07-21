@@ -18,13 +18,13 @@ class fileComponents extends sfComponents
 
   public function executeCommunityFileUploadModal()
   {
-    $this->community = $this->getRequest()->getAttribute('sf_route')->getObject();
-    if (!$this->community)
+    $community = $this->getRequest()->getAttribute('sf_route')->getObject();
+    if (!$community)
     {
       throw new Exception('The community object does not specified.');
     }
 
-    $choices = FileDirectoryQuery::getListQueryByCommunityId($this->community->id)
+    $choices = FileDirectoryQuery::getListQueryByCommunityId($community->id)
       ->select('id, name')
       ->fetchArray();
 
@@ -35,7 +35,7 @@ class fileComponents extends sfComponents
     }
 
     $this->form = new ManagedFileForm(array(), array('directoryChoices' => $choices));
-    $this->url = '@file_upload_community?id='.$this->community->id;
+    $this->url = '@file_upload_community?id='.$community->id;
     $this->widgets = array('file', 'directory_id');
   }
 }
