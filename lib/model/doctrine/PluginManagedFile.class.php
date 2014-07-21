@@ -6,14 +6,30 @@
  * @package    opFileManagedPlugin
  * @author     Seiji Amashige <amashige@tejimaya.com>
  */
-abstract class PluginManagedFile extends BaseManagedFile
+abstract class PluginManagedFile extends BaseManagedFile implements opAccessControlRecordInterface
 {
   /**
    * @return bool
    */
   public function isViewable(Member $member)
   {
-    return $this->getFileDirectory()->isViewable($member);
+    return $this->isAllowed($member, 'view');
+  }
+
+  /**
+   * @return bool
+   */
+  public function isEditable(Member $member)
+  {
+    return $this->isAllowed($member, 'edit');
+  }
+
+  /**
+   * @return bool
+   */
+  public function isDeletable(Member $member)
+  {
+    return $this->isAllowed($member, 'delete');
   }
 
   /**
@@ -71,5 +87,25 @@ abstract class PluginManagedFile extends BaseManagedFile
   {
     $this->setName($name);
     $this->save();
+  }
+
+  public function generateRoleId(Member $member)
+  {
+    if (!opFileManageConfig::isUsePrivate() && 'private' === $this->FileDirectory->type
+    || !opFileManageConfig::isUseCommunity() && 'community' === $this->FileDirectory->type)
+    {
+      return 'reject';
+    }
+
+    if ($this->member_id === $member->id)
+    {
+      return 'author';
+    }
+    elseif ($this->FileDirectory->member_id === $member->id)
+    {
+      return 'directory_author';
+    }
+
+    return 'everyone';
   }
 }
