@@ -61,7 +61,6 @@ class fileActions extends sfActions
     $request->checkCSRFProtection();
 
     $file = $this->getRoute()->getObject();
-    $this->forward404If(!$file->isEditable($this->getUser()->getMember()));
     $this->forward404If(!$request->hasParameter('name'));
     $file->editName($request->getParameter('name'));
 
@@ -76,7 +75,6 @@ class fileActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->file = $this->getRoute()->getObject();
-    $this->forward404If(!$this->file->isViewable($this->getUser()->getMember()));
 
     $this->directory = $this->file->FileDirectory;
     if ('community' === $this->directory->type)
@@ -115,7 +113,6 @@ class fileActions extends sfActions
   public function executeDownload(sfWebRequest $request)
   {
     $file = $this->getRoute()->getObject();
-    $this->forward404If(!$file->isViewable($this->getUser()->getMember()));
 
     return opToolkit::fileDownload($file->getName(), $file->getFile()->getFileBin()->getBin());
   }
@@ -130,7 +127,6 @@ class fileActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->file = $this->getRoute()->getObject();
-    $this->forward404If(!$this->file->isDeletable($this->getUser()->getMember()));
     $directoryId = $this->file->getFileDirectory()->getId();
     if ($this->file->delete())
     {

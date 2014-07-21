@@ -1,16 +1,16 @@
 #file actions
 file_show:
   url: /file/:id
-  class: sfDoctrineRoute
-  options: { model: ManagedFile, type: object }
+  class: opDynamicAclRoute
+  options: { model: ManagedFile, type: object, privilege: view }
   param: { module: file, action: show }
   requirements:
     id: \d+
 
 file_upload:
   url: /file/create/directory/:id
-  class: sfDoctrineRoute
-  options: { model: FileDirectory, type: object }
+  class: opDynamicAclRoute
+  options: { model: FileDirectory, type: object, privilege: upload }
   param: { module: file, action: create }
   requirements:
     id: \d+
@@ -27,16 +27,16 @@ file_upload_community:
 
 file_download:
   url: /file/:id/download
-  class: sfDoctrineRoute
-  options: { model: ManagedFile, type: object }
+  class: opDynamicAclRoute
+  options: { model: ManagedFile, type: object, privilege: view }
   param: { module: file, action: download }
   requirements:
     id: \d+
 
 file_edit_name:
   url: /file/:id/edit
-  class: sfDoctrineRoute
-  options: { model: ManagedFile, type: object }
+  class: opDynamicAclRoute
+  options: { model: ManagedFile, type: object, privilege: edit }
   param: { module: file, action: edit }
   requirements:
     id: \d+
@@ -44,8 +44,8 @@ file_edit_name:
 
 file_delete:
   url: /file/:id/delete
-  class: sfDoctrineRoute
-  options: { model: ManagedFile, type: object }
+  class: opDynamicAclRoute
+  options: { model: ManagedFile, type: object, privilege: delete }
   param: { module: file, action: delete }
   requirements:
     sf_method: [delete]
@@ -66,8 +66,8 @@ file_nodefaults:
 #directory actions
 directory_show:
   url: /directory/:id
-  class: sfDoctrineRoute
-  options: { model: FileDirectory, type: object }
+  class: opDynamicAclRoute
+  options: { model: FileDirectory, type: object, privilege: view }
   param: { module: directory, action: show }
   requirements:
     id: \d+
@@ -100,8 +100,8 @@ directory_list_community:
 
 directory_edit_name:
   url: /directory/:id/edit
-  class: sfDoctrineRoute
-  options: { model: FileDirectory, type: object }
+  class: opDynamicAclRoute
+  options: { model: FileDirectory, type: object, privilege: edit }
   param: { module: directory, action: edit }
   requirements:
     id: \d+
@@ -109,8 +109,8 @@ directory_edit_name:
 
 directory_publish:
   url: /directory/:id/publish
-  class: sfDoctrineRoute
-  options: { model: FileDirectory, type: object }
+  class: opDynamicAclRoute
+  options: { model: FileDirectory, type: object, privilege: edit }
   param: { module: directory, action: publish }
   requirements:
     id: \d+
@@ -118,8 +118,8 @@ directory_publish:
 
 directory_delete:
   url: /directory/:id/delete
-  class: sfDoctrineRoute
-  options: { model: FileDirectory, type: object }
+  class: opDynamicAclRoute
+  options: { model: FileDirectory, type: object, privilege: edit }
   param: { module: directory, action: delete }
   requirements:
     id: \d+
