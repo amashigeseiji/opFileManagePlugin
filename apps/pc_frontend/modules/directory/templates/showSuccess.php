@@ -12,16 +12,12 @@
     <?php echo __('File list of %1%', array(
       '%1%' => '<span class="dirname_'.$directory->id.'">'.$directory->getName().'</span>'
     )) ?>
-    <?php if ('community' === $directory->type): ?>
+    <?php if ($directory->isEditable(sfContext::getInstance()->getUser()->getMember())): ?>
       <span class="normal">
-      (<?php echo $directory->getConfig()->getCommunity()->name ?>)
-      <?php include_partial('directory/edit', array('directory' => $directory)) ?>
+      (<?php echo ('community' === $directory->type) ?
+        $directory->getConfig()->getCommunity()->name : __($directory->getPublicLabel()) ?>)
       </span>
-    <?php elseif ($directory->isAuthor()): ?>
-      <span class="normal">
-      (<?php echo __($directory->getPublicLabel()) ?>)
       <?php include_partial('directory/edit', array('directory' => $directory)) ?>
-      </span>
     <?php endif; ?>
   </th>
   <td>
