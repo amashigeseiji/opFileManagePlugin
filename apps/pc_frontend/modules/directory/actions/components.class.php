@@ -47,7 +47,7 @@ class directoryComponents extends sfComponents
   public function executeDirectoryCreateModal()
   {
     $choices = Doctrine::getTable('FileDirectory')->getTypes();
-    if ($choices['community'])
+    if (isset($choices['community']))
     {
       unset($choices['community']);
     }
