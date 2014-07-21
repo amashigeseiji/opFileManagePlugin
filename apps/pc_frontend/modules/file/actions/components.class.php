@@ -4,7 +4,7 @@ class fileComponents extends sfComponents
   public function executeDirectoryFileUploadModal()
   {
     $this->directory = $this->getRequest()->getAttribute('sf_route')->getObject();
-    if (!$this->directory)
+    if (!$this->directory || !$this->directory instanceof FileDirectory)
     {
       throw new Exception('The directory object does not specified.');
     }
@@ -19,7 +19,7 @@ class fileComponents extends sfComponents
   public function executeCommunityFileUploadModal()
   {
     $community = $this->getRequest()->getAttribute('sf_route')->getObject();
-    if (!$community)
+    if (!$community || !$community instanceof Community)
     {
       throw new Exception('The community object does not specified.');
     }
