@@ -9,17 +9,6 @@
  */
 class opWidgetFormSelectDirectory extends sfWidgetFormSelect
 {
-  protected function configure($options = array(), $attributes = array())
-  {
-    if (1 === count($options['choices']))
-    {
-      $this->setHidden(true);
-      $this->setDefault($options['choices']);
-    }
-
-    parent::configure($options, $attributes);
-  }
-
   public function render($name, $value = null, $attributes = array(), $errors = array())
   {
     if ($this->isHidden())
