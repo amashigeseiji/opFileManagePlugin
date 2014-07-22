@@ -95,8 +95,16 @@
         <target>ファイルを削除しました。</target>
       </trans-unit>
       <trans-unit id="">
-        <source>Failed to delete.</source>
+        <source>Failed to delete file.</source>
         <target>ファイルの削除に失敗しました。</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Directory is deleted.</source>
+        <target>フォルダを削除しました。</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Failed to delete directory.</source>
+        <target>フォルダの削除に失敗しました。</target>
       </trans-unit>
       <trans-unit id="">
         <source>Public</source>

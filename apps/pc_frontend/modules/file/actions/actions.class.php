@@ -135,7 +135,7 @@ class fileActions extends sfActions
     }
     else
     {
-      $this->getUser()->setFlash('error', 'Failed to delete.');
+      $this->getUser()->setFlash('error', 'Failed to delete file.');
     }
   }
 

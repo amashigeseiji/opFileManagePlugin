@@ -136,7 +136,15 @@ class directoryActions extends sfActions
     $directory = $this->getRoute()->getObject();
     $redirectTo = 'community' === $directory->type ?
       '@community_home?id='.$directory->getConfig()->getCommunityId() : '@directory_list';
-    $directory->delete();
+
+    if ($directory->delete())
+    {
+      $this->getUser()->setFlash('notice', 'Directory is deleted.');
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'Failed to delete directory.');
+    }
 
     $this->redirect($redirectTo);
   }
