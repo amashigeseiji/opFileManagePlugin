@@ -80,11 +80,11 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     }
     $acl->allow('author', $resource, 'delete');
 
-    if ($resource && 'community' === $resource->type && 'public' === $resource->getConfig()->getCommunity()->getConfig('directory_authority'))
+    if ($resource && 'community' === $resource->type && 'public' === $resource->getConfig()->getCommunityConfig('directory_authority'))
     {
       $acl->allow('member', $resource, 'edit');
     }
-    if ($resource && 'community' === $resource->type && 'public' === $resource->getConfig()->getCommunity()->getConfig('file_public_flag'))
+    if ($resource && 'community' === $resource->type && 'public' === $resource->getConfig()->getCommunityConfig('file_public_flag'))
     {
       $acl->allow('everyone', $resource, 'view');
     }

@@ -25,7 +25,7 @@ class opDirectoryConfig
 
   public function getCommunityId()
   {
-    if ($config = $this->getCommunityConfig())
+    if ($config = $this->getDirectoryCommunityConfig())
     {
       return $config->getCommunityId();
     }
@@ -35,7 +35,7 @@ class opDirectoryConfig
 
   public function updateCommunityId($communityId)
   {
-    if ($config = $this->getCommunityConfig())
+    if ($config = $this->getDirectoryCommunityConfig())
     {
       return $config->updateCommunityId($communityId);
     }
@@ -45,7 +45,7 @@ class opDirectoryConfig
 
   public function getCommunity()
   {
-    if ($config = $this->getCommunityConfig())
+    if ($config = $this->getDirectoryCommunityConfig())
     {
       return $config->getCommunity();
     }
@@ -53,7 +53,17 @@ class opDirectoryConfig
     return null;
   }
 
-  private function getCommunityConfig()
+  public function getCommunityConfig($key)
+  {
+    if ($config = $this->getDirectoryCommunityConfig())
+    {
+      return $config->getCommunity()->getConfig($key);
+    }
+
+    return null;
+  }
+
+  private function getDirectoryCommunityConfig()
   {
     return $this->baseQuery
       ->andWhere('community_id <> ""')

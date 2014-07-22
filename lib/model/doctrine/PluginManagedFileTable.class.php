@@ -61,6 +61,10 @@ class PluginManagedFileTable extends opAccessControlDoctrineTable
     {
       $acl->allow('everyone', $resource, 'view');
     }
+    else if ($resource && 'community' === $resource->FileDirectory->type && $resource->FileDirectory->getConfig()->getCommunityConfig('file_public_flag'))
+    {
+      $acl->allow('everyone', $resource, 'view');
+    }
     $acl->allow('author', $resource, 'delete');
 
     return $acl;
