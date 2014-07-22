@@ -8,9 +8,7 @@ class directoryComponents extends sfComponents
       return sfView::NONE;
     }
 
-    $isCommunityMember = Doctrine::getTable('CommunityMember')->isMember(sfContext::getInstance()->getUser()->getMemberId(), $this->community->id);
-
-    if (!$isCommunityMember)
+    if (!opFileManageUtil::isViewableCommunityFile($this->community, sfContext::getInstance()->getUser()->getMember()))
     {
       return sfView::NONE;
     }
@@ -75,6 +73,11 @@ class directoryComponents extends sfComponents
     if (!$this->community || !$this->community instanceof Community)
     {
       throw new opRuntimeException('CommunityDirectoryCreateModal: Community object does not set.');
+    }
+
+    if (!opFileManageUtil::isCreatableCommunityDirectory($this->community, sfContext::getInstance()->getUser()->getMember()))
+    {
+      return sfView::NONE;
     }
 
     $this->form = new FileDirectoryForm();

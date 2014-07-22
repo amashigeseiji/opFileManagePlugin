@@ -18,7 +18,7 @@
 <li>
 <?php include_component('directory', 'communityDirectoryCreateModal', array('community' => $community)) ?>
 </li>
-<?php if ($pager->getNbResults()): ?>
+<?php if ($pager->getNbResults() && opFileManageUtil::isViewableCommunityFile($community, $sf_user->getMember())): ?>
 <li>
 <?php echo link_to(__('Directory list of %1%', array('%1%' => $community->name)), '@directory_list_community?id='.$community->id) ?>
 </li>

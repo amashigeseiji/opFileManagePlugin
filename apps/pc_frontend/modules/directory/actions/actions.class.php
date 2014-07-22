@@ -44,8 +44,9 @@ class directoryActions extends sfActions
 
     if ('community' === $this->directory->type)
     {
-      sfConfig::set('sf_nav_type', 'community');
-      sfConfig::set('sf_nav_id', $this->directory->getConfig()->getCommunityId());
+      $community = $this->directory->getConfig()->getCommunity();
+      $this->forward404If(!opFileManageUtil::isViewableCommunityFile($community, $this->getUser()->getMember()));
+      opFileManageUtil::setLocalNav('community', $community->id);
     }
 
     $this->pager = Doctrine::getTable('ManagedFile')
@@ -82,11 +83,10 @@ class directoryActions extends sfActions
     $this->forward404If(!opFileManageConfig::isUseCommunity());
 
     $this->community = $this->getRoute()->getObject();
-    $this->forward404If(!Doctrine::getTable('CommunityMember')
-      ->isMember($this->getUser()->getMemberId(), $this->community->id));
 
-    sfConfig::set('sf_nav_type', 'community');
-    sfConfig::set('sf_nav_id', $this->community->getId());
+    $this->forward404If(!opFileManageUtil::isViewableCommunityFile($this->community, $this->getUser()->getMember()));
+
+    opFileManageUtil::setLocalNav('community', $this->community->id);
 
     $this->pager = FileDirectoryTable::getInstance()
       ->getCommunityDirectoryListPager($this->community->getId(), null, $request->getParameter('page'));
