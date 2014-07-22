@@ -79,8 +79,7 @@ class fileActions extends sfActions
     $this->directory = $this->file->FileDirectory;
     if ('community' === $this->directory->type)
     {
-      sfConfig::set('sf_nav_type', 'community');
-      sfConfig::set('sf_nav_id', $this->directory->getConfig()->getCommunityId());
+      opFileManageUtil::setLocalNav('community', $this->directory->getConfig()->getCommunityId());
     }
   }
 
