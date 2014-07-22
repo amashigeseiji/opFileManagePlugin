@@ -134,9 +134,11 @@ class directoryActions extends sfActions
     $request->checkCSRFProtection();
 
     $directory = $this->getRoute()->getObject();
+    $redirectTo = 'community' === $directory->type ?
+      '@community_home?id='.$directory->getConfig()->getCommunityId() : '@directory_list';
     $directory->delete();
 
-    $this->redirect('@directory_list');
+    $this->redirect($redirectTo);
   }
  /**
   * process form
