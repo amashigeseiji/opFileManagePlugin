@@ -99,6 +99,14 @@
         <target>ファイルの削除に失敗しました。</target>
       </trans-unit>
       <trans-unit id="">
+        <source>Directory is created.</source>
+        <target>フォルダを作成しました。</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Failed to create directory.</source>
+        <target>フォルダの作成に失敗しました。</target>
+      </trans-unit>
+      <trans-unit id="">
         <source>Directory is deleted.</source>
         <target>フォルダを削除しました。</target>
       </trans-unit>

@@ -148,6 +148,7 @@ class directoryActions extends sfActions
 
     $this->redirect($redirectTo);
   }
+
  /**
   * process form
   *
@@ -162,7 +163,19 @@ class directoryActions extends sfActions
 
     if ($form->isValid())
     {
-      return $form->save();
+      $result = $form->save();
+      $state = 'notice';
+      $message = 'Directory is created.';
     }
+    else
+    {
+      $result = false;
+      $state = 'error';
+      $message = 'Failed to create directory.';
+    }
+
+    $this->getUser()->setFlash($state, $message);
+
+    return $result;
   }
 }
