@@ -5,7 +5,7 @@
 </th>
 <?php if ($sf_user->getMemberId() === $member->getId()): ?>
 <td>
-<a href="javascript:void(0)" id="directory_create_link"><?php echo __('Create directory') ?></a>
+<?php include_component('directory', 'directoryCreateModal') ?>
 </td>
 <?php endif; ?>
 </thead>
@@ -27,4 +27,3 @@
 <?php op_include_box('DirectoryList', __('There is no directory.')) ?>
 <?php endif; ?>
 
-<?php include_component('directory', 'directoryCreateModal', array('trigger' => '#directory_create_link')) ?>

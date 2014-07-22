@@ -16,7 +16,7 @@
 <?php endif; ?>
 <ul class="moreInfo" style="float: right;">
 <li>
-<a href="javascript:void(0)" id="directory_create_link"><?php echo __('Create directory') ?></a>
+<?php include_component('directory', 'communityDirectoryCreateModal', array('community' => $community)) ?>
 </li>
 <?php if ($pager->getNbResults()): ?>
 <li>
@@ -27,6 +27,5 @@
 </li>
 <?php endif; ?>
 </ul>
-<?php include_component('directory', 'communityDirectoryCreateModal', array('trigger' => '#directory_create_link', 'community' => $community)) ?>
 </td>
 </tr>

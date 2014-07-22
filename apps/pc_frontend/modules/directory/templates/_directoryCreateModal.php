@@ -1,3 +1,5 @@
+<a href="javascript:void(0)" id="directory_create_link"><?php echo __('Create directory') ?></a>
+
 <?php
 include_partial('file/formModal', array(
   'form'    => $form,
@@ -5,5 +7,5 @@ include_partial('file/formModal', array(
   'title'   => __('Create directory'),
   'widgets' => $form->getRenderWidgetNames(),
   'id'      => 'directory_create_form',
-  'trigger' => $trigger
+  'trigger' => '#directory_create_link'
 ));

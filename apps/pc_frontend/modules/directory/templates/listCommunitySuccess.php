@@ -4,7 +4,7 @@
 <?php echo __('Directory list of %1%', array('%1%' => $community->getName())) ?>
 </th>
 <td>
-<a href="javascript:void(0)" id="directory_create_link"><?php echo __('Create directory') ?></a>
+<?php include_component('directory', 'communityDirectoryCreateModal', array('community' => $community)) ?>
 </td>
 </thead>
 
@@ -24,5 +24,3 @@
 <?php else: ?>
 <?php op_include_box('DirectoryList', __('There is no directory.')) ?>
 <?php endif; ?>
-
-<?php include_component('directory', 'communityDirectoryCreateModal', array('trigger' => '#directory_create_link')) ?>

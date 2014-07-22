@@ -18,13 +18,12 @@
   <?php endif; ?>
 
   <div class="btn-group" style="float: right;">
-    <a href="javascript:void(0)" id="directory_create_link" class="btn btn-small"><?php echo __('Create directory') ?></a>
+    <?php include_component('directory', 'communityDirectoryCreateModal', array('community' => $community)) ?>
     <?php if ($pager->getNbResults()): ?>
     <a class="btn btn-small" href="<?php echo url_for('@directory_list_community?id='.$community->id) ?>"><?php echo __('More') ?></a>
     <?php echo link_to(__('File list of %1%', array('%1%' => $community->name)), '@file_list_community?id='.$community->id, array('class' => 'btn btn-small')) ?>
     <?php endif; ?>
   </div>
 
-  <?php include_component('directory', 'communityDirectoryCreateModal', array('trigger' => '#directory_create_link', 'community' => $community)) ?>
 
 </div>
