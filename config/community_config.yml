@@ -1,0 +1,23 @@
+general:
+  file_public_flag:
+    Name:       "file_public_flag"
+    Caption:    "Authority to View File"
+    FormType:   "radio"
+    ValueType:  "string"
+    IsUnique:   false
+    IsRequired: true
+    Default:    "public"
+    Choices:
+      public:            "Everyone can view"
+      auth_commu_member: "Only %community%'s members can view"
+  directory_authority:
+    Name:       "directory_authority"
+    Caption:    "Authority to Create Directory"
+    FormType:   "radio"
+    ValueType:  "string"
+    IsUnique:   false
+    IsRequired: true
+    Default:    "public"
+    Choices:
+      public:     "%Community%'s members can create"
+      admin_only: "Only %community%'s admin can create"

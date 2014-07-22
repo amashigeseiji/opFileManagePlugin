@@ -134,6 +134,30 @@
         <source>Take private</source>
         <target>非公開にする</target>
       </trans-unit>
+      <trans-unit id="">
+        <source>Authority to View File</source>
+        <target>ファイルの公開範囲</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Everyone can view</source>
+        <target>全員に公開</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Only %community%'s members can view</source>
+        <target>コミュニティ参加者のみ公開</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Authority to Create Directory</source>
+        <target>フォルダ作成権限</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>"%Community%'s members can create</source>
+        <target>コミュニティ参加者が作成可能</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Only %community%'s admin can create</source>
+        <target>コミュニティ管理者のみ作成可能</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
