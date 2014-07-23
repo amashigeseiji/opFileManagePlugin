@@ -24,6 +24,11 @@ class fileComponents extends sfComponents
       throw new Exception('The community object does not specified.');
     }
 
+    if (!opFileManageUtil::isUploadableCommunityFile($community, sfContext::getInstance()->getUser()->getMember()))
+    {
+      return sfView::NONE;
+    }
+
     $choices = FileDirectoryQuery::getListQueryByCommunityId($community->id)
       ->select('id, name')
       ->fetchArray();

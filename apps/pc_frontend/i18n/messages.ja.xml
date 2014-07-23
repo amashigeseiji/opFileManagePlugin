@@ -146,6 +146,14 @@
         <source>Only %community%'s admin can create</source>
         <target>%community%管理者のみ作成可能</target>
       </trans-unit>
+      <trans-unit id="">
+        <source>%Community%'s members can upload</source>
+        <target>%Community%参加者がアップロード可能</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Only %community%'s admin can upload</source>
+        <target>%community%管理者のみアップロード可能</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

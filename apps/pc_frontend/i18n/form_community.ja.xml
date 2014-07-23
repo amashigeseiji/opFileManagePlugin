@@ -10,6 +10,10 @@
         <source>Authority to Create Directory</source>
         <target>フォルダ作成権限</target>
       </trans-unit>
+      <trans-unit id="">
+        <source>Authority to Upload File</source>
+        <target>ファイルのアップロード権限</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -21,3 +21,14 @@ general:
     Choices:
       public:     "%Community%'s members can create"
       admin_only: "Only %community%'s admin can create"
+  file_authority:
+    Name:       "file_authority"
+    Caption:    "Authority to Upload File"
+    FormType:   "radio"
+    ValueType:  "string"
+    IsUnique:   false
+    IsRequired: true
+    Default:    "public"
+    Choices:
+      public:     "%Community%'s members can upload"
+      admin_only: "Only %community%'s admin can upload"

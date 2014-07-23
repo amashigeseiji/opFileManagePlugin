@@ -26,6 +26,18 @@ class opFileManageUtil
     }
   }
 
+  static public function isUploadableCommunityFile($community, $member)
+  {
+    if ('public' === $community->getConfig('file_authority'))
+    {
+      return $community->isPrivilegeBelong($member->id);
+    }
+    else
+    {
+      return $community->isAdmin($member->id);
+    }
+  }
+
   static public function setLocalNav($navType, $navId)
   {
     sfConfig::set('sf_nav_type', $navType);
