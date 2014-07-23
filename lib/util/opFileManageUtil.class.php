@@ -5,12 +5,12 @@ class opFileManageUtil
   {
     if ('public' === $community->getConfig('file_public_flag'))
     {
+      // all sns members can view
       return true;
     }
     else
     {
-      return Doctrine::getTable('CommunityMember')
-        ->isMember($member->id, $community->id);
+      return $community->isPrivilegeBelong($member->id);
     }
   }
 
@@ -18,8 +18,7 @@ class opFileManageUtil
   {
     if ('public' === $community->getConfig('directory_authority'))
     {
-      return Doctrine::getTable('CommunityMember')
-        ->isMember($member->id, $community->id);
+      return $community->isPrivilegeBelong($member->id);
     }
     else
     {

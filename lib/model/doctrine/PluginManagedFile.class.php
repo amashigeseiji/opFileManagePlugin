@@ -101,8 +101,7 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
     {
       $community = $this->FileDirectory->getConfig()->getCommunity();
 
-      if (Doctrine::getTable('CommunityMember')
-        ->isMember($member->id, $community->id))
+      if ($community->isPrivilegeBelong($member->id))
       {
         if ($community->getAdminMember()->id === $member->id || $this->member_id === $member->id)
         {

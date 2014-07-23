@@ -31,9 +31,7 @@ class directoryComponents extends sfComponents
 
     $this->community = Doctrine::getTable('Community')->find($this->getRequest()->getParameter('id'));
 
-    $isCommunityMember = Doctrine::getTable('CommunityMember')->isMember(sfContext::getInstance()->getUser()->getMemberId(), $this->community->id);
-
-    if (!$isCommunityMember)
+    if (!opFileManageUtil::isCreatableCommunityDirectory($this->community, sfContext::getInstance()->getUser()->getMember()))
     {
       return sfView::NONE;
     }
