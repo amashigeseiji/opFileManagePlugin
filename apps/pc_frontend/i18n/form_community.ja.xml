@@ -7,10 +7,6 @@
         <target>ファイルの公開範囲</target>
       </trans-unit>
       <trans-unit id="">
-        <source>Everyone can view</source>
-        <target>全員に公開</target>
-      </trans-unit>
-      <trans-unit id="">
         <source>Authority to Create Directory</source>
         <target>フォルダ作成権限</target>
       </trans-unit>

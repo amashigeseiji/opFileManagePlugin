@@ -131,6 +131,10 @@
         <target>非公開にする</target>
       </trans-unit>
       <trans-unit id="">
+        <source>Everyone can view</source>
+        <target>全員に公開</target>
+      </trans-unit>
+      <trans-unit id="">
         <source>Only %community%'s members can view</source>
         <target>%community%参加者のみ公開</target>
       </trans-unit>
