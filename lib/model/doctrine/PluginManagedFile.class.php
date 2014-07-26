@@ -83,6 +83,19 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
     return $this->getFile()->getFileBin()->bin;
   }
 
+  /**
+   * @return string|false
+   */
+  public function getText()
+  {
+    if (!$this->isText())
+    {
+      return false;
+    }
+
+    return mb_convert_encoding($this->getBin(), 'UTF-8', 'auto');
+  }
+
   public function editName($name)
   {
     $this->setName($name);

@@ -30,7 +30,7 @@ $(document).ready( function() {
   <?php elseif ($file->isText()): ?>
     <div class="hide preview">
       <pre class="prettyprint linenums">
-      <?php echo $file->getBin() ?>
+      <?php echo $file->getText() ?>
       </pre>
     </div>
   <?php endif; ?>
