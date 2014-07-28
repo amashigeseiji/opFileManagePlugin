@@ -43,4 +43,31 @@ class fileComponents extends sfComponents
     $this->url = '@file_upload_community?id='.$community->id;
     $this->widgets = array('file', 'directory_id');
   }
+
+  public function executeMemberFileUploadModal()
+  {
+    $member = $this->getRequest()->getAttribute('sf_route')->getObject();
+    if (!$member || !$member instanceof Member)
+    {
+      throw new Exception('The member object does not specified.');
+    }
+
+    if ($member->id !== $this->getContext()->getUser()->getMemberId())
+    {
+      return sfView::NONE;
+    }
+
+    $types = array('public');
+    if (opFileManageConfig::isUsePrivate())
+    {
+      $types[] = 'private';
+    }
+    $choices = FileDirectoryQuery::getListQueryByMemberId($member->id, $types)
+      ->select('id, name')
+      ->fetchArray();
+
+    $this->form = new ManagedFileForm(array(), array('directoryChoices' => $choices));
+    $this->url = '@file_upload_member?id='.$member->id;
+    $this->widgets = array('file', 'directory_id');
+  }
 }

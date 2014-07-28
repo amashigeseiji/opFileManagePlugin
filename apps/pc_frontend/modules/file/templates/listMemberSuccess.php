@@ -3,7 +3,7 @@
 <thead>
 <tr>
   <th><?php echo __('File list of %1%', array('%1%' => $member->name)) ?></th>
-  <td><?php //include_component('file', 'communityFileUploadModal') ?></td>
+  <td><?php include_component('file', 'memberFileUploadModal') ?></td>
 </tr>
 </thead>
 

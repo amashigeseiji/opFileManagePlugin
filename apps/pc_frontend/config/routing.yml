@@ -25,6 +25,15 @@ file_upload_community:
     id: \d+
     sf_method: [post]
 
+file_upload_member:
+  url: /file/create/member/:id
+  class: sfDoctrineRoute
+  options: { model: Member, type: object }
+  param: { module: file, action: createFileMember }
+  requirements:
+    id: \d+
+    sf_method: [post]
+
 file_download:
   url: /file/:id/download
   class: opDynamicAclRoute

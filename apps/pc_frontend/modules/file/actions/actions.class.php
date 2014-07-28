@@ -52,6 +52,30 @@ class fileActions extends sfActions
   }
 
  /**
+  * Executes create member file action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeCreateFileMember(sfWebRequest $request)
+  {
+    $member = $this->getRoute()->getObject();
+    $types = array('public');
+    if (opFileManageConfig::isUsePrivate())
+    {
+      $types[] = 'private';
+    }
+    $choices = FileDirectoryQuery::getListQueryByMemberId($member->id, $types)
+      ->select('id, name')
+      ->execute(array(), Doctrine::HYDRATE_NONE);
+    $form = new ManagedFileForm(array(), array('directoryChoices' => $choices));
+    $form->getObject()->setMemberId($this->getUser()->getMemberId());
+
+    $this->processForm($request, $form);
+
+    $this->redirect('@file_list_member?id='.$member->id);
+  }
+
+ /**
   * Executes edit action
   *
   * @param sfWebRequest $request A request object
