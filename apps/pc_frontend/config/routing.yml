@@ -51,6 +51,14 @@ file_delete:
     sf_method: [delete]
     id: \d+
 
+file_list_member:
+  url: /file/listMember/:id
+  class: sfDoctrineRoute
+  options: { model: Member, type: object }
+  param: { module: file, action: listMember }
+  requirements:
+    id: \d+
+
 file_list_community:
   url: /file/listCommunity/:id
   class: sfDoctrineRoute

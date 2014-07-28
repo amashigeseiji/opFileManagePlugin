@@ -84,6 +84,19 @@ class fileActions extends sfActions
   }
 
  /**
+  * Executes listMember action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeListMember(sfWebRequest $request)
+  {
+    $this->member = $this->getRoute()->getObject();
+
+    $this->pager = Doctrine::getTable('ManagedFile')->getMemberFileListPager($this->member->id, $request->getParameter('page'));
+    $this->pager->init();
+  }
+
+ /**
   * Executes listCommunity action
   *
   * @param sfWebRequest $request A request object

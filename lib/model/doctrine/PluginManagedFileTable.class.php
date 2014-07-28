@@ -26,6 +26,15 @@ class PluginManagedFileTable extends opAccessControlDoctrineTable
     return $this->getPager($q, $size, $page);
   }
 
+  public function getMemberFileListPager($memberId, $page = null)
+  {
+    $q = ManagedFileQuery::getMemberFileListQuery($memberId);
+
+    $size = sfConfig::get('app_file_list_max_size', 10);
+
+    return $this->getPager($q, $size, $page);
+  }
+
   public function getCommunityFileListPager($communityId, $page = null)
   {
     $q = ManagedFileQuery::getCommunityFileListQuery($communityId);

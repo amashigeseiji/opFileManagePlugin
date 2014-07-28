@@ -46,4 +46,24 @@ class ManagedFileQuery extends Doctrine_Query
       ->from('ManagedFile')
       ->whereIn('directory_id', $directoryIds);
   }
+
+  public static function getMemberFileListQuery($memberId)
+  {
+    $q = Doctrine_Query::create()
+      ->from('ManagedFile f')
+      ->leftJoin('f.FileDirectory d')
+      ->where('d.member_id  = ?', $memberId);
+
+    if (opFileManageConfig::isUsePrivate()
+      && $memberId === sfContext::getInstance()->getUser()->getMemberId())
+    {
+      $q->andWhere('type <> ?', 'community');
+    }
+    else
+    {
+      $q->andWhere('type = ?', 'public');
+    }
+
+    return $q;
+  }
 }
