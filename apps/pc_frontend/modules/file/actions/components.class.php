@@ -9,7 +9,7 @@ class fileComponents extends sfComponents
       throw new Exception('The directory object does not specified.');
     }
 
-    $this->form = new ManagedFileForm(array(), array('directoryChoices' => $this->directory->id));
+    $this->form = new ManagedFileForm(array(), array('type' => 'directory', 'directory_id' => $this->directory->id));
     $this->form->getWidget('directory_id')->setHidden(true);
     $this->form->getWidget('directory_id')->setDefault($this->directory->id);
     $this->url = '@file_upload?id='.$this->directory->id;
@@ -29,17 +29,13 @@ class fileComponents extends sfComponents
       return sfView::NONE;
     }
 
-    $choices = FileDirectoryQuery::getListQueryByCommunityId($community->id)
-      ->select('id, name')
-      ->fetchArray();
-
     // If no directory is created for this community.
-    if (!$choices)
+    if (0 === FileDirectoryQuery::getListQueryByCommunityId($community->id)->count())
     {
       return sfView::NONE;
     }
 
-    $this->form = new ManagedFileForm(array(), array('directoryChoices' => $choices));
+    $this->form = new ManagedFileForm(array(), array('type' => 'community_directory', 'community_id' => $community->id));
     $this->url = '@file_upload_community?id='.$community->id;
     $this->widgets = array('file', 'directory_id');
   }
@@ -57,16 +53,7 @@ class fileComponents extends sfComponents
       return sfView::NONE;
     }
 
-    $types = array('public');
-    if (opFileManageConfig::isUsePrivate())
-    {
-      $types[] = 'private';
-    }
-    $choices = FileDirectoryQuery::getListQueryByMemberId($member->id, $types)
-      ->select('id, name')
-      ->fetchArray();
-
-    $this->form = new ManagedFileForm(array(), array('directoryChoices' => $choices));
+    $this->form = new ManagedFileForm(array(), array('type' => 'member_directory', 'member_id' => $member->id));
     $this->url = '@file_upload_member?id='.$member->id;
     $this->widgets = array('file', 'directory_id');
   }

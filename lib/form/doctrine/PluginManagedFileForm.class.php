@@ -19,12 +19,21 @@ abstract class PluginManagedFileForm extends BaseManagedFileForm
       $this['created_at'], $this['updated_at']
     );
 
-    if (!$this->getOption('directoryChoices'))
+    $options = array('type' => $this->getOption('type'));
+    if ('member_directory' === $options['type'])
     {
-      throw new Exception('The directory choices are not specified.');
+      $options['member_id'] = $this->getOption('member_id');
+    }
+    else if ('community_directory' === $options['type'])
+    {
+      $options['community_id'] = $this->getOption('community_id');
+    }
+    else if ('directory' === $options['type'])
+    {
+      $options['directory_id'] = $this->getOption('directory_id');
     }
 
-    $this->widgetSchema['directory_id'] = new opWidgetFormSelectDirectory(array('choices' => $this->getOption('directoryChoices')));
+    $this->widgetSchema['directory_id'] = new opWidgetFormSelectDirectory($options);
     $this->validatorSchema['directory_id'] = new opValidatorDirectory(array('required' => true));
 
     $this->widgetSchema['file'] = new sfWidgetFormInputFile();

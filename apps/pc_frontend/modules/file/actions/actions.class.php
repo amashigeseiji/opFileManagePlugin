@@ -25,7 +25,7 @@ class fileActions extends sfActions
   public function executeCreate(sfWebRequest $request)
   {
     $directory = $this->getRoute()->getObject();
-    $form = new ManagedFileForm(array(), array('directoryChoices' => array($directory->id)));
+    $form = new ManagedFileForm(array(), array('type' => 'directory', 'directory_id' => $directory->id));
     $form->getObject()->setMemberId($this->getUser()->getMemberId());
     $this->processForm($request, $form);
 
@@ -40,10 +40,7 @@ class fileActions extends sfActions
   public function executeCreateFileCommunity(sfWebRequest $request)
   {
     $community = $this->getRoute()->getObject();
-    $choices = FileDirectoryQuery::getListQueryByCommunityId($community->id)
-      ->select('id, name')
-      ->fetchArray();
-    $form = new ManagedFileForm(array(), array('directoryChoices' => $choices));
+    $form = new ManagedFileForm(array(), array('type' => 'community_directory', 'community_id' => $community->id));
     $form->getObject()->setMemberId($this->getUser()->getMemberId());
 
     $this->processForm($request, $form);
@@ -59,15 +56,7 @@ class fileActions extends sfActions
   public function executeCreateFileMember(sfWebRequest $request)
   {
     $member = $this->getRoute()->getObject();
-    $types = array('public');
-    if (opFileManageConfig::isUsePrivate())
-    {
-      $types[] = 'private';
-    }
-    $choices = FileDirectoryQuery::getListQueryByMemberId($member->id, $types)
-      ->select('id, name')
-      ->execute(array(), Doctrine::HYDRATE_NONE);
-    $form = new ManagedFileForm(array(), array('directoryChoices' => $choices));
+    $form = new ManagedFileForm(array(), array('type' => 'member_directory', 'member_id' => $member->id));
     $form->getObject()->setMemberId($this->getUser()->getMemberId());
 
     $this->processForm($request, $form);
