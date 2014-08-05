@@ -3,7 +3,7 @@
 ファイルを共有する
 
 ##install
-see <https://github.com/amashigeseiji/opFileManagePlugin/wiki#how-to-install>
+see <https://github.com/amashigeseiji/opFileManagePlugin/wiki/How-to-install>
 
 ##機能
 * コミュニティフォルダ/コミュニティ内でのファイル共有  
