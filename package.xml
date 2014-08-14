@@ -16,11 +16,11 @@
   <email />
   <active>yes</active>
  </lead>
- <date>2014-07-24</date>
- <time>03:45:38</time>
+ <date>2014-08-14</date>
+ <time>21:37:11</time>
  <version>
-  <release>0.8.7</release>
-  <api>0.8.7</api>
+  <release>0.8.8</release>
+  <api>0.8.8</api>
  </version>
  <stability>
   <release>devel</release>
@@ -28,7 +28,7 @@
  </stability>
  <license>Apache</license>
  <notes>
-under development.
+under devlopment.
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -37,7 +37,7 @@ under development.
    <file baseinstalldir="/" md5sum="9b007313dab58620a1980dfe8c641f68" name="apps/pc_backend/modules/opFileManagePlugin/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="32062572ee9445e4bb5ba7c2de714bb9" name="apps/pc_backend/modules/opFileManagePlugin/templates/indexSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="a2e4734a4e3fdea0ebca55c7b8d0dc22" name="apps/pc_frontend/config/app.yml" role="data" />
-   <file baseinstalldir="/" md5sum="0eb1a34c5e297dfe17e91b02e4ffc356" name="apps/pc_frontend/config/routing.yml" role="data" />
+   <file baseinstalldir="/" md5sum="3594f5eeb40d60ba83a1c7dc935f532b" name="apps/pc_frontend/config/routing.yml" role="data" />
    <file baseinstalldir="/" md5sum="23a85a877ba78a09b520b19d03c3650c" name="apps/pc_frontend/config/security.yml" role="data" />
    <file baseinstalldir="/" md5sum="6bba903acaeae4da0aa70f90313793e5" name="apps/pc_frontend/i18n/form_community.ja.xml" role="data" />
    <file baseinstalldir="/" md5sum="d695c678816c74744bf6fa29c85175df" name="apps/pc_frontend/i18n/messages.ja.xml" role="data" />
@@ -55,18 +55,20 @@ under development.
    <file baseinstalldir="/" md5sum="a1801764dfc084372aec87f5394aa3b4" name="apps/pc_frontend/modules/directory/templates/_editDirectoryNameBox.php" role="data" />
    <file baseinstalldir="/" md5sum="07c838ec02f5b84777cf6e7cc2b0aa02" name="apps/pc_frontend/modules/directory/templates/_listRow.php" role="data" />
    <file baseinstalldir="/" md5sum="58092bed078e2f7747d1e57df95f5890" name="apps/pc_frontend/modules/directory/templates/_smtCommunityDirectoryList.php" role="data" />
-   <file baseinstalldir="/" md5sum="0ee6a557238ce0ab5be74ae978a83756" name="apps/pc_frontend/modules/file/actions/actions.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="c09d7f4c5af1fcf6cb77c5a729b407cf" name="apps/pc_frontend/modules/file/actions/components.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="3b3c30084b2fb713b44a4096dae88dce" name="apps/pc_frontend/modules/file/actions/actions.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="f72d94da857606def4e868480740ab01" name="apps/pc_frontend/modules/file/actions/components.class.php" role="data" />
    <file baseinstalldir="/" md5sum="c5691a4d094027f537d26504dcbeff8a" name="apps/pc_frontend/modules/file/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="7fd355583bc91b405d5d45ec69dbbc9f" name="apps/pc_frontend/modules/file/templates/listCommunitySuccess.php" role="data" />
+   <file baseinstalldir="/" md5sum="dc8cff0905d1500e95159089de08097c" name="apps/pc_frontend/modules/file/templates/listMemberSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="64d6c0c0022bb646137efeb509de7210" name="apps/pc_frontend/modules/file/templates/showSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="3a418fd85987f5b9a94055fa398f9272" name="apps/pc_frontend/modules/file/templates/_communityFileUploadModal.php" role="data" />
    <file baseinstalldir="/" md5sum="5b32ea396a0ccdfc4dc168393cf15f25" name="apps/pc_frontend/modules/file/templates/_directoryFileUploadModal.php" role="data" />
    <file baseinstalldir="/" md5sum="1860cc502632a6b2b743fbe1b3e7bceb" name="apps/pc_frontend/modules/file/templates/_editFileNameBox.php" role="data" />
    <file baseinstalldir="/" md5sum="5c33837f61f70bb7d4aedaae347f8908" name="apps/pc_frontend/modules/file/templates/_fileListRow.php" role="data" />
    <file baseinstalldir="/" md5sum="3b2e00dd12d8d27bec65d6b2543d77ff" name="apps/pc_frontend/modules/file/templates/_formModal.php" role="data" />
+   <file baseinstalldir="/" md5sum="3a418fd85987f5b9a94055fa398f9272" name="apps/pc_frontend/modules/file/templates/_memberFileUploadModal.php" role="data" />
    <file baseinstalldir="/" md5sum="03bcc8bf2b9877bfc86d1f27f60e4709" name="apps/pc_frontend/modules/file/templates/_operationButton.php" role="data" />
-   <file baseinstalldir="/" md5sum="9f5ee1bbbbc270717b522fa668f81f85" name="apps/pc_frontend/modules/file/templates/_thumbnail.php" role="data" />
+   <file baseinstalldir="/" md5sum="b05b5e585f31df9832ee90fbfd41fe53" name="apps/pc_frontend/modules/file/templates/_thumbnail.php" role="data" />
    <file baseinstalldir="/" md5sum="67f8922f429ef35a8c01976dd9d655bd" name="config/app.yml" role="data" />
    <file baseinstalldir="/" md5sum="d06139bb69b620116b19a0b3344c4456" name="config/community_config.yml" role="data" />
    <file baseinstalldir="/" md5sum="c302c45bab89b1b84453ec98d0a73ca6" name="config/opFileManagePluginConfiguration.class.php" role="data" />
@@ -82,21 +84,21 @@ under development.
    <file baseinstalldir="/" md5sum="aa2839e9f11f4e8162231cc57c373a98" name="lib/form/opFileManageConfigurationForm.class.php" role="data" />
    <file baseinstalldir="/" md5sum="e07b021026361f9091586e8c9b7d7f4c" name="lib/form/doctrine/PluginDirectoryConfigForm.class.php" role="data" />
    <file baseinstalldir="/" md5sum="85ed2ceb8081379503385c6d1f82049f" name="lib/form/doctrine/PluginFileDirectoryForm.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="a65052d42b25014dd07d3647adf33c46" name="lib/form/doctrine/PluginManagedFileForm.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="6fa1c8d448aa717495625b0a759bea86" name="lib/form/doctrine/PluginManagedFileForm.class.php" role="data" />
    <file baseinstalldir="/" md5sum="6ce4f853f0bf6e4aea398069f7670c31" name="lib/model/FileDirectoryQuery.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="e9140bb33be681d18b026552c0615957" name="lib/model/ManagedFileQuery.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="c43d2a4aae3611609190fef7f7cfac5c" name="lib/model/ManagedFileQuery.class.php" role="data" />
    <file baseinstalldir="/" md5sum="8751d0f03f0037df968148071cd2fc1e" name="lib/model/doctrine/PluginDirectoryConfig.class.php" role="data" />
    <file baseinstalldir="/" md5sum="32952099925bab18194a8931fefb1d2e" name="lib/model/doctrine/PluginDirectoryConfigTable.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="de7f1a6d1dcebc43029ceabe2c2a2637" name="lib/model/doctrine/PluginFileDirectory.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="5ce3789eb072c204f6f834e35d87744f" name="lib/model/doctrine/PluginFileDirectory.class.php" role="data" />
    <file baseinstalldir="/" md5sum="2b9256e9421a2795436e47f8a89dd463" name="lib/model/doctrine/PluginFileDirectoryTable.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="c521cf49b7bb3f8d8307b5649a3e5064" name="lib/model/doctrine/PluginManagedFile.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="4bd2f975bf82bcd5651c232d4bd9ba52" name="lib/model/doctrine/PluginManagedFileTable.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="d6036450a3632d576a6299c51b13f531" name="lib/model/doctrine/PluginManagedFile.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="4d210ddb5d84258c10ce2f735943f7f8" name="lib/model/doctrine/PluginManagedFileTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="b1df503ae6623fdf8b99120d362a011b" name="lib/util/opFileManageUtil.class.php" role="data" />
    <file baseinstalldir="/" md5sum="9599fe6244f393c74744ee14efdecb2e" name="lib/validator/opFileDirectoryValidatorSchema.class.php" role="data" />
    <file baseinstalldir="/" md5sum="8c5171799c0a9d9c1f155785becf4a63" name="lib/validator/opValidatorCommunitySelect.class.php" role="data" />
    <file baseinstalldir="/" md5sum="6ecd9c2716f918bb66b0db3070532410" name="lib/validator/opValidatorDirectory.class.php" role="data" />
    <file baseinstalldir="/" md5sum="b716020f43623e002eaaa95b3cfbd7c0" name="lib/widget/opWidgetFormSelectCommunity.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="4234f9818c8905068a3c92b664cea0b0" name="lib/widget/opWidgetFormSelectDirectory.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="73d1b30662f11f216de36df62b8f85b9" name="lib/widget/opWidgetFormSelectDirectory.class.php" role="data" />
    <file baseinstalldir="/" md5sum="64873a01da7a4f026ffd8d8de396cf8e" name="lib/widget/opWidgetFormSelectDirectoryType.class.php" role="data" />
    <file baseinstalldir="/" md5sum="6059fe5458d6348af2659d38af527912" name="test/bootstrap/database.php" role="data" />
    <file baseinstalldir="/" md5sum="155ce720c060aa5fc9e2bbbc779b7a13" name="test/bootstrap/functional.php" role="data" />
@@ -115,7 +117,7 @@ under development.
    <file baseinstalldir="/" md5sum="b9a632551266c6efda6d5eaf6eb0709c" name="web/js/lib/vendor/bootstrap-modal.js" role="data" />
    <file baseinstalldir="/" md5sum="a0fb07562ceae36e8342f297e427f28e" name="web/js/lib/vendor/require.js" role="data" />
    <file baseinstalldir="/" md5sum="4d5f7ec184b06e758bc749b29a5fd59d" name="web/js/view/fileNameEditor.js" role="data" />
-   <file baseinstalldir="/" md5sum="c1a6d636989cf096ae6ef5fba0c24cd8" name="README.md" role="data" />
+   <file baseinstalldir="/" md5sum="6442808983ef855e7344ddb4e7c05727" name="README.md" role="data" />
   </dir>
  </contents>
  <dependencies>
@@ -338,6 +340,21 @@ under development.
    <license>Apache</license>
    <notes>
 under development.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.8.8</release>
+    <api>0.8.8</api>
+   </version>
+   <stability>
+    <release>devel</release>
+    <api>devel</api>
+   </stability>
+   <date>2014-08-14</date>
+   <license>Apache</license>
+   <notes>
+under devlopment.
    </notes>
   </release>
  </changelog>
