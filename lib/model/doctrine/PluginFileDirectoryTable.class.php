@@ -78,6 +78,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
         $acl->allow('everyone', $resource, 'upload');
       }
     }
+    $acl->allow('author', $resource, 'edit');
     $acl->allow('author', $resource, 'delete');
 
     if ($resource && 'community' === $resource->type && 'public' === $resource->getConfig()->getCommunityConfig('directory_authority'))
