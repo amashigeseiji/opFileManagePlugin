@@ -109,14 +109,12 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
       {
         return 'member';
       }
+
+      return 'everyone';
     }
 
-    if ($this->getMemberId() === $member->id)
-    {
-      return 'author';
-    }
-
-    return 'everyone';
+    # public or private directory
+    return ($this->getMemberId() === $member->id) ? 'author' : 'everyone';
   }
 
   /**
