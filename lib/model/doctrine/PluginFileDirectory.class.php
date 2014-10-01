@@ -94,19 +94,26 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
       return 'reject';
     }
 
+    if (opFileManageConfig::isUseCommunity() && 'community' === $this->type)
+    {
+      $community = $this->getConfig()->getCommunity();
+      if ($community->isAdmin($member->id))
+      {
+        return 'author';
+      }
+      if ('public' === $community->getConfig('directory_authority') && $this->getMemberId() === $member->id)
+      {
+        return 'author';
+      }
+      if (Doctrine::getTable('CommunityMember')->isMember($member->id, $this->getConfig()->getCommunityId()))
+      {
+        return 'member';
+      }
+    }
+
     if ($this->getMemberId() === $member->id)
     {
       return 'author';
-    }
-    elseif (opFileManageConfig::isUseCommunity()
-      && 'community' === $this->type
-      && $this->getConfig()->getCommunity()->isAdmin($member->id))
-    {
-      return 'author';
-    }
-    elseif (Doctrine::getTable('CommunityMember')->isMember($member->id, $this->getConfig()->getCommunityId()))
-    {
-      return 'member';
     }
 
     return 'everyone';
