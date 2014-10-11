@@ -24,6 +24,12 @@ class opWidgetFormSelectDirectory extends sfWidgetForm
     else if ('directory' === $options['type'])
     {
       $this->addOption('directory_id', $options['directory_id']);
+      $this->setHidden(true);
+      $this->setDefault($options['directory_id']);
+    }
+    else
+    {
+      throw new Exception('opWidgetFormSelectDirectory: type is undefined.');
     }
   }
 

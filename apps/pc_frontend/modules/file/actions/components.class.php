@@ -10,8 +10,6 @@ class fileComponents extends sfComponents
     }
 
     $this->form = new ManagedFileForm(array(), array('type' => 'directory', 'directory_id' => $this->directory->id));
-    $this->form->getWidget('directory_id')->setHidden(true);
-    $this->form->getWidget('directory_id')->setDefault($this->directory->id);
     $this->url = '@file_upload?id='.$this->directory->id;
     $this->widgets = array('file');
   }
