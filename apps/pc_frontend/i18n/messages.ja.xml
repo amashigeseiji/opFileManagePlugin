@@ -139,7 +139,7 @@
         <target>%community%参加者のみ公開</target>
       </trans-unit>
       <trans-unit id="">
-        <source>"%Community%'s members can create</source>
+        <source>%Community%'s members can create</source>
         <target>%Community%参加者が作成可能</target>
       </trans-unit>
       <trans-unit id="">
