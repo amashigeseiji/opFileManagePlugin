@@ -118,8 +118,10 @@ class directoryActions extends sfActions
     $request->checkCSRFProtection();
 
     $directory = $this->getRoute()->getObject();
-    $this->forward404If(!$request->getParameter('name'));
-    $directory->modifyName($request['name']);
+    if ($request->hasParameter('name') && $name = trim($request->getParameter('name')))
+    {
+      $directory->modifyName($name);
+    }
 
     $this->redirect($request->getParameter('redirect', '@directory_show?id='.$directory->getId()));
   }

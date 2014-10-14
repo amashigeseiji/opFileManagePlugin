@@ -64,8 +64,9 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
 
   public function appendRules(Zend_Acl $acl, $resource = null)
   {
-    $acl->allow('member', $resource, 'view');
-    $acl->allow('member', $resource, 'upload');
+    $acl->allow('author', $resource, 'edit');
+    $acl->allow('author', $resource, 'delete');
+
     if ($resource && 'public' === $resource->getType())
     {
       $acl->allow('everyone', $resource, 'view');
@@ -78,15 +79,21 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
         $acl->allow('everyone', $resource, 'upload');
       }
     }
-    $acl->allow('author', $resource, 'delete');
 
-    if ($resource && 'community' === $resource->type && 'public' === $resource->getConfig()->getCommunityConfig('directory_authority'))
+    # for community member(member role exists in community only)
+    $acl->allow('member', $resource, 'view');
+    $acl->allow('member', $resource, 'upload');
+
+    if ($resource && 'community' === $resource->getType())
     {
-      $acl->allow('member', $resource, 'edit');
-    }
-    if ($resource && 'community' === $resource->type && 'public' === $resource->getConfig()->getCommunityConfig('file_public_flag'))
-    {
-      $acl->allow('everyone', $resource, 'view');
+      if ('public' === $resource->getConfig()->getCommunityConfig('directory_authority'))
+      {
+        $acl->allow('member', $resource, 'edit');
+      }
+      if ('public' === $resource->getConfig()->getCommunityConfig('file_public_flag'))
+      {
+        $acl->allow('everyone', $resource, 'view');
+      }
     }
 
     return $acl;

@@ -74,8 +74,10 @@ class fileActions extends sfActions
     $request->checkCSRFProtection();
 
     $file = $this->getRoute()->getObject();
-    $this->forward404If(!$request->hasParameter('name'));
-    $file->editName($request->getParameter('name'));
+    if ($request->hasParameter('name') && $name = trim($request->getParameter('name')))
+    {
+      $file->editName($name);
+    }
 
     $this->redirect($request->getParameter('redirect', '@file_show?id='.$file->getId()));
   }
