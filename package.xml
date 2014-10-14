@@ -16,11 +16,11 @@
   <email />
   <active>yes</active>
  </lead>
- <date>2014-10-11</date>
- <time>21:05:11</time>
+ <date>2014-10-14</date>
+ <time>21:53:40</time>
  <version>
-  <release>0.9.1</release>
-  <api>0.9.1</api>
+  <release>0.9.2</release>
+  <api>0.9.2</api>
  </version>
  <stability>
   <release>alpha</release>
@@ -28,7 +28,7 @@
  </stability>
  <license>Apache</license>
  <notes>
-fixed issue#9, issue#10
+fixed issue#11, issue#12
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -38,12 +38,12 @@ fixed issue#9, issue#10
    <file baseinstalldir="/" md5sum="32062572ee9445e4bb5ba7c2de714bb9" name="apps/pc_backend/modules/opFileManagePlugin/templates/indexSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="a2e4734a4e3fdea0ebca55c7b8d0dc22" name="apps/pc_frontend/config/app.yml" role="data" />
    <file baseinstalldir="/" md5sum="3594f5eeb40d60ba83a1c7dc935f532b" name="apps/pc_frontend/config/routing.yml" role="data" />
-   <file baseinstalldir="/" md5sum="23a85a877ba78a09b520b19d03c3650c" name="apps/pc_frontend/config/security.yml" role="data" />
    <file baseinstalldir="/" md5sum="6bba903acaeae4da0aa70f90313793e5" name="apps/pc_frontend/i18n/form_community.ja.xml" role="data" />
-   <file baseinstalldir="/" md5sum="d695c678816c74744bf6fa29c85175df" name="apps/pc_frontend/i18n/messages.ja.xml" role="data" />
+   <file baseinstalldir="/" md5sum="2db4a0e04f761ac26da437adce28659b" name="apps/pc_frontend/i18n/messages.ja.xml" role="data" />
    <file baseinstalldir="/" md5sum="e362dc9c9954a6f92d59445d9f9e3204" name="apps/pc_frontend/modules/community/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="63e1a241f36fbad720931e7aa9d55750" name="apps/pc_frontend/modules/directory/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="5ad6627294bff4555830dfd69c4ec1bb" name="apps/pc_frontend/modules/directory/actions/components.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="23a85a877ba78a09b520b19d03c3650c" name="apps/pc_frontend/modules/directory/config/security.yml" role="data" />
    <file baseinstalldir="/" md5sum="c5691a4d094027f537d26504dcbeff8a" name="apps/pc_frontend/modules/directory/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="9e2a3d0cb33a37cd65cfcbca506015a8" name="apps/pc_frontend/modules/directory/templates/listCommunitySuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="acea7c930c9e069baca2fbf1e8b5b771" name="apps/pc_frontend/modules/directory/templates/listSuccess.php" role="data" />
@@ -57,6 +57,7 @@ fixed issue#9, issue#10
    <file baseinstalldir="/" md5sum="58092bed078e2f7747d1e57df95f5890" name="apps/pc_frontend/modules/directory/templates/_smtCommunityDirectoryList.php" role="data" />
    <file baseinstalldir="/" md5sum="5075680ef891ccac0f6569231c21472a" name="apps/pc_frontend/modules/file/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="f72d94da857606def4e868480740ab01" name="apps/pc_frontend/modules/file/actions/components.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="23a85a877ba78a09b520b19d03c3650c" name="apps/pc_frontend/modules/file/config/security.yml" role="data" />
    <file baseinstalldir="/" md5sum="c5691a4d094027f537d26504dcbeff8a" name="apps/pc_frontend/modules/file/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="7fd355583bc91b405d5d45ec69dbbc9f" name="apps/pc_frontend/modules/file/templates/listCommunitySuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="dc8cff0905d1500e95159089de08097c" name="apps/pc_frontend/modules/file/templates/listMemberSuccess.php" role="data" />
@@ -402,6 +403,21 @@ alpha version
    <license>Apache</license>
    <notes>
 fixed issue#9, issue#10
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.2</release>
+    <api>0.9.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2014-10-14</date>
+   <license>Apache</license>
+   <notes>
+fixed issue#11, issue#12
    </notes>
   </release>
  </changelog>
