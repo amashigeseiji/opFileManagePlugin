@@ -106,6 +106,10 @@ class fileActions extends sfActions
   public function executeListMember(sfWebRequest $request)
   {
     $this->member = $this->getRoute()->getObject();
+    if ($this->member->id !== $this->getUser()->getMemberId())
+    {
+      opFileManageUtil::setLocalNav('friend', $this->member->id);
+    }
 
     $this->pager = Doctrine::getTable('ManagedFile')->getMemberFileListPager($this->member->id, $request->getParameter('page'));
     $this->pager->init();

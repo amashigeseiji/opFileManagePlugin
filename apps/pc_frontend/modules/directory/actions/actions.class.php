@@ -63,6 +63,10 @@ class directoryActions extends sfActions
   {
     $this->member = $request->getParameter('id') ?
       $this->getRoute()->getObject() : $this->getUser()->getMember();
+    if ($this->member->id !== $this->getUser()->getMemberId())
+    {
+      opFileManageUtil::setLocalNav('friend', $this->member->id);
+    }
     $types = array('public');
     if (opFileManageConfig::isUsePrivate() && $this->member->getId() === $this->getUser()->getMemberId())
     {
