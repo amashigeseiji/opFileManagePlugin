@@ -28,3 +28,23 @@ Navigation:
         caption: "ファイル"
       en:
         caption: "Files"
+
+  friend_file_navigation:
+    type: "friend"
+    uri: "@file_list_member"
+    sort_order: 50
+    Translation:
+      ja_JP:
+        caption: "ファイル"
+      en:
+        caption: "Files"
+
+  friend_directory_navigation:
+    type: "friend"
+    uri: "@directory_list_member"
+    sort_order: 50
+    Translation:
+      ja_JP:
+        caption: "フォルダ"
+      en:
+        caption: "Folder"
