@@ -82,6 +82,28 @@ class fileActions extends sfActions
     $this->redirect($request->getParameter('redirect', '@file_show?id='.$file->getId()));
   }
 
+  public function executeMoveDirectory(sfWebRequest $request)
+  {
+    $request->checkCSRFProtection();
+
+    $file = $this->getRoute()->getObject();
+    if ($request->hasParameter('directory_id'))
+    {
+      try
+      {
+        $validator = new opValidatorDirectory();
+        $clean = $validator->clean($request->getParameter('directory_id'));
+        $file->moveDirectory($clean);
+      }
+      catch(sfValidatorError $e)
+      {
+        $this->getUser()->setFlash('error', $e->getMessage());
+      }
+    }
+
+    $this->redirect('@file_show?id='.$file->id);
+  }
+
  /**
   * Executes show action
   *

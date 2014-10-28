@@ -143,4 +143,10 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
 
     return 'everyone';
   }
+
+  public function moveDirectory($directoryId)
+  {
+    $this->setDirectoryId($directoryId);
+    $this->save();
+  }
 }

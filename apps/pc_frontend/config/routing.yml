@@ -76,6 +76,15 @@ file_list_community:
   requirements:
     id: \d+
 
+file_move_directory:
+  url: /file/:id/move
+  class: opDynamicAclRoute
+  options: { model: ManagedFile, type: object, privilege: edit }
+  param: { module: file, action: moveDirectory }
+  requirements:
+    sf_method: [put]
+    id: \d+
+
 file_nodefaults:
   url: /file/*
   options: { module: default, action: error }
