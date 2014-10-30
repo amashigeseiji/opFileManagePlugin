@@ -1,7 +1,25 @@
 <?php $root = 'move_directory_'.$file->id ?>
 <div id="<?php echo $root ?>" class="hide">
   <span class="form form-inline">
-  <?php $widget = new opWidgetFormSelectDirectory(array('type' => 'member_directory', 'member_id' => $sf_user->getMemberId(), 'selected' => $file->FileDirectory->id)) ?>
+  <?php
+    if ('community' === $file->FileDirectory->type)
+    {
+      $options = array(
+        'type'          => 'community_directory',
+        'community_id'  => $file->FileDirectory->getConfig()->getCommunityId(),
+        'selected'      => $file->FileDirectory->id
+      );
+    }
+    else
+    {
+      $options = array(
+        'type'       => 'member_directory',
+        'member_id'  => $sf_user->getMemberId(),
+        'selected'   => $file->FileDirectory->id
+      );
+    }
+  ?>
+  <?php $widget = new opWidgetFormSelectDirectory($options) ?>
   <?php echo $widget->render('directory') ?>
   <?php echo link_to(
     __("Modify"),
