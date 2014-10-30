@@ -5,6 +5,9 @@
 <?php endif; ?>
 
 <style>
+.modal {
+  margin-top: 0;
+}
 .modal-body li {
   display: table;
   margin: 10px 0;
