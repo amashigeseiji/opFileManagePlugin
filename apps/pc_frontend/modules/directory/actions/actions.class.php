@@ -48,6 +48,10 @@ class directoryActions extends sfActions
       $this->forward404If(!opFileManageUtil::isViewableCommunityFile($community, $this->getUser()->getMember()));
       opFileManageUtil::setLocalNav('community', $community->id);
     }
+    elseif (!$this->directory->isAuthor())
+    {
+      opFileManageUtil::setLocalNav('friend', $this->directory->Member->id);
+    }
 
     $this->pager = Doctrine::getTable('ManagedFile')
       ->getDirectoryFileListPager($this->directory->getId(), $request->getParameter('page'));

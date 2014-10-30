@@ -125,6 +125,10 @@ class fileActions extends sfActions
     {
       opFileManageUtil::setLocalNav('community', $this->directory->getConfig()->getCommunityId());
     }
+    elseif (!$this->file->isAuthor())
+    {
+      opFileManageUtil::setLocalNav('friend', $this->file->getMember()->id);
+    }
   }
 
  /**
