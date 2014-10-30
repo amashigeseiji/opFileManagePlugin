@@ -1,10 +1,15 @@
-<table class="table table-striped">
+<div class="partsHeading">
+  <?php echo __('File list of %1%', array('%1%' => $community->name)) ?>
+</div>
+<div class="pull-right">
+  <?php include_component('file', 'communityFileUploadModal') ?>
+</div>
 
+<table class="table table-striped">
 <thead>
-<tr>
-  <th><?php echo __('File list of %1%', array('%1%' => $community->name)) ?></th>
-  <td><?php include_component('file', 'communityFileUploadModal') ?></td>
-</tr>
+  <th><?php echo __('Operation') ?></th>
+  <th><?php echo __('File name') ?>(<?php echo __('Directory name') ?>)</th>
+  <th><?php echo __('note') ?></th>
 </thead>
 
 <tbody>

@@ -162,6 +162,14 @@
         <source>Is Public</source>
         <target>公開かどうか</target>
       </trans-unit>
+      <trans-unit id="">
+        <source>Operation</source>
+        <target>操作</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Detail</source>
+        <target>詳細</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

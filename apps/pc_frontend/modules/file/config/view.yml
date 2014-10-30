@@ -1,2 +1,2 @@
 all:
-  stylesheets: [/opFileManagePlugin/css/bootstrap]
+  stylesheets: [/opFileManagePlugin/css/bootstrap, /opFileManagePlugin/css/fileManage]

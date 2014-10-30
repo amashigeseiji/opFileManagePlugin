@@ -1,6 +1,8 @@
 <tr>
-<td class="dirname-list">
+<td class="operation">
 <?php include_partial('directory/edit', array('directory' => $directory)) ?>
+</td>
+<td class="dirname-list">
 <span class="dirname_<?php echo $directory->id ?> dirname">
 <?php echo link_to($directory->getName(), '@directory_show?id='.$directory->getId()) ?>
 </span>

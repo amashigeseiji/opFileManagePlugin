@@ -9,6 +9,7 @@
 
 <table class="table table-striped">
 <thead>
+<th><?php echo __('Operation') ?></th>
 <th><?php echo __('Directory name') ?></th>
 <th><?php echo __('note') ?></th>
 <?php if (opFileManageConfig::isUsePrivate() && !$isFriendPage): ?>
