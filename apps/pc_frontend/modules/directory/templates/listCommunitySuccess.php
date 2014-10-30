@@ -1,11 +1,14 @@
-<table class="table table-striped">
-<thead>
-<th>
+<div class="partsHeading">
 <?php echo __('Directory list of %1%', array('%1%' => $community->getName())) ?>
-</th>
+</div>
 <td>
 <?php include_component('directory', 'communityDirectoryCreateModal', array('community' => $community)) ?>
 </td>
+
+<table class="table table-striped">
+<thead>
+<th><?php echo __('Directory name') ?></th>
+<th><?php echo __('note') ?></th>
 </thead>
 
 <tbody>

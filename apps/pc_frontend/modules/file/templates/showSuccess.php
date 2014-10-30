@@ -49,6 +49,12 @@
     </div>
   </td>
 </tr>
+<tr>
+  <th><?php echo __('note') ?></th>
+  <td>
+  <?php echo $file->note ?>
+  </td>
+</tr>
 </tbody>
 </table>
 

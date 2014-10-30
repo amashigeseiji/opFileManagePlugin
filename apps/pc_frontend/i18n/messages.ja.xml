@@ -154,6 +154,14 @@
         <source>Only %community%'s admin can upload</source>
         <target>%community%管理者のみアップロード可能</target>
       </trans-unit>
+      <trans-unit id="">
+        <source>note</source>
+        <target>説明</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Is Public</source>
+        <target>公開かどうか</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

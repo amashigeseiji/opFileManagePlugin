@@ -61,14 +61,19 @@ class directoryActions extends sfActions
   */
   public function executeList(sfWebRequest $request)
   {
-    $this->member = $request->getParameter('id') ?
+    $this->isFriendPage =
+       $request->getParameter('id') ? true : false;
+
+    $this->member = $this->isFriendPage ?
       $this->getRoute()->getObject() : $this->getUser()->getMember();
-    if ($this->member->id !== $this->getUser()->getMemberId())
+
+    if ($this->isFriendPage)
     {
       opFileManageUtil::setLocalNav('friend', $this->member->id);
     }
+
     $types = array('public');
-    if (opFileManageConfig::isUsePrivate() && $this->member->getId() === $this->getUser()->getMemberId())
+    if (opFileManageConfig::isUsePrivate() && !$this->isFriendPage)
     {
       $types[] = 'private';
     }

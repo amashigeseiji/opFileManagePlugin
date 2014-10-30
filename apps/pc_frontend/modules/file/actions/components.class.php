@@ -11,7 +11,7 @@ class fileComponents extends sfComponents
 
     $this->form = new ManagedFileForm(array(), array('type' => 'directory', 'directory_id' => $this->directory->id));
     $this->url = '@file_upload?id='.$this->directory->id;
-    $this->widgets = array('file');
+    $this->widgets = array('file', 'note');
   }
 
   public function executeCommunityFileUploadModal()
@@ -35,7 +35,7 @@ class fileComponents extends sfComponents
 
     $this->form = new ManagedFileForm(array(), array('type' => 'community_directory', 'community_id' => $community->id));
     $this->url = '@file_upload_community?id='.$community->id;
-    $this->widgets = array('file', 'directory_id');
+    $this->widgets = array('file', 'directory_id', 'note');
   }
 
   public function executeMemberFileUploadModal()
@@ -53,6 +53,6 @@ class fileComponents extends sfComponents
 
     $this->form = new ManagedFileForm(array(), array('type' => 'member_directory', 'member_id' => $member->id));
     $this->url = '@file_upload_member?id='.$member->id;
-    $this->widgets = array('file', 'directory_id');
+    $this->widgets = array('file', 'directory_id', 'note');
   }
 }

@@ -19,6 +19,8 @@
       </span>
       <?php include_partial('directory/edit', array('directory' => $directory)) ?>
     <?php endif; ?>
+    <br />
+    <span style="font-weight: normal;color: #666"><?php echo $directory->note ?></span>
   </th>
   <td>
     <?php if ($directory->isUploadable(sfContext::getInstance()->getUser()->getMember())): ?>

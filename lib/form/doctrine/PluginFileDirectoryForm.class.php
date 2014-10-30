@@ -26,6 +26,8 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
     $this->validatorSchema['type'] = new sfValidatorChoice(array('choices' => $this->getWidget('type')->getChoices()));
     $this->widgetSchema['type']->setLabel('Public');
 
+    $this->validatorSchema['note'] = new sfValidatorString(array('required' => false));
+
     if (opFileManageConfig::isUseCommunity())
     {
       $memberId = sfContext::getInstance()->getUser()->getMemberId();
@@ -63,7 +65,7 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
    */
   public function getRenderWidgetNames()
   {
-    $widgets = array('name');
+    $widgets = array('name', 'note');
     if (!$this['type']->isHidden())
     {
       $widgets[] = 'type';
