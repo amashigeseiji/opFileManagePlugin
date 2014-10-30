@@ -1,0 +1,12 @@
+td.operation {
+  width: 10%;
+  padding: auto 5px;
+}
+.normal {
+  font-weight: normal;
+  color: #666666;
+}
+.normal-darker {
+  font-weight: normal;
+  color: #333333;
+}

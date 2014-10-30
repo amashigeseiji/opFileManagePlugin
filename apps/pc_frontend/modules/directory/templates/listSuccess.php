@@ -9,10 +9,13 @@
 
 <table class="table table-striped">
 <thead>
+<?php if ($pager->getNbResults()): ?>
+<th><?php echo __('Operation') ?></th>
 <th><?php echo __('Directory name') ?></th>
 <th><?php echo __('note') ?></th>
 <?php if (opFileManageConfig::isUsePrivate() && !$isFriendPage): ?>
 <th><?php echo __('Is Public') ?></th>
+<?php endif; ?>
 <?php endif; ?>
 </thead>
 
@@ -32,4 +35,3 @@
 <?php else: ?>
 <?php op_include_box('DirectoryList', __('There is no directory.')) ?>
 <?php endif; ?>
-

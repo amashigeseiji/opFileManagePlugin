@@ -1,10 +1,16 @@
+<div class="pageHeadng">
+  <?php echo $file->name ?> の詳細情報
+  <span class="pull-right">
+  <?php include_partial('file/operationButton', array('file' => $file)) ?>
+  </span>
+</div>
+
+
 <table class="table table-striped">
 <thead>
 <tr>
   <th><?php echo __('File information') ?></th>
-  <td>
-    <?php include_partial('file/operationButton', array('file' => $file)) ?>
-  </td>
+  <th><?php echo __('Detail') ?></th>
 </tr>
 </thead>
 

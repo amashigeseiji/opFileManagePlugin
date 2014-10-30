@@ -1,5 +1,5 @@
 <?php $member = sfContext::getInstance()->getUser()->getMember() ?>
-<span class="span btn-group">
+<span class="btn-group">
   <?php if ($file->isViewable($member)): ?>
   <?php echo link_to(
     '<i class="icon-download-alt"></i>',
