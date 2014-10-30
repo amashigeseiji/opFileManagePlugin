@@ -12,6 +12,7 @@ class opWidgetFormSelectDirectory extends sfWidgetForm
   protected function configure($options = array(), $attributes = array())
   {
     $this->addOption('type', $options['type']);
+    $this->addOption('selected', $options['selected']);
 
     if ('member_directory' === $options['type'])
     {
@@ -61,6 +62,10 @@ class opWidgetFormSelectDirectory extends sfWidgetForm
     foreach ($choices as $key => $option)
     {
       $attribute = array('value' => self::escapeOnce($option['id']));
+      if ($option['id'] === $this->getOption('selected'))
+      {
+        array_push($attribute['selected'] = true);
+      }
       $options[] = $this->renderContentTag('option', self::escapeOnce($option['name']), $attribute);
     }
 
