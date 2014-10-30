@@ -1,4 +1,4 @@
 SnsConfig:
   op_file_manage_plugin_current_revision:
     name: "opFileManagePlugin_revision"
-    value: 1
+    value: 2
