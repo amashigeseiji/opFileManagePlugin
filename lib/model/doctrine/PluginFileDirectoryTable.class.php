@@ -64,6 +64,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
 
   public function appendRules(Zend_Acl $acl, $resource = null)
   {
+    $acl->allow('author', $resource, 'view');
     $acl->allow('author', $resource, 'upload');
     $acl->allow('author', $resource, 'edit');
     $acl->allow('author', $resource, 'delete');

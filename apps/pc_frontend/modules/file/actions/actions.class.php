@@ -74,7 +74,9 @@ class fileActions extends sfActions
     $request->checkCSRFProtection();
 
     $file = $this->getRoute()->getObject();
-    if ($request->hasParameter('name') && $name = trim($request->getParameter('name')))
+    if ($file->isEditable($this->getUser()->getMember())
+      && $request->hasParameter('name')
+      && $name = trim($request->getParameter('name')))
     {
       $file->editName($name);
     }
@@ -82,6 +84,11 @@ class fileActions extends sfActions
     $this->redirect($request->getParameter('redirect', '@file_show?id='.$file->getId()));
   }
 
+ /**
+  * Executes moveDirectory action
+  *
+  * @param sfWebRequest $request A request object
+  */
   public function executeMoveDirectory(sfWebRequest $request)
   {
     $request->checkCSRFProtection();
@@ -91,7 +98,7 @@ class fileActions extends sfActions
     {
       try
       {
-        $validator = new opValidatorDirectory();
+        $validator = new opValidatorDirectory(array('privilege' => 'upload', 'member' => $this->getUser()->getMember()));
         $clean = $validator->clean($request->getParameter('directory_id'));
         $file->moveDirectory($clean);
       }
