@@ -1,3 +1,10 @@
+<?php if ($file->FileDirectory->isUploadable(sfContext::getInstance()->getUser()->getMember())): ?>
+
+<?php $trigger = 'file_move_directory_link_'.$file->id ?>
+<a href="javascript:void(0)" id="<?php echo $trigger ?>" class="btn btn-small">
+  <i class="icon-folder-open"></i>
+</a>
+
 <?php $root = 'move_directory_'.$file->id ?>
 <div id="<?php echo $root ?>" class="hide">
   <span class="form form-inline">
@@ -32,7 +39,7 @@
 <script>
 $(document).ready(function(){
   var root = $('#<?php echo $root ?>');
-  var trigger = $('<?php echo $trigger ?>');
+  var trigger = $('#<?php echo $trigger ?>');
 
   var toggle = function(){
     if (root.hasClass('hide')) {
@@ -54,3 +61,5 @@ $(document).ready(function(){
   });
 });
 </script>
+
+<?php endif; ?>
