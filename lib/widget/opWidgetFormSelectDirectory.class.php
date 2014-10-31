@@ -11,26 +11,26 @@ class opWidgetFormSelectDirectory extends sfWidgetForm
 {
   protected function configure($options = array(), $attributes = array())
   {
-    $this->addOption('type', $options['type']);
-    $this->addOption('selected', $options['selected']);
+    $this->addRequiredOption('type');
+    $this->addOption('selected', null);
 
     if ('member_directory' === $options['type'])
     {
-      $this->addOption('member_id', $options['member_id']);
+      $this->addRequiredOption('member_id');
     }
     else if ('community_directory' === $options['type'])
     {
-      $this->addOption('community_id', $options['community_id']);
+      $this->addRequiredOption('community_id');
     }
     else if ('directory' === $options['type'])
     {
-      $this->addOption('directory_id', $options['directory_id']);
+      $this->addRequiredOption('directory_id');
       $this->setHidden(true);
       $this->setDefault($options['directory_id']);
     }
     else
     {
-      throw new Exception('opWidgetFormSelectDirectory: type is undefined.');
+      throw new LogicException(__METHOD__.': type option is invalid.');
     }
   }
 
@@ -64,7 +64,7 @@ class opWidgetFormSelectDirectory extends sfWidgetForm
       $attribute = array('value' => self::escapeOnce($option['id']));
       if ($option['id'] === $this->getOption('selected'))
       {
-        array_push($attribute['selected'] = true);
+        $attribute['selected'] = true;
       }
       $options[] = $this->renderContentTag('option', self::escapeOnce($option['name']), $attribute);
     }
