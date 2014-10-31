@@ -34,7 +34,11 @@ abstract class PluginManagedFileForm extends BaseManagedFileForm
     }
 
     $this->widgetSchema['directory_id'] = new opWidgetFormSelectDirectory($options);
-    $this->validatorSchema['directory_id'] = new opValidatorDirectory(array('required' => true));
+    $this->validatorSchema['directory_id'] = new opValidatorDirectory(array(
+      'required' => true,
+      'privilege' => 'upload',
+      'member' => sfContext::getInstance()->getUser()->getMember()
+    ));
 
     $this->widgetSchema['file'] = new sfWidgetFormInputFile();
     $this->validatorSchema['file'] = new sfValidatorFile(array('required' => true));

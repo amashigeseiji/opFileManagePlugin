@@ -20,13 +20,10 @@
     <a href="javascript:void(0)" id="file_edit_name_link_<?php echo $file->getId() ?>" class="btn btn-small">
       <i class="icon-edit"></i>
     </a>
-    <a href="javascript:void(0)" id="file_move_directory_link_<?php echo $file->getId() ?>" class="btn btn-small">
-      <i class="icon-folder-open"></i>
-    </a>
   <?php endif; ?>
+  <?php include_partial('file/moveDirectory', array('file' => $file)) ?>
 </span>
 
 <?php if ($file->isEditable($member)): ?>
 <?php include_partial('file/editFileNameBox', array('file' => $file, 'trigger' => '#file_edit_name_link_'.$file->getId())) ?>
-<?php include_partial('file/moveDirectory', array('file' => $file, 'trigger' => '#file_move_directory_link_'.$file->getId())) ?>
 <?php endif; ?>

@@ -105,7 +105,7 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
       {
         return 'author';
       }
-      if (Doctrine::getTable('CommunityMember')->isMember($member->id, $this->getConfig()->getCommunityId()))
+      if ($community->isPrivilegeBelong($member->id))
       {
         return 'member';
       }

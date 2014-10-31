@@ -83,6 +83,11 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
     return $this->getFile()->getFileBin()->bin;
   }
 
+  public function getDirectoryType()
+  {
+    return $this->FileDirectory->type;
+  }
+
   /**
    * @return string|false
    */
@@ -104,41 +109,15 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
 
   public function generateRoleId(Member $member)
   {
-    if (!opFileManageConfig::isUsePrivate() && 'private' === $this->FileDirectory->type
-    || !opFileManageConfig::isUseCommunity() && 'community' === $this->FileDirectory->type)
-    {
-      return 'reject';
-    }
+    $directoryRoleId = $this->FileDirectory->generateRoleId($member);
 
-    if ('community' === $this->FileDirectory->type)
+    if ('reject' === $directoryRoleId || 'author' === $directoryRoleId)
     {
-      $community = $this->FileDirectory->getConfig()->getCommunity();
-
-      if ($community->isPrivilegeBelong($member->id))
-      {
-        if ($community->getAdminMember()->id === $member->id || $this->member_id === $member->id)
-        {
-          return 'author';
-        }
-        else
-        {
-          return 'member';
-        }
-      }
+      return $directoryRoleId;
     }
-    else if ('private' === $this->FileDirectory->type)
+    elseif ($this->member_id === $member->id)
     {
-      if ($this->FileDirectory->member_id === $member->id)
-      {
-        return 'author';
-      }
-    }
-    else
-    {
-      if ($this->member_id === $member->id || $this->FileDirectory->member_id === $member->id)
-      {
-        return 'author';
-      }
+      return 'author';
     }
 
     return 'everyone';
