@@ -64,17 +64,28 @@ class PluginManagedFileTable extends opAccessControlDoctrineTable
 
   public function appendRules(Zend_Acl $acl, $resource = null)
   {
+    $directory = $resource ? $resource->FileDirectory : null;
+    if (!$directory)
+    {
+      throw new LogicException('ManagedFileTable::appendRules resource is null.');
+    }
+
+    # all community member can view file
     $acl->allow('member', $resource, 'view');
-    $acl->allow('member', $resource, 'edit');
-    if ($resource && 'public' === $resource->FileDirectory->type)
-    {
-      $acl->allow('everyone', $resource, 'view');
-    }
-    else if ($resource && 'community' === $resource->FileDirectory->type && $resource->FileDirectory->getConfig()->getCommunityConfig('file_public_flag'))
-    {
-      $acl->allow('everyone', $resource, 'view');
-    }
+    $acl->allow('author', $resource, 'edit');
     $acl->allow('author', $resource, 'delete');
+
+    if ('public' === $directory->type)
+    {
+      $acl->allow('everyone', $resource, 'view');
+    }
+    elseif ('community' === $directory->type)
+    {
+      if ('public' === $directory->getConfig()->getCommunityConfig('file_public_flag'))
+      {
+        $acl->allow('everyone', $resource, 'view');
+      }
+    }
 
     return $acl;
   }
