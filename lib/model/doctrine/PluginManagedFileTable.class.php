@@ -59,7 +59,8 @@ class PluginManagedFileTable extends opAccessControlDoctrineTable
       ->addRole(new Zend_Acl_Role('reject'))
       ->addRole(new Zend_Acl_Role('everyone'))
       ->addRole(new Zend_Acl_Role('member'), 'everyone')
-      ->addRole(new Zend_Acl_Role('author'), 'member');
+      ->addRole(new Zend_Acl_Role('author'), 'member')
+      ->addRole(new Zend_Acl_Role('admin'), 'author');
   }
 
   public function appendRules(Zend_Acl $acl, $resource = null)

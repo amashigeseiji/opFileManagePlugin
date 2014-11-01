@@ -59,15 +59,16 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
       ->addRole(new Zend_Acl_Role('reject'))
       ->addRole(new Zend_Acl_Role('everyone'))
       ->addRole(new Zend_Acl_Role('member'), 'everyone')
-      ->addRole(new Zend_Acl_Role('author'), 'member');
+      ->addRole(new Zend_Acl_Role('author'), 'member')
+      ->addRole(new Zend_Acl_Role('admin'), 'author');
   }
 
   public function appendRules(Zend_Acl $acl, $resource = null)
   {
-    $acl->allow('author', $resource, 'view');
-    $acl->allow('author', $resource, 'upload');
-    $acl->allow('author', $resource, 'edit');
-    $acl->allow('author', $resource, 'delete');
+    $acl->allow('admin', $resource, 'view');
+    $acl->allow('admin', $resource, 'upload');
+    $acl->allow('admin', $resource, 'edit');
+    $acl->allow('admin', $resource, 'delete');
 
     if ($resource && 'public' === $resource->getType())
     {
@@ -91,12 +92,15 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
 
       if ('public' === $community->getConfig('directory_authority'))
       {
-        $acl->allow('member', $resource, 'edit');
+        $acl->allow('author', $resource, 'edit');
+        $acl->allow('author', $resource, 'delete');
       }
+
       if ('public' === $community->getConfig('file_public_flag'))
       {
         $acl->allow('everyone', $resource, 'view');
       }
+
       if ('public' === $community->getConfig('file_authority'))
       {
         $acl->allow('member', $resource, 'upload');
