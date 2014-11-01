@@ -35,6 +35,19 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
   /**
    * @return bool
    */
+  public function isMovable(Member $member)
+  {
+    if ($this->isEditable($member))
+    {
+      return !$this->isCommunity() || opFileManageUtil::isCreatableCommunityDirectory($this->community, $member);
+    }
+
+    return false;
+  }
+
+  /**
+   * @return bool
+   */
   public function isAuthor()
   {
     return sfContext::getInstance()->getUser()->getMemberId() === $this->getMember()->getId();
@@ -83,9 +96,24 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
     return $this->getFile()->getFileBin()->bin;
   }
 
-  public function getDirectoryType()
+  public function getDirectory()
   {
-    return $this->FileDirectory->type;
+    return $this->FileDirectory;
+  }
+
+  public function getCommunity()
+  {
+    if ($this->isCommunity())
+    {
+      return $this->directory->config->getCommunity();
+    }
+
+    return null;
+  }
+
+  public function isCommunity()
+  {
+    return 'community' === $this->directory->type;
   }
 
   /**
@@ -111,7 +139,7 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
   {
     $directoryRoleId = $this->FileDirectory->generateRoleId($member);
 
-    if ('reject' === $directoryRoleId || 'author' === $directoryRoleId)
+    if ('reject' === $directoryRoleId || 'author' === $directoryRoleId || 'admin' === $directoryRoleId)
     {
       return $directoryRoleId;
     }

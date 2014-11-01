@@ -1,20 +1,13 @@
-<?php if ($file->FileDirectory->isUploadable(sfContext::getInstance()->getUser()->getMember())): ?>
-
-<?php $trigger = 'file_move_directory_link_'.$file->id ?>
-<a href="javascript:void(0)" id="<?php echo $trigger ?>" class="btn btn-small">
-  <i class="icon-folder-open"></i>
-</a>
-
 <?php $root = 'move_directory_'.$file->id ?>
 <div id="<?php echo $root ?>" class="hide">
   <span class="form form-inline">
   <?php
-    if ('community' === $file->FileDirectory->type)
+    if ($file->isCommunity())
     {
       $options = array(
         'type'          => 'community_directory',
-        'community_id'  => $file->FileDirectory->getConfig()->getCommunityId(),
-        'selected'      => $file->FileDirectory->id
+        'community_id'  => $file->community->id,
+        'selected'      => $file->directory->id
       );
     }
     else
@@ -22,7 +15,7 @@
       $options = array(
         'type'       => 'member_directory',
         'member_id'  => $sf_user->getMemberId(),
-        'selected'   => $file->FileDirectory->id
+        'selected'   => $file->directory->id
       );
     }
   ?>
@@ -30,7 +23,7 @@
   <?php echo $widget->render('directory') ?>
   <?php echo link_to(
     __("Modify"),
-    '@file_move_directory?id='.$file->id.'&directory_id='.$file->FileDirectory->id,
+    '@file_move_directory?id='.$file->id.'&directory_id='.$file->directory->id,
     array('method' => 'put', 'class' => 'btn btn-small btn-primary', 'style' => 'color: #fff')
   ) ?>
   </span>
@@ -39,7 +32,7 @@
 <script>
 $(document).ready(function(){
   var root = $('#<?php echo $root ?>');
-  var trigger = $('#<?php echo $trigger ?>');
+  var trigger = $('<?php echo $trigger ?>');
 
   var toggle = function(){
     if (root.hasClass('hide')) {
@@ -61,5 +54,3 @@ $(document).ready(function(){
   });
 });
 </script>
-
-<?php endif; ?>

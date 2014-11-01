@@ -42,7 +42,7 @@ file_download:
   requirements:
     id: \d+
 
-file_edit_name:
+file_edit:
   url: /file/:id/edit
   class: opDynamicAclRoute
   options: { model: ManagedFile, type: object, privilege: edit }
