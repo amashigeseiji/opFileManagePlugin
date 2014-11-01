@@ -1,9 +1,17 @@
+<div class="partsHeading">
+  <?php echo __('File list of %1%', array('%1%' => $member->name)) ?>
+</div>
+<div class="pull-right">
+<?php include_component('file', 'memberFileUploadModal') ?>
+</div>
+
 <table class="table table-striped">
 
 <thead>
 <tr>
-  <th><?php echo __('File list of %1%', array('%1%' => $member->name)) ?></th>
-  <td><?php include_component('file', 'memberFileUploadModal') ?></td>
+  <th><?php echo __('Operation') ?></th>
+  <th><?php echo __('File name') ?>(<?php echo __('Directory') ?>)</th>
+  <th><?php echo __('note') ?></th>
 </tr>
 </thead>
 

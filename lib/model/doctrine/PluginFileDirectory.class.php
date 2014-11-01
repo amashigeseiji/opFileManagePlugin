@@ -38,8 +38,9 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
   public function isAuthor(Member $member = null)
   {
     $member = $member ? $member : sfContext::getInstance()->getUser()->getMember();
+    $roleId = $this->generateRoleId($member);
 
-    return (bool)('author' === $this->generateRoleId($member));
+    return (bool)('author' === $roleId || 'admin' === $roleId);
   }
 
   /**
@@ -99,14 +100,15 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
       $community = $this->getConfig()->getCommunity();
       if ($community->isAdmin($member->id))
       {
-        return 'author';
+        return 'admin';
       }
-      if ('public' === $community->getConfig('directory_authority') && $this->getMemberId() === $member->id)
+      elseif ($community->isPrivilegeBelong($member->id))
       {
-        return 'author';
-      }
-      if (Doctrine::getTable('CommunityMember')->isMember($member->id, $this->getConfig()->getCommunityId()))
-      {
+        if ('public' === $community->getConfig('directory_authority') && $this->getMemberId() === $member->id)
+        {
+          return 'author';
+        }
+
         return 'member';
       }
 
@@ -114,7 +116,7 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
     }
 
     # public or private directory
-    return ($this->getMemberId() === $member->id) ? 'author' : 'everyone';
+    return ($this->getMemberId() === $member->id) ? 'admin' : 'everyone';
   }
 
   /**

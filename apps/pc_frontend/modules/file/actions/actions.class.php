@@ -74,12 +74,48 @@ class fileActions extends sfActions
     $request->checkCSRFProtection();
 
     $file = $this->getRoute()->getObject();
-    if ($request->hasParameter('name') && $name = trim($request->getParameter('name')))
+    if ($file->isEditable($this->getUser()->getMember()))
     {
-      $file->editName($name);
+      if  ($request->hasParameter('name') &&
+        $name = trim($request->getParameter('name')))
+      {
+        $file->setName($name);
+      }
+      if ($request->hasParameter('note'))
+      {
+        $file->setNote($request->getParameter('note'));
+      }
+      $file->save();
     }
 
     $this->redirect($request->getParameter('redirect', '@file_show?id='.$file->getId()));
+  }
+
+ /**
+  * Executes moveDirectory action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeMoveDirectory(sfWebRequest $request)
+  {
+    $request->checkCSRFProtection();
+
+    $file = $this->getRoute()->getObject();
+    if ($request->hasParameter('directory_id'))
+    {
+      try
+      {
+        $validator = new opValidatorDirectory(array('privilege' => 'upload', 'member' => $this->getUser()->getMember()));
+        $clean = $validator->clean($request->getParameter('directory_id'));
+        $file->moveDirectory($clean);
+      }
+      catch(sfValidatorError $e)
+      {
+        $this->getUser()->setFlash('error', $e->getMessage());
+      }
+    }
+
+    $this->redirect('@file_show?id='.$file->id);
   }
 
  /**
@@ -95,6 +131,10 @@ class fileActions extends sfActions
     if ('community' === $this->directory->type)
     {
       opFileManageUtil::setLocalNav('community', $this->directory->getConfig()->getCommunityId());
+    }
+    elseif (!$this->file->isAuthor())
+    {
+      opFileManageUtil::setLocalNav('friend', $this->file->getMember()->id);
     }
   }
 

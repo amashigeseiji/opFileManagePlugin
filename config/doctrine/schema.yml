@@ -9,6 +9,7 @@ ManagedFile:
     name: { type: string, notnull: true }
     file_id: { type: integer(4), notnull: true }
     directory_id: { type: integer(4), notnull: true }
+    note: { type: string(255), notnull: true }
   relations:
     Member:
       foreignAlias: ManagedFiles
@@ -38,6 +39,7 @@ FileDirectory:
     member_id: { type: integer(4), notnull: true }
     name: { type: string(64), notnull: true }
     type: { type: string(64), notnull: true, default: 'public' }
+    note: { type: string(255), notnull: true }
   relations:
     Member:
       foreignAlias: ManagedFileDirectories

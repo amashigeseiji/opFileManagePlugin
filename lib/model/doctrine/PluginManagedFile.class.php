@@ -35,6 +35,19 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
   /**
    * @return bool
    */
+  public function isMovable(Member $member)
+  {
+    if ($this->isEditable($member))
+    {
+      return !$this->isCommunity() || opFileManageUtil::isCreatableCommunityDirectory($this->community, $member);
+    }
+
+    return false;
+  }
+
+  /**
+   * @return bool
+   */
   public function isAuthor()
   {
     return sfContext::getInstance()->getUser()->getMemberId() === $this->getMember()->getId();
@@ -83,6 +96,26 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
     return $this->getFile()->getFileBin()->bin;
   }
 
+  public function getDirectory()
+  {
+    return $this->FileDirectory;
+  }
+
+  public function getCommunity()
+  {
+    if ($this->isCommunity())
+    {
+      return $this->directory->config->getCommunity();
+    }
+
+    return null;
+  }
+
+  public function isCommunity()
+  {
+    return 'community' === $this->directory->type;
+  }
+
   /**
    * @return string|false
    */
@@ -104,43 +137,23 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
 
   public function generateRoleId(Member $member)
   {
-    if (!opFileManageConfig::isUsePrivate() && 'private' === $this->FileDirectory->type
-    || !opFileManageConfig::isUseCommunity() && 'community' === $this->FileDirectory->type)
-    {
-      return 'reject';
-    }
+    $directoryRoleId = $this->FileDirectory->generateRoleId($member);
 
-    if ('community' === $this->FileDirectory->type)
+    if ('reject' === $directoryRoleId || 'author' === $directoryRoleId || 'admin' === $directoryRoleId)
     {
-      $community = $this->FileDirectory->getConfig()->getCommunity();
-
-      if ($community->isPrivilegeBelong($member->id))
-      {
-        if ($community->getAdminMember()->id === $member->id || $this->member_id === $member->id)
-        {
-          return 'author';
-        }
-        else
-        {
-          return 'member';
-        }
-      }
+      return $directoryRoleId;
     }
-    else if ('private' === $this->FileDirectory->type)
+    elseif ($this->member_id === $member->id)
     {
-      if ($this->FileDirectory->member_id === $member->id)
-      {
-        return 'author';
-      }
-    }
-    else
-    {
-      if ($this->member_id === $member->id || $this->FileDirectory->member_id === $member->id)
-      {
-        return 'author';
-      }
+      return 'author';
     }
 
     return 'everyone';
+  }
+
+  public function moveDirectory($directoryId)
+  {
+    $this->setDirectoryId($directoryId);
+    $this->save();
   }
 }

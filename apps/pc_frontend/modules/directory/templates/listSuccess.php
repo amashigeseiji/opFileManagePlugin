@@ -1,12 +1,21 @@
+<div class="partsHeading">
+<?php echo __('Directory list of %1%', array('%1%' => $member->getName())) ?>
+</div>
+<?php if ($sf_user->getMemberId() === $member->getId()): ?>
+<span style="float: right;font-weight: normal; color: #333">
+<?php include_component('directory', 'directoryCreateModal') ?>
+</span>
+<?php endif; ?>
+
 <table class="table table-striped">
 <thead>
-<th>
-<?php echo __('Directory list of %1%', array('%1%' => $member->getName())) ?>
-</th>
-<?php if ($sf_user->getMemberId() === $member->getId()): ?>
-<td>
-<?php include_component('directory', 'directoryCreateModal') ?>
-</td>
+<?php if ($pager->getNbResults()): ?>
+<th><?php echo __('Operation') ?></th>
+<th><?php echo __('Directory name') ?></th>
+<th><?php echo __('note') ?></th>
+<?php if (opFileManageConfig::isUsePrivate() && !$isFriendPage): ?>
+<th><?php echo __('Is Public') ?></th>
+<?php endif; ?>
 <?php endif; ?>
 </thead>
 
@@ -26,4 +35,3 @@
 <?php else: ?>
 <?php op_include_box('DirectoryList', __('There is no directory.')) ?>
 <?php endif; ?>
-

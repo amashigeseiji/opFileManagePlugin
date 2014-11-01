@@ -48,6 +48,10 @@ class directoryActions extends sfActions
       $this->forward404If(!opFileManageUtil::isViewableCommunityFile($community, $this->getUser()->getMember()));
       opFileManageUtil::setLocalNav('community', $community->id);
     }
+    elseif (!$this->directory->isAuthor())
+    {
+      opFileManageUtil::setLocalNav('friend', $this->directory->Member->id);
+    }
 
     $this->pager = Doctrine::getTable('ManagedFile')
       ->getDirectoryFileListPager($this->directory->getId(), $request->getParameter('page'));
@@ -61,14 +65,19 @@ class directoryActions extends sfActions
   */
   public function executeList(sfWebRequest $request)
   {
-    $this->member = $request->getParameter('id') ?
+    $this->isFriendPage =
+       $request->getParameter('id') ? true : false;
+
+    $this->member = $this->isFriendPage ?
       $this->getRoute()->getObject() : $this->getUser()->getMember();
-    if ($this->member->id !== $this->getUser()->getMemberId())
+
+    if ($this->isFriendPage)
     {
       opFileManageUtil::setLocalNav('friend', $this->member->id);
     }
+
     $types = array('public');
-    if (opFileManageConfig::isUsePrivate() && $this->member->getId() === $this->getUser()->getMemberId())
+    if (opFileManageConfig::isUsePrivate() && !$this->isFriendPage)
     {
       $types[] = 'private';
     }
