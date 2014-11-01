@@ -74,11 +74,18 @@ class fileActions extends sfActions
     $request->checkCSRFProtection();
 
     $file = $this->getRoute()->getObject();
-    if ($file->isEditable($this->getUser()->getMember())
-      && $request->hasParameter('name')
-      && $name = trim($request->getParameter('name')))
+    if ($file->isEditable($this->getUser()->getMember()))
     {
-      $file->editName($name);
+      if  ($request->hasParameter('name') &&
+        $name = trim($request->getParameter('name')))
+      {
+        $file->setName($name);
+      }
+      if ($request->hasParameter('note'))
+      {
+        $file->setNote($request->getParameter('note'));
+      }
+      $file->save();
     }
 
     $this->redirect($request->getParameter('redirect', '@file_show?id='.$file->getId()));

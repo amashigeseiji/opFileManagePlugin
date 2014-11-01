@@ -23,6 +23,9 @@
     <a href="javascript:void(0)" id="file_edit_name_link_<?php echo $file->getId() ?>" class="btn btn-small">
       <i class="icon-edit"></i>
     </a>
+    <a href="javascript:void(0)" id="file_edit_note_link_<?php echo $file->getId() ?>" class="btn btn-small">
+      <i class="icon-pencil"></i>
+    </a>
   <?php endif; ?>
 
   <?php $movable = $file->isMovable($member) ?>
@@ -36,6 +39,7 @@
 
 <?php if ($file->isEditable($member)): ?>
   <?php include_partial('file/editFileNameBox', array('file' => $file, 'trigger' => '#file_edit_name_link_'.$file->getId())) ?>
+  <?php include_partial('file/editNote', array('file' => $file, 'trigger' => '#file_edit_note_link_'.$file->id)) ?>
 <?php endif; ?>
 <?php if ($movable): ?>
   <?php include_partial('file/moveDirectory', array('file' => $file, 'trigger' => '#file_move_directory_link_'.$file->id)) ?>

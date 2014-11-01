@@ -170,6 +170,10 @@
         <source>Detail</source>
         <target>詳細</target>
       </trans-unit>
+      <trans-unit id="">
+        <source>Update note</source>
+        <target>説明を更新する</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
