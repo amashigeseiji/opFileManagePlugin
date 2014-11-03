@@ -174,6 +174,26 @@
         <source>Update note</source>
         <target>説明を更新する</target>
       </trans-unit>
+      <trans-unit id="">
+        <source>Download</source>
+        <target>ダウンロード</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Edit name</source>
+        <target>ファイル名を更新する</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Edit note</source>
+        <target>説明を更新する</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Move Folder</source>
+        <target>フォルダを変更する</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Detail of %1%</source>
+        <target>%1% の詳細情報</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

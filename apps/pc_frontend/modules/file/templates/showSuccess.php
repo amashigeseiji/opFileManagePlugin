@@ -1,8 +1,6 @@
 <div class="pageHeadng">
-  <?php echo $file->name ?> の詳細情報
-  <span class="pull-right">
+  <?php echo __('Detail of %1%', array('%1%' => $file->name)) ?>
   <?php include_partial('file/operationButton', array('file' => $file)) ?>
-  </span>
 </div>
 
 
