@@ -16,11 +16,11 @@
   <email />
   <active>yes</active>
  </lead>
- <date>2014-11-01</date>
- <time>19:29:35</time>
+ <date>2014-11-04</date>
+ <time>00:40:29</time>
  <version>
-  <release>0.9.4</release>
-  <api>0.9.4</api>
+  <release>0.9.4.1</release>
+  <api>0.9.4.1</api>
  </version>
  <stability>
   <release>alpha</release>
@@ -28,7 +28,7 @@
  </stability>
  <license>Apache</license>
  <notes>
-Enable to note to file.\nEnable to change folder of uploaded file.
+Enable to add note
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -40,7 +40,7 @@ Enable to note to file.\nEnable to change folder of uploaded file.
    <file baseinstalldir="/" md5sum="9cfd05991b4479b0983118b100829d0c" name="apps/pc_frontend/config/routing.yml" role="data" />
    <file baseinstalldir="/" md5sum="d41d8cd98f00b204e9800998ecf8427e" name="apps/pc_frontend/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="6bba903acaeae4da0aa70f90313793e5" name="apps/pc_frontend/i18n/form_community.ja.xml" role="data" />
-   <file baseinstalldir="/" md5sum="91e3c684260ebfddabbbf508d8d44c16" name="apps/pc_frontend/i18n/messages.ja.xml" role="data" />
+   <file baseinstalldir="/" md5sum="ba282838be50dbc662c76791c36d56a5" name="apps/pc_frontend/i18n/messages.ja.xml" role="data" />
    <file baseinstalldir="/" md5sum="e362dc9c9954a6f92d59445d9f9e3204" name="apps/pc_frontend/modules/community/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="4e53c150e0546addee124e7fc12e7ed2" name="apps/pc_frontend/modules/directory/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="5ad6627294bff4555830dfd69c4ec1bb" name="apps/pc_frontend/modules/directory/actions/components.class.php" role="data" />
@@ -62,7 +62,7 @@ Enable to note to file.\nEnable to change folder of uploaded file.
    <file baseinstalldir="/" md5sum="1e335707b90379f0256e54f022626f70" name="apps/pc_frontend/modules/file/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="8de2d74ff38b400fa3e6db9d332f03ed" name="apps/pc_frontend/modules/file/templates/listCommunitySuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="2c7291b662bb52f195f15534e6f30a4c" name="apps/pc_frontend/modules/file/templates/listMemberSuccess.php" role="data" />
-   <file baseinstalldir="/" md5sum="8da155da6fa5fbfd9a585760847618d3" name="apps/pc_frontend/modules/file/templates/showSuccess.php" role="data" />
+   <file baseinstalldir="/" md5sum="3fcbe5f3dd024605fbd351a4f20ce487" name="apps/pc_frontend/modules/file/templates/showSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="3a418fd85987f5b9a94055fa398f9272" name="apps/pc_frontend/modules/file/templates/_communityFileUploadModal.php" role="data" />
    <file baseinstalldir="/" md5sum="5b32ea396a0ccdfc4dc168393cf15f25" name="apps/pc_frontend/modules/file/templates/_directoryFileUploadModal.php" role="data" />
    <file baseinstalldir="/" md5sum="cf64835f2c9fc1fb1ccdc76c922a63d3" name="apps/pc_frontend/modules/file/templates/_editFileNameBox.php" role="data" />
@@ -71,7 +71,7 @@ Enable to note to file.\nEnable to change folder of uploaded file.
    <file baseinstalldir="/" md5sum="35d92ee101747768ea925f71368e9ee8" name="apps/pc_frontend/modules/file/templates/_formModal.php" role="data" />
    <file baseinstalldir="/" md5sum="3a418fd85987f5b9a94055fa398f9272" name="apps/pc_frontend/modules/file/templates/_memberFileUploadModal.php" role="data" />
    <file baseinstalldir="/" md5sum="d5baeb309d31c5fb24024232200ab231" name="apps/pc_frontend/modules/file/templates/_moveDirectory.php" role="data" />
-   <file baseinstalldir="/" md5sum="68db31bb2c0246d4fd7b17d067fcc541" name="apps/pc_frontend/modules/file/templates/_operationButton.php" role="data" />
+   <file baseinstalldir="/" md5sum="92a25e50071b4425b7e4e3f3bc3334da" name="apps/pc_frontend/modules/file/templates/_operationButton.php" role="data" />
    <file baseinstalldir="/" md5sum="b05b5e585f31df9832ee90fbfd41fe53" name="apps/pc_frontend/modules/file/templates/_thumbnail.php" role="data" />
    <file baseinstalldir="/" md5sum="67f8922f429ef35a8c01976dd9d655bd" name="config/app.yml" role="data" />
    <file baseinstalldir="/" md5sum="d06139bb69b620116b19a0b3344c4456" name="config/community_config.yml" role="data" />
@@ -116,11 +116,12 @@ Enable to note to file.\nEnable to change folder of uploaded file.
    <file baseinstalldir="/" md5sum="52440ab0abcc01c98551283f1e9942e1" name="test/unit/model/SkeletonTest.php" role="data" />
    <file baseinstalldir="/" md5sum="08f2256002f66a415dbc2e8afb722d70" name="web/css/bootstrap.css" role="data" />
    <file baseinstalldir="/" md5sum="557b85d1a929a59cbde86c5984bf39be" name="web/css/communityModal.css" role="data" />
-   <file baseinstalldir="/" md5sum="67b50fcb57f072f041c25a41b2b2b56d" name="web/css/fileManage.css" role="data" />
+   <file baseinstalldir="/" md5sum="541f69e0ca3ee9442850c9c59b18c7dc" name="web/css/fileManage.css" role="data" />
    <file baseinstalldir="/" md5sum="2e9890e621aecf71632a6e3b01e80e25" name="web/css/smt.css" role="data" />
    <file baseinstalldir="/" md5sum="9bbc6e9602998a385c2ea13df56470fd" name="web/img/glyphicons-halflings-white.png" role="data" />
    <file baseinstalldir="/" md5sum="2516339970d710819585f90773aebe0a" name="web/img/glyphicons-halflings.png" role="data" />
    <file baseinstalldir="/" md5sum="8c7f89926c6172a2aa7d63e6781bcd9c" name="web/js/app.js" role="data" />
+   <file baseinstalldir="/" md5sum="164a8a9e933e1b24958dca5a65333407" name="web/js/bootstrap-dropdown.js" role="data" />
    <file baseinstalldir="/" md5sum="0dc8ce412f96f22e2fa3c18ea243f135" name="web/js/lib/util.js" role="data" />
    <file baseinstalldir="/" md5sum="b9a632551266c6efda6d5eaf6eb0709c" name="web/js/lib/vendor/bootstrap-modal.js" role="data" />
    <file baseinstalldir="/" md5sum="a0fb07562ceae36e8342f297e427f28e" name="web/js/lib/vendor/require.js" role="data" />
@@ -453,6 +454,21 @@ fixed issue#15
    <license>Apache</license>
    <notes>
 Enable to note to file.\nEnable to change folder of uploaded file.
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.4.1</release>
+    <api>0.9.4.1</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2014-11-04</date>
+   <license>Apache</license>
+   <notes>
+Enable to add note
    </notes>
   </release>
  </changelog>
