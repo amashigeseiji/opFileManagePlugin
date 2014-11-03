@@ -1,5 +1,5 @@
 td.operation {
-  width: 10%;
+  width: 15%;
   padding: auto 5px;
 }
 .normal {
@@ -9,4 +9,12 @@ td.operation {
 .normal-darker {
   font-weight: normal;
   color: #333333;
+}
+.operation {
+  overflow: visible;
+}
+.caret {
+  border-top:   solid 4px #000;
+  border-left:  solid 4px transparent;
+  border-right: solid 4px transparent;
 }
