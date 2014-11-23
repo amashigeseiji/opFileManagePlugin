@@ -27,3 +27,8 @@ td.operation {
   width: 100px;
   font-size: small;
 }
+.search-box select {
+  width: 130px;
+  height: 27px;
+  font-size: 13px;
+}

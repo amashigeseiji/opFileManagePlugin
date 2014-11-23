@@ -85,6 +85,10 @@ class ManagedFileQuery extends Doctrine_Query
           {
             $q = $q->andWhere("f.$key LIKE ?", "%$val%");
           }
+          elseif ($key === 'member_id')
+          {
+            $q = $q->andWhere("f.member_id = ?", $val);
+          }
         }
       }
     }

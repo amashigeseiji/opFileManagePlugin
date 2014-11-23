@@ -202,6 +202,10 @@
         <source>Search result</source>
         <target>検索結果</target>
       </trans-unit>
+      <trans-unit id="">
+        <source>Select member</source>
+        <target>メンバーを選択してください</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
