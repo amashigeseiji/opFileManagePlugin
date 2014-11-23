@@ -139,7 +139,7 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
   {
     $directoryRoleId = $this->FileDirectory->generateRoleId($member);
 
-    if ('reject' === $directoryRoleId || 'author' === $directoryRoleId || 'admin' === $directoryRoleId)
+    if ('everyone' !== $directoryRoleId)
     {
       return $directoryRoleId;
     }
