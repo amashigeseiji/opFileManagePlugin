@@ -18,6 +18,17 @@ class fileActions extends sfActions
   }
 
  /**
+  * Executes index action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeIndex(sfWebRequest $request)
+  {
+    $this->pager = Doctrine::getTable('ManagedFile')->getPublicFileListPager($request->getParameter('page'), $request->getParameter('file'));
+    $this->pager->init();
+  }
+
+ /**
   * Executes create action
   *
   * @param sfWebRequest $request A request object
