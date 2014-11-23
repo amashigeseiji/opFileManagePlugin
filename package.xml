@@ -16,11 +16,11 @@
   <email />
   <active>yes</active>
  </lead>
- <date>2014-11-04</date>
- <time>00:40:29</time>
+ <date>2014-11-23</date>
+ <time>23:18:20</time>
  <version>
-  <release>0.9.4.1</release>
-  <api>0.9.4.1</api>
+  <release>0.9.4.2</release>
+  <api>0.9.4.2</api>
  </version>
  <stability>
   <release>alpha</release>
@@ -28,7 +28,7 @@
  </stability>
  <license>Apache</license>
  <notes>
-Enable to add note
+Fix to show community file
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -98,7 +98,7 @@ Enable to add note
    <file baseinstalldir="/" md5sum="32952099925bab18194a8931fefb1d2e" name="lib/model/doctrine/PluginDirectoryConfigTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="79560cf33d52fb2d8a832f9fb038b3bc" name="lib/model/doctrine/PluginFileDirectory.class.php" role="data" />
    <file baseinstalldir="/" md5sum="227d272854badc7e6e86e1f5142438e6" name="lib/model/doctrine/PluginFileDirectoryTable.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="f96b1dcf137ce954e124f4828e43e578" name="lib/model/doctrine/PluginManagedFile.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="a2c0e7873cc502454ec4e1825551f270" name="lib/model/doctrine/PluginManagedFile.class.php" role="data" />
    <file baseinstalldir="/" md5sum="c5af85303ca44f885f0d1fd7c4508096" name="lib/model/doctrine/PluginManagedFileTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="b1df503ae6623fdf8b99120d362a011b" name="lib/util/opFileManageUtil.class.php" role="data" />
    <file baseinstalldir="/" md5sum="9599fe6244f393c74744ee14efdecb2e" name="lib/validator/opFileDirectoryValidatorSchema.class.php" role="data" />
@@ -469,6 +469,21 @@ Enable to note to file.\nEnable to change folder of uploaded file.
    <license>Apache</license>
    <notes>
 Enable to add note
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.4.2</release>
+    <api>0.9.4.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2014-11-23</date>
+   <license>Apache</license>
+   <notes>
+Fix to show community file
    </notes>
   </release>
  </changelog>
