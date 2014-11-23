@@ -16,11 +16,11 @@
   <email />
   <active>yes</active>
  </lead>
- <date>2014-11-23</date>
- <time>23:18:20</time>
+ <date>2014-11-24</date>
+ <time>05:45:07</time>
  <version>
-  <release>0.9.4.2</release>
-  <api>0.9.4.2</api>
+  <release>0.9.5</release>
+  <api>0.9.5</api>
  </version>
  <stability>
   <release>alpha</release>
@@ -28,7 +28,7 @@
  </stability>
  <license>Apache</license>
  <notes>
-Fix to show community file
+Add public file search
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -37,10 +37,10 @@ Fix to show community file
    <file baseinstalldir="/" md5sum="9b007313dab58620a1980dfe8c641f68" name="apps/pc_backend/modules/opFileManagePlugin/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="32062572ee9445e4bb5ba7c2de714bb9" name="apps/pc_backend/modules/opFileManagePlugin/templates/indexSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="a2e4734a4e3fdea0ebca55c7b8d0dc22" name="apps/pc_frontend/config/app.yml" role="data" />
-   <file baseinstalldir="/" md5sum="9cfd05991b4479b0983118b100829d0c" name="apps/pc_frontend/config/routing.yml" role="data" />
+   <file baseinstalldir="/" md5sum="c934882982993972018db8bb3306a26e" name="apps/pc_frontend/config/routing.yml" role="data" />
    <file baseinstalldir="/" md5sum="d41d8cd98f00b204e9800998ecf8427e" name="apps/pc_frontend/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="6bba903acaeae4da0aa70f90313793e5" name="apps/pc_frontend/i18n/form_community.ja.xml" role="data" />
-   <file baseinstalldir="/" md5sum="ba282838be50dbc662c76791c36d56a5" name="apps/pc_frontend/i18n/messages.ja.xml" role="data" />
+   <file baseinstalldir="/" md5sum="478a311d84e50b7e23fb0e445ccf524b" name="apps/pc_frontend/i18n/messages.ja.xml" role="data" />
    <file baseinstalldir="/" md5sum="e362dc9c9954a6f92d59445d9f9e3204" name="apps/pc_frontend/modules/community/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="4e53c150e0546addee124e7fc12e7ed2" name="apps/pc_frontend/modules/directory/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="5ad6627294bff4555830dfd69c4ec1bb" name="apps/pc_frontend/modules/directory/actions/components.class.php" role="data" />
@@ -56,18 +56,21 @@ Fix to show community file
    <file baseinstalldir="/" md5sum="a1801764dfc084372aec87f5394aa3b4" name="apps/pc_frontend/modules/directory/templates/_editDirectoryNameBox.php" role="data" />
    <file baseinstalldir="/" md5sum="2e5a2e5cda0687f3e822cfdc5bf0473d" name="apps/pc_frontend/modules/directory/templates/_listRow.php" role="data" />
    <file baseinstalldir="/" md5sum="58092bed078e2f7747d1e57df95f5890" name="apps/pc_frontend/modules/directory/templates/_smtCommunityDirectoryList.php" role="data" />
-   <file baseinstalldir="/" md5sum="e9363fd05a1f64ec13ba7f84f48fedf7" name="apps/pc_frontend/modules/file/actions/actions.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="06bb53ed98e3a4dbf4841fccb8cef811" name="apps/pc_frontend/modules/file/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="adf35db8611e25e282d05e4da4650cd6" name="apps/pc_frontend/modules/file/actions/components.class.php" role="data" />
    <file baseinstalldir="/" md5sum="23a85a877ba78a09b520b19d03c3650c" name="apps/pc_frontend/modules/file/config/security.yml" role="data" />
    <file baseinstalldir="/" md5sum="1e335707b90379f0256e54f022626f70" name="apps/pc_frontend/modules/file/config/view.yml" role="data" />
-   <file baseinstalldir="/" md5sum="8de2d74ff38b400fa3e6db9d332f03ed" name="apps/pc_frontend/modules/file/templates/listCommunitySuccess.php" role="data" />
-   <file baseinstalldir="/" md5sum="2c7291b662bb52f195f15534e6f30a4c" name="apps/pc_frontend/modules/file/templates/listMemberSuccess.php" role="data" />
+   <file baseinstalldir="/" md5sum="f77399afdf2fa862d04fb0f49b1c5c61" name="apps/pc_frontend/modules/file/templates/indexSuccess.php" role="data" />
+   <file baseinstalldir="/" md5sum="b797424e1c9f83c581a311f509e4ca99" name="apps/pc_frontend/modules/file/templates/listCommunitySuccess.php" role="data" />
+   <file baseinstalldir="/" md5sum="548ae3258d789de9ee93f5d5f9d7261c" name="apps/pc_frontend/modules/file/templates/listMemberSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="3fcbe5f3dd024605fbd351a4f20ce487" name="apps/pc_frontend/modules/file/templates/showSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="3a418fd85987f5b9a94055fa398f9272" name="apps/pc_frontend/modules/file/templates/_communityFileUploadModal.php" role="data" />
    <file baseinstalldir="/" md5sum="5b32ea396a0ccdfc4dc168393cf15f25" name="apps/pc_frontend/modules/file/templates/_directoryFileUploadModal.php" role="data" />
    <file baseinstalldir="/" md5sum="cf64835f2c9fc1fb1ccdc76c922a63d3" name="apps/pc_frontend/modules/file/templates/_editFileNameBox.php" role="data" />
    <file baseinstalldir="/" md5sum="228df0ad151430a06f4d5be2aa735446" name="apps/pc_frontend/modules/file/templates/_editNote.php" role="data" />
-   <file baseinstalldir="/" md5sum="bbc5454947c666ac2ceb1cd10243600e" name="apps/pc_frontend/modules/file/templates/_fileListRow.php" role="data" />
+   <file baseinstalldir="/" md5sum="a892f83e15c62681ded788ea316c9291" name="apps/pc_frontend/modules/file/templates/_fileListRow.php" role="data" />
+   <file baseinstalldir="/" md5sum="7142869c99f7d8747d3cd6fababb898b" name="apps/pc_frontend/modules/file/templates/_fileListTable.php" role="data" />
+   <file baseinstalldir="/" md5sum="9260c7b8c68102f55c263dcd96c9285e" name="apps/pc_frontend/modules/file/templates/_fileSearchBox.php" role="data" />
    <file baseinstalldir="/" md5sum="35d92ee101747768ea925f71368e9ee8" name="apps/pc_frontend/modules/file/templates/_formModal.php" role="data" />
    <file baseinstalldir="/" md5sum="3a418fd85987f5b9a94055fa398f9272" name="apps/pc_frontend/modules/file/templates/_memberFileUploadModal.php" role="data" />
    <file baseinstalldir="/" md5sum="d5baeb309d31c5fb24024232200ab231" name="apps/pc_frontend/modules/file/templates/_moveDirectory.php" role="data" />
@@ -80,9 +83,11 @@ Fix to show community file
    <file baseinstalldir="/" md5sum="720512c02d11ff45b293bdfce0c9980b" name="config/doctrine/schema.yml" role="data" />
    <file baseinstalldir="/" md5sum="d5c99f928c70f539fcee93b75228d3a7" name="data/fixtures/000_revision.yml" role="data" />
    <file baseinstalldir="/" md5sum="aba43356bc7197be7375cc52b2744c26" name="data/fixtures/010_gadget.yml" role="data" />
-   <file baseinstalldir="/" md5sum="675a06305706f69e6a4dde6e081939f9" name="data/fixtures/020_navigation.yml" role="data" />
+   <file baseinstalldir="/" md5sum="26a7964f6e0afc8d7717e41948822147" name="data/fixtures/020_navigation.yml" role="data" />
    <file baseinstalldir="/" md5sum="fb609c3b1b03f6fc5780ba81f7698628" name="data/migrations/0.9.0/001_doctrine.php" role="data" />
    <file baseinstalldir="/" md5sum="a71a9453c49e4d8b1b6f13fb0915b2f4" name="data/migrations/0.9.4/002_AddNoteToManagedFileAndFileDirectory.php" role="data" />
+   <file baseinstalldir="/" md5sum="5a4e10b4772a24d4680701466b8c2c2d" name="data/migrations/0.9.5/003_LoadNavigationFixtures.php" role="data" />
+   <file baseinstalldir="/" md5sum="26a7964f6e0afc8d7717e41948822147" name="data/migrations/0.9.5/fixtures/003_navigation.yml" role="data" />
    <file baseinstalldir="/" md5sum="d101fc1823251589d0944ceb59e65f4b" name="lib/config/opDirectoryConfig.class.php" role="data" />
    <file baseinstalldir="/" md5sum="9e2b6c49d05f88d536ca239c7a529660" name="lib/config/opFileManageConfig.class.php" role="data" />
    <file baseinstalldir="/" md5sum="47700076d328e1a45a4fee688b61c619" name="lib/filter/doctrine/PluginDirectoryConfigFormFilter.class.php" role="data" />
@@ -93,13 +98,13 @@ Fix to show community file
    <file baseinstalldir="/" md5sum="46f1dfb836510ef9cfd9d3f4335f78b1" name="lib/form/doctrine/PluginFileDirectoryForm.class.php" role="data" />
    <file baseinstalldir="/" md5sum="5d52038e2769519e87088fc4f2f9a230" name="lib/form/doctrine/PluginManagedFileForm.class.php" role="data" />
    <file baseinstalldir="/" md5sum="6ce4f853f0bf6e4aea398069f7670c31" name="lib/model/FileDirectoryQuery.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="c43d2a4aae3611609190fef7f7cfac5c" name="lib/model/ManagedFileQuery.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="72079d3d4e117b2d0325de2a5a3e91f2" name="lib/model/ManagedFileQuery.class.php" role="data" />
    <file baseinstalldir="/" md5sum="8751d0f03f0037df968148071cd2fc1e" name="lib/model/doctrine/PluginDirectoryConfig.class.php" role="data" />
    <file baseinstalldir="/" md5sum="32952099925bab18194a8931fefb1d2e" name="lib/model/doctrine/PluginDirectoryConfigTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="79560cf33d52fb2d8a832f9fb038b3bc" name="lib/model/doctrine/PluginFileDirectory.class.php" role="data" />
    <file baseinstalldir="/" md5sum="227d272854badc7e6e86e1f5142438e6" name="lib/model/doctrine/PluginFileDirectoryTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="a2c0e7873cc502454ec4e1825551f270" name="lib/model/doctrine/PluginManagedFile.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="c5af85303ca44f885f0d1fd7c4508096" name="lib/model/doctrine/PluginManagedFileTable.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="2d23480727d4d8777efbeaf84352c359" name="lib/model/doctrine/PluginManagedFileTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="b1df503ae6623fdf8b99120d362a011b" name="lib/util/opFileManageUtil.class.php" role="data" />
    <file baseinstalldir="/" md5sum="9599fe6244f393c74744ee14efdecb2e" name="lib/validator/opFileDirectoryValidatorSchema.class.php" role="data" />
    <file baseinstalldir="/" md5sum="8c5171799c0a9d9c1f155785becf4a63" name="lib/validator/opValidatorCommunitySelect.class.php" role="data" />
@@ -116,7 +121,7 @@ Fix to show community file
    <file baseinstalldir="/" md5sum="52440ab0abcc01c98551283f1e9942e1" name="test/unit/model/SkeletonTest.php" role="data" />
    <file baseinstalldir="/" md5sum="08f2256002f66a415dbc2e8afb722d70" name="web/css/bootstrap.css" role="data" />
    <file baseinstalldir="/" md5sum="557b85d1a929a59cbde86c5984bf39be" name="web/css/communityModal.css" role="data" />
-   <file baseinstalldir="/" md5sum="541f69e0ca3ee9442850c9c59b18c7dc" name="web/css/fileManage.css" role="data" />
+   <file baseinstalldir="/" md5sum="69f4d62f21c2270e246acc551e53d555" name="web/css/fileManage.css" role="data" />
    <file baseinstalldir="/" md5sum="2e9890e621aecf71632a6e3b01e80e25" name="web/css/smt.css" role="data" />
    <file baseinstalldir="/" md5sum="9bbc6e9602998a385c2ea13df56470fd" name="web/img/glyphicons-halflings-white.png" role="data" />
    <file baseinstalldir="/" md5sum="2516339970d710819585f90773aebe0a" name="web/img/glyphicons-halflings.png" role="data" />
@@ -126,7 +131,7 @@ Fix to show community file
    <file baseinstalldir="/" md5sum="b9a632551266c6efda6d5eaf6eb0709c" name="web/js/lib/vendor/bootstrap-modal.js" role="data" />
    <file baseinstalldir="/" md5sum="a0fb07562ceae36e8342f297e427f28e" name="web/js/lib/vendor/require.js" role="data" />
    <file baseinstalldir="/" md5sum="4d5f7ec184b06e758bc749b29a5fd59d" name="web/js/view/fileNameEditor.js" role="data" />
-   <file baseinstalldir="/" md5sum="884bc294bfa4fcc049802dc4d283d8da" name="README.md" role="data" />
+   <file baseinstalldir="/" md5sum="f1f4a797622929d3cc8c4bafcbf81ff5" name="README.md" role="data" />
   </dir>
  </contents>
  <dependencies>
@@ -484,6 +489,21 @@ Enable to add note
    <license>Apache</license>
    <notes>
 Fix to show community file
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.5</release>
+    <api>0.9.5</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2014-11-24</date>
+   <license>Apache</license>
+   <notes>
+Add public file search
    </notes>
   </release>
  </changelog>
