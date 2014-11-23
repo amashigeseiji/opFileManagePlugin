@@ -66,4 +66,33 @@ class ManagedFileQuery extends Doctrine_Query
 
     return $q;
   }
+
+  public static function getPublicFileListQuery($searchParameter = null)
+  {
+    $q = Doctrine_Query::create()
+      ->from('ManagedFile f')
+      ->leftJoin('f.FileDirectory d')
+      ->where('d.type = ?', 'public')
+      ->orderBy('created_at DESC');
+
+    if ($searchParameter)
+    {
+      foreach ($searchParameter as $key => $val)
+      {
+        if ($val)
+        {
+          if ($key === 'name' || $key === 'note')
+          {
+            $q = $q->andWhere("f.$key LIKE ?", "%$val%");
+          }
+          elseif ($key === 'member_id')
+          {
+            $q = $q->andWhere("f.member_id = ?", $val);
+          }
+        }
+      }
+    }
+
+    return $q;
+  }
 }

@@ -1,4 +1,8 @@
 #file actions
+file_index:
+  url: /file
+  param: { module: file, action: index }
+
 file_show:
   url: /file/:id
   class: opDynamicAclRoute

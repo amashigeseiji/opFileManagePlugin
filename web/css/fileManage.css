@@ -18,3 +18,17 @@ td.operation {
   border-left:  solid 4px transparent;
   border-right: solid 4px transparent;
 }
+.search-box {
+  float: right;
+  vertical-align: middle;
+}
+.search-box input {
+  height: 15px;
+  width: 100px;
+  font-size: small;
+}
+.search-box select {
+  width: 130px;
+  height: 27px;
+  font-size: 13px;
+}

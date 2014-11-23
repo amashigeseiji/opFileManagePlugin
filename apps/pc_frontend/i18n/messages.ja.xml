@@ -194,6 +194,18 @@
         <source>Detail of %1%</source>
         <target>%1% の詳細情報</target>
       </trans-unit>
+      <trans-unit id="">
+        <source>Public file list</source>
+        <target>公開ファイル一覧</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Search result</source>
+        <target>検索結果</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Select member</source>
+        <target>メンバーを選択してください</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -4,10 +4,17 @@
   </td>
   <td class="filename_<?php echo $file->getId() ?>">
     <?php echo link_to($file->getName(), 'file_show', $file) ?>
-    <?php if (isset($dirname) && $dirname): ?>
-    &nbsp;(<?php echo link_to($file->FileDirectory->name, '@directory_show?id='.$file->FileDirectory->id) ?>)
-    <?php endif; ?>
   </td>
+  <?php if (isset($dirname) && $dirname): ?>
+  <td>
+    <?php echo link_to($file->FileDirectory->name, '@directory_show?id='.$file->FileDirectory->id) ?>
+  </td>
+  <?php endif; ?>
+  <?php if (isset($member) && $member): ?>
+  <td>
+    <?php echo link_to($file->Member, '@member_profile?id='.$file->Member->id) ?>
+  </td>
+  <?php endif; ?>
   <td>
     <?php echo $file->note ?>
   </td>

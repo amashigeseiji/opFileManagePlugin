@@ -21,3 +21,6 @@ SNS内でファイルを共有します。
 * opUploadFilePlugin と同時に利用することはできません。  
 opUploadFilePlugin がすでにインストールされている環境でこのプラグインを利用するときは、管理画面から opUploadFilePlugin を無効化するかアンインストールしてください。  
 また、opUploadFilePlugin とは互換性がありませんので、opUploadFilePlugin でアップロードしたファイルは opFileManagePlugin から参照できず、逆に opFileManagePlugin からアップロードしたファイルを opUploadFilePlugin から参照することはできません。  
+
+##質問・要望
+[こちら](https://github.com/amashigeseiji/opFileManagePlugin/issues/new 'new issues') からお願い致します。
