@@ -23,4 +23,4 @@ opUploadFilePlugin がすでにインストールされている環境でこの�
 また、opUploadFilePlugin とは互換性がありませんので、opUploadFilePlugin でアップロードしたファイルは opFileManagePlugin から参照できず、逆に opFileManagePlugin からアップロードしたファイルを opUploadFilePlugin から参照することはできません。  
 
 ##質問・要望
-[こちら](https://github.com/amashigeseiji/opFileManagePlugin/issues 'issues') からお願い致します。
+[こちら](https://github.com/amashigeseiji/opFileManagePlugin/issues/new 'new issues') からお願い致します。
