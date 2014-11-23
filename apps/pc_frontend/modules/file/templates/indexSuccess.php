@@ -6,6 +6,8 @@
   <?php endif; ?>
 </div>
 
+<?php include_partial('file/fileSearchBox') ?>
+
 <?php include_partial('file/fileListTable', array('pager' => $pager, 'member' => true, 'dirname' => true)) ?>
 
 <?php if ($pager->getNbResults()): ?>
