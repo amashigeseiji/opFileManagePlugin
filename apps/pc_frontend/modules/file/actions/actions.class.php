@@ -24,6 +24,7 @@ class fileActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+    $this->forward404Unless(opFileManageConfig::isUsePublic());
     $this->pager = Doctrine::getTable('ManagedFile')->getPublicFileListPager($request->getParameter('page'), $request->getParameter('file'));
     $this->pager->init();
   }
@@ -156,6 +157,7 @@ class fileActions extends sfActions
   */
   public function executeListMember(sfWebRequest $request)
   {
+    $this->forward404Unless(opFileManageConfig::isUsePublic());
     $this->member = $this->getRoute()->getObject();
     if ($this->member->id !== $this->getUser()->getMemberId())
     {
