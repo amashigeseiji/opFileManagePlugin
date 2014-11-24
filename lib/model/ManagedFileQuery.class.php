@@ -14,12 +14,12 @@ class ManagedFileQuery extends Doctrine_Query
 
   public function addDirectoryId($directoryId)
   {
-    return $this->andWhere('f.directory_id = ?', $directoryId);
-  }
+    if (is_array($directoryId))
+    {
+      return $this->andWhereIn('f.directory_id', $directoryId);
+    }
 
-  public function whereInDirectoryIds($directoryIds)
-  {
-    return $this->andWhereIn('f.directory_id', $directoryIds);
+    return $this->andWhere('f.directory_id = ?', $directoryId);
   }
 
   public function addMemberId($memberId)
@@ -32,7 +32,7 @@ class ManagedFileQuery extends Doctrine_Query
     return $this->orderBy($orderBy ? $orderBy : 'f.created_at DESC');
   }
 
-  public function addDirectoryType($types)
+  public function addDirectoryType(array $types)
   {
     if ($types)
     {
@@ -46,8 +46,12 @@ class ManagedFileQuery extends Doctrine_Query
 
   public function addLeftJoinDirectory($alias = 'd')
   {
-    return $this->leftJoin("f.FileDirectory $alias");
+    return $this->leftJoin("f.FileDirectory AS $alias");
   }
+
+  /*
+   * private function
+   */
 
   private function addSearchQuery($searchParameter)
   {
@@ -69,16 +73,18 @@ class ManagedFileQuery extends Doctrine_Query
     return $this;
   }
 
-  public static function getJoinedDirectoryQuery($alias = 'd')
+  /*
+   * static functions
+   */
+
+  public static function getOrderedQuery()
   {
-    return self::create()->addLeftJoinDirectory($alias);
+    return self::create()->addOrderBy();
   }
 
   public static function getFileListQueryByDirectoryId($directoryId)
   {
-    return self::create()
-      ->addOrderBy()
-      ->addDirectoryId($directoryId);
+    return self::getOrderedQuery()->addDirectoryId($directoryId);
   }
 
   /**
@@ -89,30 +95,24 @@ class ManagedFileQuery extends Doctrine_Query
   {
     $directoryIds = Doctrine::getTable('DirectoryConfig')->getDirectoryIdsByCommunityId($communityId);
 
-    return self::create()->whereInDirectoryIds($directoryIds);
+    return self::getOrderedQuery()->addDirectoryId($directoryIds);
   }
 
   public static function getMemberFileListQuery($memberId)
   {
-    $q = self::getJoinedDirectoryQuery()
-      ->addOrderBy()
-      ->where('d.member_id = ?', $memberId);
-
     $allowedTypes = array('public');
     if ($memberId === sfContext::getInstance()->getUser()->getMemberId())
     {
       $allowedTypes[] = 'private';
     }
 
-    return $q->addDirectoryType(Doctrine::getTable('FileDirectory')->getTypes($allowedTypes));
+    return self::getFileListQuery($allowedTypes)
+      ->where('d.member_id = ?', $memberId);
   }
 
   public static function getPublicFileListQuery($searchParameter = null)
   {
-    $q = self::getJoinedDirectoryQuery()
-      ->addOrderBy();
-
-    $q->addDirectoryType(Doctrine::getTable('FileDirectory')->getTypes(array('public')));
+    $q = self::getFileListQuery(array('public'));
 
     if ($searchParameter)
     {
@@ -120,5 +120,12 @@ class ManagedFileQuery extends Doctrine_Query
     }
 
     return $q;
+  }
+
+  public static function getFileListQuery(array $allowedTypes)
+  {
+    return self::getOrderedQuery()
+      ->addLeftJoinDirectory()
+      ->addDirectoryType(Doctrine::getTable('FileDirectory')->getTypes($allowedTypes));
   }
 }
