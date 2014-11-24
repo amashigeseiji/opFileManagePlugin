@@ -76,7 +76,7 @@ class opWidgetFormSelectDirectory extends sfWidgetForm
   {
     if ('member_directory' === $this->getOption('type'))
     {
-      $q = FileDirectoryQuery::getListQueryByMemberId($this->getOption('member_id'), Doctrine::getTable('FileDirectory')->getType(array('public', 'private')));
+      $q = FileDirectoryQuery::getListQueryByMemberId($this->getOption('member_id'), Doctrine::getTable('FileDirectory')->getTypes(array('public', 'private')));
     }
     else if ('community_directory' === $this->getOption('type'))
     {
