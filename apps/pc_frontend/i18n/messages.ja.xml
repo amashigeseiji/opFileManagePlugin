@@ -155,7 +155,7 @@
         <target>%community%管理者のみアップロード可能</target>
       </trans-unit>
       <trans-unit id="">
-        <source>note</source>
+        <source>Note</source>
         <target>説明</target>
       </trans-unit>
       <trans-unit id="">

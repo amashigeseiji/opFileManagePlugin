@@ -6,21 +6,8 @@
 </div>
 
 <?php if ($pager->getNbResults()): ?>
-<table class="table table-striped">
-<thead>
-  <th><?php echo __('Operation') ?></th>
-  <th><?php echo __('Directory name') ?></th>
-  <th><?php echo __('note') ?></th>
-</thead>
 
-<tbody>
-<?php if ($pager->getNbResults()): ?>
-<?php foreach ($pager as $directory): ?>
-<?php include_partial('directory/listRow', array('directory' => $directory)) ?>
-<?php endforeach; ?>
-<?php endif; ?>
-</tbody>
-</table>
+<?php include_partial('directory/listTable', array('pager' => $pager)) ?>
 
 <?php $uri = $sf_request->getParameter('id') ?
   '@directory_list_community?id='.$community->getId().'&page=%d' : '@directory_list?page=%d' ?>
