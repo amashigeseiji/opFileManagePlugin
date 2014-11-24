@@ -31,11 +31,19 @@ class FileDirectoryQuery extends Doctrine_Query
     return $this->andWhereIn('type', $types);
   }
 
+  /*
+   * static functions
+   */
+
+  public static function getOrderedQuery()
+  {
+    return self::create()->addOrderBy();
+  }
+
   public static function getListQueryByMemberId($memberId, $types)
   {
-    return self::create()
+    return self::getOrderedQuery()
       ->addMemberId($memberId)
-      ->addOrderBy()
       ->addType($types);
   }
 
@@ -44,8 +52,6 @@ class FileDirectoryQuery extends Doctrine_Query
     $directoryIds = Doctrine::getTable('DirectoryConfig')
       ->getDirectoryIdsByCommunityId($communityId);
 
-    return Doctrine_Query::create()
-      ->from('FileDirectory')
-      ->whereIn('id', $directoryIds);
+    return self::getOrderedQuery()->whereIn('id', $directoryIds);
   }
 }
