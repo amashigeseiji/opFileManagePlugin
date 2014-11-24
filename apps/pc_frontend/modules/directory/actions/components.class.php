@@ -42,13 +42,8 @@ class directoryComponents extends sfComponents
 
   public function executeDirectoryCreateModal()
   {
-    $choices = Doctrine::getTable('FileDirectory')->getTypes();
-    if (isset($choices['community']))
-    {
-      unset($choices['community']);
-    }
+    $this->form = new FileDirectoryForm(array(), array('allowedChoiceType' => array('public', 'private')));
 
-    $this->form = new FileDirectoryForm(array(), array('directoryTypeChoices' => $choices));
     if (opFileManageConfig::isUseCommunity())
     {
       $this->form->getWidget('community_id')->setHidden(true);

@@ -18,12 +18,10 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
 
     $this->widgetSchema['name']->setLabel('Directory name');
 
-    $choices = $this->getOption('directoryTypeChoices') ?
-      $this->getOption('directoryTypeChoices') :
-      Doctrine::getTable('FileDirectory')->getTypes();
+    $this->widgetSchema['type'] = new opWidgetFormSelectDirectoryType(array('choices' => $this->getChoices()));
+    $validChoices = Doctrine::getTable('FileDirectory')->getTypes($this->getOption('allowedChoiceType'));
+    $this->validatorSchema['type'] = new sfValidatorChoice(array('choices' => $validChoices));
 
-    $this->widgetSchema['type'] = new opWidgetFormSelectDirectoryType(array('choices' => $choices));
-    $this->validatorSchema['type'] = new sfValidatorChoice(array('choices' => $this->getWidget('type')->getChoices()));
     $this->widgetSchema['type']->setLabel('Public');
 
     $this->validatorSchema['note'] = new sfValidatorString(array('required' => false));
@@ -76,5 +74,17 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
     }
 
     return $widgets;
+  }
+
+  private function getChoices()
+  {
+    $types = Doctrine::getTable('FileDirectory')->getTypes($this->getOption('allowedChoiceType'));
+    $choices = array();
+    foreach ($types as $type)
+    {
+      $choices[$type] = $type;
+    }
+
+    return $choices;
   }
 }

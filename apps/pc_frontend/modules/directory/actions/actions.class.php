@@ -76,11 +76,13 @@ class directoryActions extends sfActions
       opFileManageUtil::setLocalNav('friend', $this->member->id);
     }
 
-    $types = array('public');
-    if (opFileManageConfig::isUsePrivate() && !$this->isFriendPage)
+    $allowedTypes = array('public');
+    if (!$this->isFriendPage)
     {
-      $types[] = 'private';
+      $allowedTypes[] = 'private';
     }
+    $types = Doctrine::getTable('FileDirectory')->getTypes($allowedTypes);
+
     $this->pager = FileDirectoryTable::getInstance()
       ->getMemberDirectoryListPager($this->member->getId(), $types, $request->getParameter('page'));
     $this->pager->init();
