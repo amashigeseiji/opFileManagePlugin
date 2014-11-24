@@ -21,40 +21,33 @@ class PluginManagedFileTable extends opAccessControlDoctrineTable
   {
     $q = ManagedFileQuery::getFileListQueryByDirectoryId($directoryId);
 
-    $size = sfConfig::get('app_file_list_max_size', 10);
-
-    return $this->getPager($q, $size, $page);
+    return $this->getPager($q, $page);
   }
 
   public function getMemberFileListPager($memberId, $page = null)
   {
     $q = ManagedFileQuery::getMemberFileListQuery($memberId);
 
-    $size = sfConfig::get('app_file_list_max_size', 10);
-
-    return $this->getPager($q, $size, $page);
+    return $this->getPager($q, $page);
   }
 
   public function getCommunityFileListPager($communityId, $page = null)
   {
     $q = ManagedFileQuery::getCommunityFileListQuery($communityId);
 
-    $size = sfConfig::get('app_file_list_max_size', 10);
-
-    return $this->getPager($q, $size, $page);
+    return $this->getPager($q, $page);
   }
 
   public function getPublicFileListPager($page = null, $searchParameter = null)
   {
     $q = ManagedFileQuery::getPublicFileListQuery($searchParameter);
-    $size = sfConfig::get('app_file_list_max_size', 10);
 
-    return $this->getPager($q, $size, $page);
+    return $this->getPager($q, $page);
   }
 
-  private function getPager(Doctrine_Query $q, $size, $page = 1)
+  private function getPager(Doctrine_Query $q, $page = 1)
   {
-    $pager = new sfDoctrinePager('ManagedFile', $size);
+    $pager = new sfDoctrinePager('ManagedFile', sfConfig::get('app_file_list_max_size', 10));
     $pager->setQuery($q);
     $pager->setPage($page);
 
