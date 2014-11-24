@@ -65,31 +65,50 @@ class directoryActions extends sfActions
   */
   public function executeList(sfWebRequest $request)
   {
-    $this->isFriendPage =
-       $request->getParameter('id') ? true : false;
+    $this->forwardUnless($request->getParameter('id'), 'directory', 'listMine');
+    $this->forwardIf($request->getParameter('id') === $this->getUser()->getMemberId(), 'directory', 'listMine');
+    $this->forward('directory', 'listMember');
+  }
 
-    $this->member = $this->isFriendPage ?
-      $this->getRoute()->getObject() : $this->getUser()->getMember();
+ /**
+  * Executes listMember action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeListMember(sfWebRequest $request)
+  {
+    $this->forward404If(!opFileManageConfig::isUsePublic());
+    $this->member = $this->getRoute()->getObject();
 
-    if ($this->isFriendPage)
-    {
-      opFileManageUtil::setLocalNav('friend', $this->member->id);
-    }
-
-    $allowedTypes = array('public');
-    if (!$this->isFriendPage)
-    {
-      $allowedTypes[] = 'private';
-    }
-    $types = Doctrine::getTable('FileDirectory')->getTypes($allowedTypes);
+    opFileManageUtil::setLocalNav('friend', $this->member->id);
 
     $this->pager = FileDirectoryTable::getInstance()
-      ->getMemberDirectoryListPager($this->member->getId(), $types, $request->getParameter('page'));
+      ->getMemberDirectoryListPager(
+        $this->member->getId(),
+        Doctrine::getTable('FileDirectory')->getTypes(array('public')),
+        $request->getParameter('page'));
     $this->pager->init();
   }
 
  /**
-  * Executes list action
+  * Executes listMine action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeListMine(sfWebRequest $request)
+  {
+    $this->forward404If(!opFileManageConfig::isUsePublic() && !opFileManageConfig::isUsePrivate());
+    $this->member = $this->getUser()->getMember();
+    $this->pager = FileDirectoryTable::getInstance()
+      ->getMemberDirectoryListPager(
+        $this->member->getId(),
+        Doctrine::getTable('FileDirectory')->getTypes(array('public', 'private')),
+        $request->getParameter('page'));
+    $this->pager->init();
+  }
+
+ /**
+  * Executes listCommunity action
   *
   * @param sfWebRequest $request A request object
   */
