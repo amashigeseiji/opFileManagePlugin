@@ -68,7 +68,7 @@ abstract class PluginFileDirectoryForm extends BaseFileDirectoryForm
     {
       $widgets[] = 'type';
     }
-    if (opFileManageConfig::isUseCommunity() && !$this['community_id']->isHidden())
+    if (opFileManageConfig::isUseCommunity() && isset($this['community_id']) && !$this['community_id']->isHidden())
     {
       $widgets[] = 'community_id';
     }
