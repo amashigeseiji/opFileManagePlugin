@@ -54,7 +54,7 @@
   </td>
 </tr>
 <tr>
-  <th><?php echo __('note') ?></th>
+  <th><?php echo __('Note') ?></th>
   <td>
   <?php echo $file->note ?>
   </td>

@@ -10,7 +10,7 @@
   <?php if (isset($member) && $member): ?>
   <th><?php echo __('Member') ?></th>
   <?php endif; ?>
-  <th><?php echo __('note') ?></th>
+  <th><?php echo __('Note') ?></th>
 </thead>
 
 <tbody>
