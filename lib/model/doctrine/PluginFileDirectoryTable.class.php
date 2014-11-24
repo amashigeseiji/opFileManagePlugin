@@ -23,34 +23,14 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     return Doctrine_Core::getTable('PluginFileDirectory');
   }
 
-  public function getMemberDirectoryListPager($memberId, $type = array(), $page = null)
+  public function getMemberDirectoryList($memberId, $allowedTypes = array())
   {
-    $q = FileDirectoryQuery::getListQueryByMemberId($memberId, $type);
-
-    $size = sfConfig::get('app_directory_list_max_size', 10);
-
-    return $this->getPager($q, $size, $page);
+    return FileDirectoryQuery::getListQueryByMemberId($memberId, Doctrine::getTable('FileDirectory')->getTypes($allowedTtypes));
   }
 
-  public function getCommunityDirectoryListPager($communityId, $size = null, $page = null)
+  public function getCommunityDirectoryList($communityId)
   {
-    $q = FileDirectoryQuery::getListQueryByCommunityId($communityId);
-
-    if (!$size)
-    {
-      $size = sfConfig::get('app_directory_list_max_size', 10);
-    }
-
-    return $this->getPager($q, $size, $page);
-  }
-
-  private function getPager(Doctrine_Query $q, $size, $page = null)
-  {
-    $pager = new sfDoctrinePager('FileDirectory', $size);
-    $pager->setQuery($q);
-    $pager->setPage($page, 1);
-
-    return $pager;
+    return FileDirectoryQuery::getListQueryByCommunityId($communityId);
   }
 
   public function appendRoles(Zend_Acl $acl)
@@ -126,7 +106,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
         unset($array[$key]);
       }
 
-      return $array;
+      return array_merge($array);
     };
 
     if (!opFileManageConfig::isUsePrivate())

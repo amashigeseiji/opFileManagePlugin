@@ -13,8 +13,7 @@ class directoryComponents extends sfComponents
       return sfView::NONE;
     }
 
-    $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryListPager($this->community->id, 4);
-    $this->pager->init();
+    $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryList($this->community->id)->getPager(null, 4);
   }
 
   public function executeSmtCommunityDirectoryList()
@@ -36,8 +35,7 @@ class directoryComponents extends sfComponents
       return sfView::NONE;
     }
 
-    $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryListPager($this->community->id, 4);
-    $this->pager->init();
+    $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryList($this->community->id)->getPager(null, 4);
   }
 
   public function executeDirectoryCreateModal()

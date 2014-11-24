@@ -31,6 +31,19 @@ class FileDirectoryQuery extends Doctrine_Query
     return $this->andWhereIn('type', $types);
   }
 
+  public function getPager($page = 1, $size = null)
+  {
+    if (!$size)
+    {
+      $size = sfConfig::get('app_directory_list_max_size', 10);
+    }
+    $pager = new sfDoctrinePager('FileDirectory', $size);
+    $pager->setQuery($this);
+    $pager->setPage($page);
+    $pager->init();
+
+    return $pager;
+  }
   /*
    * static functions
    */
