@@ -92,4 +92,12 @@ class opFileManageConfig
   {
     return (bool)self::get('use_community_directory');
   }
+
+  /**
+   * @return bool
+   */
+  public static function isUsePublic()
+  {
+    return (bool)self::get('use_public_directory');
+  }
 }

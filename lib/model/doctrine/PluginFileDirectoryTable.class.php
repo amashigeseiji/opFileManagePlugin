@@ -72,38 +72,44 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
 
     if ($resource && 'public' === $resource->getType())
     {
-      $acl->allow('everyone', $resource, 'view');
-      if ('everyone' === opFileManageConfig::get('public_directory_edit_setting'))
+      if (opFileManageConfig::isUsePublic())
       {
-        $acl->allow('everyone', $resource, 'edit');
-      }
-      if ('everyone' === opFileManageConfig::get('public_directory_upload_setting'))
-      {
-        $acl->allow('everyone', $resource, 'upload');
+        $acl->allow('everyone', $resource, 'view');
+        if ('everyone' === opFileManageConfig::get('public_directory_edit_setting'))
+        {
+          $acl->allow('everyone', $resource, 'edit');
+        }
+        if ('everyone' === opFileManageConfig::get('public_directory_upload_setting'))
+        {
+          $acl->allow('everyone', $resource, 'upload');
+        }
       }
     }
 
     if ($resource && 'community' === $resource->getType())
     {
-      # all community member can view file
-      $acl->allow('member', $resource, 'view');
-
-      $community = $resource->getConfig()->getCommunity();
-
-      if ('public' === $community->getConfig('directory_authority'))
+      if (opFileManageConfig::isUseCommunity())
       {
-        $acl->allow('author', $resource, 'edit');
-        $acl->allow('author', $resource, 'delete');
-      }
+        # all community member can view file
+        $acl->allow('member', $resource, 'view');
 
-      if ('public' === $community->getConfig('file_public_flag'))
-      {
-        $acl->allow('everyone', $resource, 'view');
-      }
+        $community = $resource->getConfig()->getCommunity();
 
-      if ('public' === $community->getConfig('file_authority'))
-      {
-        $acl->allow('member', $resource, 'upload');
+        if ('public' === $community->getConfig('directory_authority'))
+        {
+          $acl->allow('author', $resource, 'edit');
+          $acl->allow('author', $resource, 'delete');
+        }
+
+        if ('public' === $community->getConfig('file_public_flag'))
+        {
+          $acl->allow('everyone', $resource, 'view');
+        }
+
+        if ('public' === $community->getConfig('file_authority'))
+        {
+          $acl->allow('member', $resource, 'upload');
+        }
       }
     }
 

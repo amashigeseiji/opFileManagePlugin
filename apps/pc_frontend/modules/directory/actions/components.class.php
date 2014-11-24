@@ -46,8 +46,7 @@ class directoryComponents extends sfComponents
 
     if (opFileManageConfig::isUseCommunity())
     {
-      $this->form->getWidget('community_id')->setHidden(true);
-      $this->form->getWidget('community_id')->setDefault(null);
+      unset($this->form['community_id']);
     }
   }
 
