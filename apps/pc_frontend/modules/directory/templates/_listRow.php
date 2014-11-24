@@ -10,10 +10,10 @@
 <td>
 <?php echo $directory->note ?>
 </td>
-<?php if (opFileManageConfig::isUsePrivate() && 'community' !== $directory->type && $directory->isAuthor()): ?>
+<?php if (opFileManageConfig::isUsePrivate() && opFileManageConfig::isUsePublic() && 'community' !== $directory->type && $directory->isAuthor()): ?>
 <td style="width: 30%">
 <?php echo __($directory->getPublicLabel()) ?>
-<?php if (opFileManageConfig::isUsePrivate()): ?>
+<?php if (opFileManageConfig::isUsePrivate() && opFileManageConfig::isUsePublic()): ?>
 <?php $word = ($directory->isPrivate()) ? __('Publish') : __('Take private') ?>
 <?php $url  = '@directory_publish?id='.$directory->getId().'&redirect='.urlencode($sf_request->getUri()) ?>
 <?php $url .= ($directory->isPrivate()) ? '&publish=public' : '&publish=private'?>
