@@ -42,6 +42,11 @@ class directoryComponents extends sfComponents
 
   public function executeDirectoryCreateModal()
   {
+    if (!opFileManageConfig::isUsePrivate() && !opFileManageConfig::isUsePublic())
+    {
+      return sfView::NONE;
+    }
+
     $this->form = new FileDirectoryForm(array(), array('allowedChoiceType' => array('public', 'private')));
 
     if (opFileManageConfig::isUseCommunity())
