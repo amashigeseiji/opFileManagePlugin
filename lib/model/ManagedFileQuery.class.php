@@ -98,24 +98,21 @@ class ManagedFileQuery extends Doctrine_Query
       ->addOrderBy()
       ->where('d.member_id = ?', $memberId);
 
-    if (opFileManageConfig::isUsePrivate()
-      && $memberId === sfContext::getInstance()->getUser()->getMemberId())
+    $allowedTypes = array('public');
+    if ($memberId === sfContext::getInstance()->getUser()->getMemberId())
     {
-      $q->andWhere('type <> ?', 'community');
-    }
-    else
-    {
-      $q->andWhere('type = ?', 'public');
+      $allowedTypes[] = 'private';
     }
 
-    return $q;
+    return $q->addDirectoryType(Doctrine::getTable('FileDirectory')->getTypes($allowedTypes));
   }
 
   public static function getPublicFileListQuery($searchParameter = null)
   {
     $q = self::getJoinedDirectoryQuery()
-      ->addOrderBy()
-      ->where('d.type = public');
+      ->addOrderBy();
+
+    $q->addDirectoryType(Doctrine::getTable('FileDirectory')->getTypes(array('public')));
 
     if ($searchParameter)
     {
