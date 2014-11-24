@@ -10,6 +10,12 @@
     </span>
   </td>
 
+  <?php if ($member): ?>
+  <td>
+    <?php echo link_to($directory->Member, '@member_profile?id='.$directory->Member->id) ?>
+  </td>
+  <?php endif; ?>
+
   <td>
     <?php echo $directory->note ?>
   </td>

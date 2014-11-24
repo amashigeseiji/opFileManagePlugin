@@ -7,7 +7,7 @@
 
 <?php if ($pager->getNbResults()): ?>
 
-<?php include_partial('directory/listTable', array('pager' => $pager)) ?>
+<?php include_partial('directory/listTable', array('pager' => $pager, 'member' => true)) ?>
 
 <?php $uri = $sf_request->getParameter('id') ?
   '@directory_list_community?id='.$community->getId().'&page=%d' : '@directory_list?page=%d' ?>
