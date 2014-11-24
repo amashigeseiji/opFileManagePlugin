@@ -50,7 +50,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     $acl->allow('admin', $resource, 'edit');
     $acl->allow('admin', $resource, 'delete');
 
-    if ($resource && 'public' === $resource->getType())
+    if ($resource && $resource->isPublic())
     {
       if (opFileManageConfig::isUsePublic())
       {
@@ -66,7 +66,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
       }
     }
 
-    if ($resource && 'community' === $resource->getType())
+    if ($resource && $resource->isCommunity())
     {
       if (opFileManageConfig::isUseCommunity())
       {

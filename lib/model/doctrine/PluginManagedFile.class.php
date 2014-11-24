@@ -82,13 +82,9 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
   public function isText()
   {
     $type = $this->getFile()->getType();
-    if ($type === 'text/plain'
-      || $type === 'text/html')
-    {
-      return true;
-    }
+    $mimeType = sfConfig::get('app_mime_types');
 
-    return false;
+    return in_array($type, $mimeType['text']);
   }
 
   public function getBin()
@@ -96,6 +92,9 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
     return $this->getFile()->getFileBin()->bin;
   }
 
+  /**
+   * alias for FileDirectory
+   */
   public function getDirectory()
   {
     return $this->FileDirectory;
@@ -113,7 +112,17 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
 
   public function isCommunity()
   {
-    return 'community' === $this->directory->type;
+    return $this->directory->isCommunity();
+  }
+
+  public function isPublic()
+  {
+    return $this->directory->isPublic();
+  }
+
+  public function isPrivate()
+  {
+    return $this->directory->isPrivate();
   }
 
   /**
@@ -129,15 +138,9 @@ abstract class PluginManagedFile extends BaseManagedFile implements opAccessCont
     return mb_convert_encoding($this->getBin(), 'UTF-8', 'auto');
   }
 
-  public function editName($name)
-  {
-    $this->setName($name);
-    $this->save();
-  }
-
   public function generateRoleId(Member $member)
   {
-    $directoryRoleId = $this->FileDirectory->generateRoleId($member);
+    $directoryRoleId = $this->directory->generateRoleId($member);
 
     if ('everyone' !== $directoryRoleId)
     {

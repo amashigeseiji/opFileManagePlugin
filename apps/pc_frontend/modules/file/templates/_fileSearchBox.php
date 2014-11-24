@@ -7,7 +7,7 @@
       <?php $widget = new sfWidgetFormDoctrineChoice(array('model' => 'member', 'add_empty' => __('Select member'))) ?>
       <?php echo $widget->render('file[member_id]', $params['member_id']) ?>
       <input type="hidden" name="search" value="true">
-      <button type="submit" class="btn btn-small">検索</button>
+      <button type="submit" class="btn btn-small"><?php echo __('Search') ?></button>
     </div>
   </form>
 </div>

@@ -140,8 +140,8 @@ class fileActions extends sfActions
   {
     $this->file = $this->getRoute()->getObject();
 
-    $this->directory = $this->file->FileDirectory;
-    if ('community' === $this->directory->type)
+    $this->directory = $this->file->directory;
+    if ($this->directory->isCommunity())
     {
       opFileManageUtil::setLocalNav('community', $this->directory->getConfig()->getCommunityId());
     }
@@ -212,7 +212,7 @@ class fileActions extends sfActions
     $request->checkCSRFProtection();
 
     $this->file = $this->getRoute()->getObject();
-    $directoryId = $this->file->getFileDirectory()->getId();
+    $directoryId = $this->file->directory->getId();
     if ($this->file->delete())
     {
       $this->getUser()->setFlash('notice', 'File is deleted.');

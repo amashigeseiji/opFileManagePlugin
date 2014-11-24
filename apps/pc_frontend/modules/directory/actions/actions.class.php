@@ -42,7 +42,7 @@ class directoryActions extends sfActions
   {
     $this->directory = $this->getRoute()->getObject();
 
-    if ('community' === $this->directory->type)
+    if ($this->directory->isCommunity())
     {
       $community = $this->directory->getConfig()->getCommunity();
       $this->forward404If(!opFileManageUtil::isViewableCommunityFile($community, $this->getUser()->getMember()));
@@ -164,7 +164,7 @@ class directoryActions extends sfActions
     $request->checkCSRFProtection();
 
     $directory = $this->getRoute()->getObject();
-    $redirectTo = 'community' === $directory->type ?
+    $redirectTo = $directory->isCommunity() ?
       '@community_home?id='.$directory->getConfig()->getCommunityId() : '@directory_list';
 
     if ($directory->delete())

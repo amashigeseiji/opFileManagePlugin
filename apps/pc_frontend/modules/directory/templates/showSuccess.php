@@ -5,7 +5,7 @@
   )) ?>
   <?php if ($directory->isEditable(sfContext::getInstance()->getUser()->getMember())): ?>
     <span class="normal">
-    (<?php echo ('community' === $directory->type) ?
+    (<?php echo ($directory->isCommunity()) ?
       $directory->getConfig()->getCommunity()->name : __($directory->getPublicLabel()) ?>)
     </span>
     <?php include_partial('directory/edit', array('directory' => $directory)) ?>

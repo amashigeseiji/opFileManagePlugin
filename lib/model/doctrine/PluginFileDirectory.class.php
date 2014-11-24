@@ -44,7 +44,7 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
   }
 
   /**
-   * @return bool
+   * @return string
    */
   public function getPublicLabel()
   {
@@ -89,15 +89,15 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
 
   public function generateRoleId(Member $member)
   {
-    if (!opFileManageConfig::isUsePrivate() && 'private' === $this->type
-      || !opFileManageConfig::isUseCommunity() && 'community' === $this->type
-      || !opFileManageConfig::isUsePublic() && 'public' === $this->type
+    if (!opFileManageConfig::isUsePrivate() && $this->isPrivate()
+      || !opFileManageConfig::isUseCommunity() && $this->isCommunity()
+      || !opFileManageConfig::isUsePublic() && $this->isPublic()
     )
     {
       return 'reject';
     }
 
-    if (opFileManageConfig::isUseCommunity() && 'community' === $this->type)
+    if (opFileManageConfig::isUseCommunity() && $this->isCommunity())
     {
       $community = $this->getConfig()->getCommunity();
       if ($community->isAdmin($member->id))
@@ -127,5 +127,21 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
   public function isPrivate()
   {
     return 'private' === $this->type;
+  }
+
+  /**
+   * @return bool
+   */
+  public function isPublic()
+  {
+    return 'public' === $this->type;
+  }
+
+  /**
+   * @return bool
+   */
+  public function isCommunity()
+  {
+    return 'community' === $this->type;
   }
 }
