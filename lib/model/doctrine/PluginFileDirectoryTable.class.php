@@ -106,7 +106,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
         unset($array[$key]);
       }
 
-      return $array;
+      return array_merge($array);
     };
 
     if (!opFileManageConfig::isUsePrivate())

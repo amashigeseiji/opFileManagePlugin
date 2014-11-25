@@ -19,22 +19,42 @@ class PluginManagedFileTable extends opAccessControlDoctrineTable
 
   public function getDirectoryFileList($directoryId)
   {
-    return ManagedFileQuery::getFileListQueryByDirectoryId($directoryId);
+    return ManagedFileQuery::getOrderedQuery()->addDirectoryId($directoryId);
   }
 
   public function getMemberFileList($memberId)
   {
-    return ManagedFileQuery::getMemberFileListQuery($memberId);
+    $allowedTypes = array('public');
+    if ($memberId === sfContext::getInstance()->getUser()->getMemberId())
+    {
+      $allowedTypes[] = 'private';
+    }
+
+    return ManagedFileQuery::getFileListQuery($allowedTypes)
+      ->where('d.member_id = ?', $memberId);
   }
 
+  /**
+   * @param community_id
+   * @return Doctrine_Query コミュニティで共有しているファイル一覧を取得するクエリ
+   */
   public function getCommunityFileList($communityId)
   {
-    return ManagedFileQuery::getCommunityFileListQuery($communityId);
+    $directoryIds = Doctrine::getTable('DirectoryConfig')->getDirectoryIdsByCommunityId($communityId);
+
+    return ManagedFileQuery::getOrderedQuery()->addDirectoryId($directoryIds);
   }
 
   public function getPublicFileList($searchParameter = null)
   {
-    return ManagedFileQuery::getPublicFileListQuery($searchParameter);
+    $q = ManagedFileQuery::getFileListQuery(array('public'));
+
+    if ($searchParameter)
+    {
+      $q->addSearchQuery($searchParameter);
+    }
+
+    return $q;
   }
 
   public function appendRoles(Zend_Acl $acl)

@@ -92,46 +92,6 @@ class ManagedFileQuery extends Doctrine_Query
     return self::create()->addOrderBy();
   }
 
-  public static function getFileListQueryByDirectoryId($directoryId)
-  {
-    return self::getOrderedQuery()->addDirectoryId($directoryId);
-  }
-
-  /**
-   * @param community_id
-   * @return Doctrine_Query コミュニティで共有しているファイル一覧を取得するクエリ
-   */
-  public static function getCommunityFileListQuery($communityId)
-  {
-    $directoryIds = Doctrine::getTable('DirectoryConfig')->getDirectoryIdsByCommunityId($communityId);
-
-    return self::getOrderedQuery()->addDirectoryId($directoryIds);
-  }
-
-  public static function getMemberFileListQuery($memberId)
-  {
-    $allowedTypes = array('public');
-    if ($memberId === sfContext::getInstance()->getUser()->getMemberId())
-    {
-      $allowedTypes[] = 'private';
-    }
-
-    return self::getFileListQuery($allowedTypes)
-      ->where('d.member_id = ?', $memberId);
-  }
-
-  public static function getPublicFileListQuery($searchParameter = null)
-  {
-    $q = self::getFileListQuery(array('public'));
-
-    if ($searchParameter)
-    {
-      $q->addSearchQuery($searchParameter);
-    }
-
-    return $q;
-  }
-
   public static function getFileListQuery(array $allowedTypes)
   {
     return self::getOrderedQuery()
