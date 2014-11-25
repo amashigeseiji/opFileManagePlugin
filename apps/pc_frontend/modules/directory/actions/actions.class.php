@@ -54,8 +54,8 @@ class directoryActions extends sfActions
     }
 
     $this->pager = Doctrine::getTable('ManagedFile')
-      ->getDirectoryFileListPager($this->directory->getId(), $request->getParameter('page'));
-    $this->pager->init();
+      ->getDirectoryFileList($this->directory->getId())
+      ->getPager($request->getParameter('page'));
   }
 
  /**
@@ -83,11 +83,8 @@ class directoryActions extends sfActions
     opFileManageUtil::setLocalNav('friend', $this->member->id);
 
     $this->pager = FileDirectoryTable::getInstance()
-      ->getMemberDirectoryListPager(
-        $this->member->getId(),
-        Doctrine::getTable('FileDirectory')->getTypes(array('public')),
-        $request->getParameter('page'));
-    $this->pager->init();
+      ->getMemberDirectoryList(array('public'))
+      ->getPager($request->getParameter('page'));
   }
 
  /**
@@ -100,11 +97,8 @@ class directoryActions extends sfActions
     $this->forward404If(!opFileManageConfig::isUsePublic() && !opFileManageConfig::isUsePrivate());
     $this->member = $this->getUser()->getMember();
     $this->pager = FileDirectoryTable::getInstance()
-      ->getMemberDirectoryListPager(
-        $this->member->getId(),
-        Doctrine::getTable('FileDirectory')->getTypes(array('public', 'private')),
-        $request->getParameter('page'));
-    $this->pager->init();
+      ->getMemberDirectoryList($this->member->getId(), array('public', 'private'))
+      ->getPager($request->getParameter('page'));
   }
 
  /**
@@ -123,8 +117,8 @@ class directoryActions extends sfActions
     opFileManageUtil::setLocalNav('community', $this->community->id);
 
     $this->pager = FileDirectoryTable::getInstance()
-      ->getCommunityDirectoryListPager($this->community->getId(), null, $request->getParameter('page'));
-    $this->pager->init();
+      ->getCommunityDirectoryList($this->community->getId())
+      ->getPager($request->getParameter('page'), null);
   }
 
  /**

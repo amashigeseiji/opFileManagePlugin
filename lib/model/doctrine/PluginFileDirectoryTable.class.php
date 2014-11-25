@@ -23,31 +23,14 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     return Doctrine_Core::getTable('PluginFileDirectory');
   }
 
-  public function getMemberDirectoryListPager($memberId, $type = array(), $page = null)
+  public function getMemberDirectoryList($memberId, $allowedTypes = array())
   {
-    $q = FileDirectoryQuery::getListQueryByMemberId($memberId, $type);
-
-    return $this->getPager($q, $page);
+    return FileDirectoryQuery::getListQueryByMemberId($memberId, Doctrine::getTable('FileDirectory')->getTypes($allowedTtypes));
   }
 
-  public function getCommunityDirectoryListPager($communityId, $size = null, $page = null)
+  public function getCommunityDirectoryList($communityId)
   {
-    $q = FileDirectoryQuery::getListQueryByCommunityId($communityId);
-
-    return $this->getPager($q, $page, $size);
-  }
-
-  private function getPager(Doctrine_Query $q, $page = null, $size = null)
-  {
-    if (!$size)
-    {
-      $size = sfConfig::get('app_directory_list_max_size', 10);
-    }
-    $pager = new sfDoctrinePager('FileDirectory', $size);
-    $pager->setQuery($q);
-    $pager->setPage($page, 1);
-
-    return $pager;
+    return FileDirectoryQuery::getListQueryByCommunityId($communityId);
   }
 
   public function appendRoles(Zend_Acl $acl)

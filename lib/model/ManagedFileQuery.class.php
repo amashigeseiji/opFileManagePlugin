@@ -49,6 +49,16 @@ class ManagedFileQuery extends Doctrine_Query
     return $this->leftJoin("f.FileDirectory AS $alias");
   }
 
+  public function getPager($page = 1)
+  {
+    $pager = new sfDoctrinePager('ManagedFile', sfConfig::get('app_file_list_max_size', 10));
+    $pager->setQuery($this);
+    $pager->setPage($page);
+    $pager->init();
+
+    return $pager;
+  }
+
   /*
    * private function
    */

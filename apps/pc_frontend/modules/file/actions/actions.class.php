@@ -25,8 +25,9 @@ class fileActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $this->forward404Unless(opFileManageConfig::isUsePublic());
-    $this->pager = Doctrine::getTable('ManagedFile')->getPublicFileListPager($request->getParameter('page'), $request->getParameter('file'));
-    $this->pager->init();
+    $this->pager = Doctrine::getTable('ManagedFile')
+      ->getPublicFileList($request->getParameter('file'))
+      ->getPager($request->getParameter('page'));
   }
 
  /**
@@ -164,8 +165,9 @@ class fileActions extends sfActions
       opFileManageUtil::setLocalNav('friend', $this->member->id);
     }
 
-    $this->pager = Doctrine::getTable('ManagedFile')->getMemberFileListPager($this->member->id, $request->getParameter('page'));
-    $this->pager->init();
+    $this->pager = Doctrine::getTable('ManagedFile')
+      ->getMemberFileList($this->member->id)
+      ->getPager($request->getParameter('page'));
   }
 
  /**
@@ -184,8 +186,8 @@ class fileActions extends sfActions
     opFileManageUtil::setLocalNav('community', $this->community->id);
 
     $this->pager = Doctrine::getTable('ManagedFile')
-      ->getCommunityFileListPager($this->community->id, $request->getParameter('page'));
-    $this->pager->init();
+      ->getCommunityFileList($this->community->id)
+      ->getPager($request->getParameter('page'));
   }
 
  /**

@@ -17,41 +17,24 @@ class PluginManagedFileTable extends opAccessControlDoctrineTable
     return Doctrine_Core::getTable('PluginManagedFile');
   }
 
-  public function getDirectoryFileListPager($directoryId, $page = null)
+  public function getDirectoryFileList($directoryId)
   {
-    $q = ManagedFileQuery::getFileListQueryByDirectoryId($directoryId);
-
-    return $this->getPager($q, $page);
+    return ManagedFileQuery::getFileListQueryByDirectoryId($directoryId);
   }
 
-  public function getMemberFileListPager($memberId, $page = null)
+  public function getMemberFileList($memberId)
   {
-    $q = ManagedFileQuery::getMemberFileListQuery($memberId);
-
-    return $this->getPager($q, $page);
+    return ManagedFileQuery::getMemberFileListQuery($memberId);
   }
 
-  public function getCommunityFileListPager($communityId, $page = null)
+  public function getCommunityFileList($communityId)
   {
-    $q = ManagedFileQuery::getCommunityFileListQuery($communityId);
-
-    return $this->getPager($q, $page);
+    return ManagedFileQuery::getCommunityFileListQuery($communityId);
   }
 
-  public function getPublicFileListPager($page = null, $searchParameter = null)
+  public function getPublicFileList($searchParameter = null)
   {
-    $q = ManagedFileQuery::getPublicFileListQuery($searchParameter);
-
-    return $this->getPager($q, $page);
-  }
-
-  private function getPager(Doctrine_Query $q, $page = 1)
-  {
-    $pager = new sfDoctrinePager('ManagedFile', sfConfig::get('app_file_list_max_size', 10));
-    $pager->setQuery($q);
-    $pager->setPage($page);
-
-    return $pager;
+    return ManagedFileQuery::getPublicFileListQuery($searchParameter);
   }
 
   public function appendRoles(Zend_Acl $acl)
