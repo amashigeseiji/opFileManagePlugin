@@ -58,7 +58,7 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
   {
     if (opFileManageConfig::isUsePrivate())
     {
-      $validator = new sfValidatorChoice(array('choices' => Doctrine::getTable('FileDirectory')->getTypes(), 'required' => true));
+      $validator = new sfValidatorChoice(array('choices' => Doctrine::getTable('FileDirectory')->getTypes(array('public', 'private')), 'required' => true));
       try
       {
         $this->setType($validator->clean($publish));
@@ -90,7 +90,9 @@ abstract class PluginFileDirectory extends BaseFileDirectory implements opAccess
   public function generateRoleId(Member $member)
   {
     if (!opFileManageConfig::isUsePrivate() && 'private' === $this->type
-    || !opFileManageConfig::isUseCommunity() && 'community' === $this->type)
+      || !opFileManageConfig::isUseCommunity() && 'community' === $this->type
+      || !opFileManageConfig::isUsePublic() && 'public' === $this->type
+    )
     {
       return 'reject';
     }

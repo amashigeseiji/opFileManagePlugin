@@ -8,9 +8,9 @@
 class PluginFileDirectoryTable extends opAccessControlDoctrineTable
 {
   private static $types = array(
-    'private'   => 'private',
-    'community' => 'community',
-    'public'    => 'public'
+    'private',
+    'community',
+    'public'
   );
 
   /**
@@ -23,34 +23,14 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     return Doctrine_Core::getTable('PluginFileDirectory');
   }
 
-  public function getMemberDirectoryListPager($memberId, $type = array(), $page = null)
+  public function getMemberDirectoryList($memberId, $allowedTypes = array())
   {
-    $q = FileDirectoryQuery::getListQueryByMemberId($memberId, $type);
-
-    $size = sfConfig::get('app_directory_list_max_size', 10);
-
-    return $this->getPager($q, $size, $page);
+    return FileDirectoryQuery::getListQueryByMemberId($memberId, Doctrine::getTable('FileDirectory')->getTypes($allowedTtypes));
   }
 
-  public function getCommunityDirectoryListPager($communityId, $size = null, $page = null)
+  public function getCommunityDirectoryList($communityId)
   {
-    $q = FileDirectoryQuery::getListQueryByCommunityId($communityId);
-
-    if (!$size)
-    {
-      $size = sfConfig::get('app_directory_list_max_size', 10);
-    }
-
-    return $this->getPager($q, $size, $page);
-  }
-
-  private function getPager(Doctrine_Query $q, $size, $page = null)
-  {
-    $pager = new sfDoctrinePager('FileDirectory', $size);
-    $pager->setQuery($q);
-    $pager->setPage($page, 1);
-
-    return $pager;
+    return FileDirectoryQuery::getListQueryByCommunityId($communityId);
   }
 
   public function appendRoles(Zend_Acl $acl)
@@ -72,54 +52,85 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
 
     if ($resource && 'public' === $resource->getType())
     {
-      $acl->allow('everyone', $resource, 'view');
-      if ('everyone' === opFileManageConfig::get('public_directory_edit_setting'))
+      if (opFileManageConfig::isUsePublic())
       {
-        $acl->allow('everyone', $resource, 'edit');
-      }
-      if ('everyone' === opFileManageConfig::get('public_directory_upload_setting'))
-      {
-        $acl->allow('everyone', $resource, 'upload');
+        $acl->allow('everyone', $resource, 'view');
+        if ('everyone' === opFileManageConfig::get('public_directory_edit_setting'))
+        {
+          $acl->allow('everyone', $resource, 'edit');
+        }
+        if ('everyone' === opFileManageConfig::get('public_directory_upload_setting'))
+        {
+          $acl->allow('everyone', $resource, 'upload');
+        }
       }
     }
 
     if ($resource && 'community' === $resource->getType())
     {
-      # all community member can view file
-      $acl->allow('member', $resource, 'view');
-
-      $community = $resource->getConfig()->getCommunity();
-
-      if ('public' === $community->getConfig('directory_authority'))
+      if (opFileManageConfig::isUseCommunity())
       {
-        $acl->allow('author', $resource, 'edit');
-        $acl->allow('author', $resource, 'delete');
-      }
+        # all community member can view file
+        $acl->allow('member', $resource, 'view');
 
-      if ('public' === $community->getConfig('file_public_flag'))
-      {
-        $acl->allow('everyone', $resource, 'view');
-      }
+        $community = $resource->getConfig()->getCommunity();
 
-      if ('public' === $community->getConfig('file_authority'))
-      {
-        $acl->allow('member', $resource, 'upload');
+        if ('public' === $community->getConfig('directory_authority'))
+        {
+          $acl->allow('author', $resource, 'edit');
+          $acl->allow('author', $resource, 'delete');
+        }
+
+        if ('public' === $community->getConfig('file_public_flag'))
+        {
+          $acl->allow('everyone', $resource, 'view');
+        }
+
+        if ('public' === $community->getConfig('file_authority'))
+        {
+          $acl->allow('member', $resource, 'upload');
+        }
       }
     }
 
     return $acl;
   }
 
-  public function getTypes()
+  public function getTypes($allowedType = array())
   {
     $types = self::$types;
+    $unset_array = function($val, $array)
+    {
+      if (is_int($key = array_search($val, $array)))
+      {
+        unset($array[$key]);
+      }
+
+      return array_merge($array);
+    };
+
     if (!opFileManageConfig::isUsePrivate())
     {
-      unset($types['private']);
+      $types = $unset_array('private', $types);
     }
     if (!opFileManageConfig::isUseCommunity())
     {
-      unset($types['community']);
+      $types = $unset_array('community', $types);
+    }
+    if (!opFileManageConfig::isUsePublic())
+    {
+      $types = $unset_array('public', $types);
+    }
+
+    if ($allowedType)
+    {
+      foreach ($types as $type)
+      {
+        if (!in_array($type, $allowedType))
+        {
+          $types = $unset_array($type, $types);
+        }
+      }
     }
 
     return $types;

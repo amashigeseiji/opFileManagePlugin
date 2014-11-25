@@ -1,0 +1,17 @@
+.modal {
+  margin-top: 0;
+  position: fixed !important;
+}
+.modal-body li {
+  display: table;
+  margin: 10px 0;
+}
+.modal-body li>span {
+  display: table-cell;
+}
+.modal-body li>span.form-label {
+  width: 80px;
+}
+.modal-body li>span select {
+  vertical-align: baseline;
+}

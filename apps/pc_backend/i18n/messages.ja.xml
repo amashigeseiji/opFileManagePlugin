@@ -23,6 +23,10 @@
         <target>コミュニティ共有フォルダを使用する</target>
       </trans-unit>
       <trans-unit id="">
+        <source>Use public directory</source>
+        <target>公開フォルダを使用する</target>
+      </trans-unit>
+      <trans-unit id="">
         <source>Public directory edit setting</source>
         <target>公開フォルダの編集権限</target>
       </trans-unit>

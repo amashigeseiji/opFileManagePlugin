@@ -17,6 +17,14 @@ all:
         validatorOptions:
           choices: [ 1, 0 ]
         default: 0
+      use_public_directory:
+        widget: sfWidgetFormSelectRadio
+        validator: sfValidatorChoice
+        widgetOptions:
+          choices: { 1: Use, 0: Not use }
+        validatorOptions:
+          choices: [ 1, 0 ]
+        default: 1
       public_directory_edit_setting:
         widget: sfWidgetFormSelectRadio
         validator: sfValidatorChoice

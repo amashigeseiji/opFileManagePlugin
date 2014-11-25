@@ -120,6 +120,10 @@ directory_list_member:
   requirements:
     id: \d+
 
+directory_list_mine:
+  url: /directory/listMine
+  param: { module: directory, action: listMine }
+
 directory_list_community:
   url: /directory/listCommunity/:id
   class: sfDoctrineRoute
