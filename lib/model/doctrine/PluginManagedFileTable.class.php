@@ -31,7 +31,7 @@ class PluginManagedFileTable extends opAccessControlDoctrineTable
     }
 
     return ManagedFileQuery::getFileListQuery($allowedTypes)
-      ->where('d.member_id = ?', $memberId);
+      ->andWhere('d.member_id = ?', $memberId);
   }
 
   /**
