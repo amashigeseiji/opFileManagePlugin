@@ -42,7 +42,7 @@ class directoryActions extends sfActions
   {
     $this->directory = $this->getRoute()->getObject();
 
-    if ('community' === $this->directory->type)
+    if ($this->directory->isCommunity())
     {
       $community = $this->directory->getConfig()->getCommunity();
       $this->forward404If(!opFileManageUtil::isViewableCommunityFile($community, $this->getUser()->getMember()));
@@ -54,8 +54,8 @@ class directoryActions extends sfActions
     }
 
     $this->pager = Doctrine::getTable('ManagedFile')
-      ->getDirectoryFileListPager($this->directory->getId(), $request->getParameter('page'));
-    $this->pager->init();
+      ->getDirectoryFileList($this->directory->getId())
+      ->getPager($request->getParameter('page'));
   }
 
  /**
@@ -65,29 +65,44 @@ class directoryActions extends sfActions
   */
   public function executeList(sfWebRequest $request)
   {
-    $this->isFriendPage =
-       $request->getParameter('id') ? true : false;
-
-    $this->member = $this->isFriendPage ?
-      $this->getRoute()->getObject() : $this->getUser()->getMember();
-
-    if ($this->isFriendPage)
-    {
-      opFileManageUtil::setLocalNav('friend', $this->member->id);
-    }
-
-    $types = array('public');
-    if (opFileManageConfig::isUsePrivate() && !$this->isFriendPage)
-    {
-      $types[] = 'private';
-    }
-    $this->pager = FileDirectoryTable::getInstance()
-      ->getMemberDirectoryListPager($this->member->getId(), $types, $request->getParameter('page'));
-    $this->pager->init();
+    $this->forwardUnless($request->getParameter('id'), 'directory', 'listMine');
+    $this->forwardIf($request->getParameter('id') === $this->getUser()->getMemberId(), 'directory', 'listMine');
+    $this->forward('directory', 'listMember');
   }
 
  /**
-  * Executes list action
+  * Executes listMember action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeListMember(sfWebRequest $request)
+  {
+    $this->forward404If(!opFileManageConfig::isUsePublic());
+    $this->member = $this->getRoute()->getObject();
+
+    opFileManageUtil::setLocalNav('friend', $this->member->id);
+
+    $this->pager = FileDirectoryTable::getInstance()
+      ->getMemberDirectoryList(array('public'))
+      ->getPager($request->getParameter('page'));
+  }
+
+ /**
+  * Executes listMine action
+  *
+  * @param sfWebRequest $request A request object
+  */
+  public function executeListMine(sfWebRequest $request)
+  {
+    $this->forward404If(!opFileManageConfig::isUsePublic() && !opFileManageConfig::isUsePrivate());
+    $this->member = $this->getUser()->getMember();
+    $this->pager = FileDirectoryTable::getInstance()
+      ->getMemberDirectoryList($this->member->getId(), array('public', 'private'))
+      ->getPager($request->getParameter('page'));
+  }
+
+ /**
+  * Executes listCommunity action
   *
   * @param sfWebRequest $request A request object
   */
@@ -102,8 +117,8 @@ class directoryActions extends sfActions
     opFileManageUtil::setLocalNav('community', $this->community->id);
 
     $this->pager = FileDirectoryTable::getInstance()
-      ->getCommunityDirectoryListPager($this->community->getId(), null, $request->getParameter('page'));
-    $this->pager->init();
+      ->getCommunityDirectoryList($this->community->getId())
+      ->getPager($request->getParameter('page'), null);
   }
 
  /**
@@ -149,7 +164,7 @@ class directoryActions extends sfActions
     $request->checkCSRFProtection();
 
     $directory = $this->getRoute()->getObject();
-    $redirectTo = 'community' === $directory->type ?
+    $redirectTo = $directory->isCommunity() ?
       '@community_home?id='.$directory->getConfig()->getCommunityId() : '@directory_list';
 
     if ($directory->delete())

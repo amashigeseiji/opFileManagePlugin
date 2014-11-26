@@ -13,8 +13,7 @@ class directoryComponents extends sfComponents
       return sfView::NONE;
     }
 
-    $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryListPager($this->community->id, 4);
-    $this->pager->init();
+    $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryList($this->community->id)->getPager(null, 4);
   }
 
   public function executeSmtCommunityDirectoryList()
@@ -36,23 +35,21 @@ class directoryComponents extends sfComponents
       return sfView::NONE;
     }
 
-    $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryListPager($this->community->id, 4);
-    $this->pager->init();
+    $this->pager = Doctrine::getTable('FileDirectory')->getCommunityDirectoryList($this->community->id)->getPager(null, 4);
   }
 
   public function executeDirectoryCreateModal()
   {
-    $choices = Doctrine::getTable('FileDirectory')->getTypes();
-    if (isset($choices['community']))
+    if (!opFileManageConfig::isUsePrivate() && !opFileManageConfig::isUsePublic())
     {
-      unset($choices['community']);
+      return sfView::NONE;
     }
 
-    $this->form = new FileDirectoryForm(array(), array('directoryTypeChoices' => $choices));
+    $this->form = new FileDirectoryForm(array(), array('allowedChoiceType' => array('public', 'private')));
+
     if (opFileManageConfig::isUseCommunity())
     {
-      $this->form->getWidget('community_id')->setHidden(true);
-      $this->form->getWidget('community_id')->setDefault(null);
+      unset($this->form['community_id']);
     }
   }
 

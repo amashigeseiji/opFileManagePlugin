@@ -17,48 +17,44 @@ class PluginManagedFileTable extends opAccessControlDoctrineTable
     return Doctrine_Core::getTable('PluginManagedFile');
   }
 
-  public function getDirectoryFileListPager($directoryId, $page = null)
+  public function getDirectoryFileList($directoryId)
   {
-    $q = ManagedFileQuery::getFileListQueryByDirectoryId($directoryId);
-
-    $size = sfConfig::get('app_file_list_max_size', 10);
-
-    return $this->getPager($q, $size, $page);
+    return ManagedFileQuery::getOrderedQuery()->addDirectoryId($directoryId);
   }
 
-  public function getMemberFileListPager($memberId, $page = null)
+  public function getMemberFileList($memberId)
   {
-    $q = ManagedFileQuery::getMemberFileListQuery($memberId);
+    $allowedTypes = array('public');
+    if ($memberId === sfContext::getInstance()->getUser()->getMemberId())
+    {
+      $allowedTypes[] = 'private';
+    }
 
-    $size = sfConfig::get('app_file_list_max_size', 10);
-
-    return $this->getPager($q, $size, $page);
+    return ManagedFileQuery::getFileListQuery($allowedTypes)
+      ->andWhere('d.member_id = ?', $memberId);
   }
 
-  public function getCommunityFileListPager($communityId, $page = null)
+  /**
+   * @param community_id
+   * @return Doctrine_Query コミュニティで共有しているファイル一覧を取得するクエリ
+   */
+  public function getCommunityFileList($communityId)
   {
-    $q = ManagedFileQuery::getCommunityFileListQuery($communityId);
+    $directoryIds = Doctrine::getTable('DirectoryConfig')->getDirectoryIdsByCommunityId($communityId);
 
-    $size = sfConfig::get('app_file_list_max_size', 10);
-
-    return $this->getPager($q, $size, $page);
+    return ManagedFileQuery::getOrderedQuery()->addDirectoryId($directoryIds);
   }
 
-  public function getPublicFileListPager($page = null, $searchParameter = null)
+  public function getPublicFileList($searchParameter = null)
   {
-    $q = ManagedFileQuery::getPublicFileListQuery($searchParameter);
-    $size = sfConfig::get('app_file_list_max_size', 10);
+    $q = ManagedFileQuery::getFileListQuery(array('public'));
 
-    return $this->getPager($q, $size, $page);
-  }
+    if ($searchParameter)
+    {
+      $q->addSearchQuery($searchParameter);
+    }
 
-  private function getPager(Doctrine_Query $q, $size, $page = 1)
-  {
-    $pager = new sfDoctrinePager('ManagedFile', $size);
-    $pager->setQuery($q);
-    $pager->setPage($page);
-
-    return $pager;
+    return $q;
   }
 
   public function appendRoles(Zend_Acl $acl)
@@ -84,11 +80,11 @@ class PluginManagedFileTable extends opAccessControlDoctrineTable
     $acl->allow('author', $resource, 'edit');
     $acl->allow('author', $resource, 'delete');
 
-    if ('public' === $directory->type)
+    if ($directory->isPublic())
     {
       $acl->allow('everyone', $resource, 'view');
     }
-    elseif ('community' === $directory->type)
+    elseif ($directory->isCommunity())
     {
       if ('public' === $directory->getConfig()->getCommunityConfig('file_public_flag'))
       {

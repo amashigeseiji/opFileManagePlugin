@@ -10,7 +10,7 @@ class opFileManageConfig
      */
     $formConfig;
 
-  public function get($key)
+  public static function get($key)
   {
     self::loadConfiguration();
 
@@ -24,7 +24,7 @@ class opFileManageConfig
     return (is_null($result)) ? self::getDefault($key) : $result;
   }
 
-  public function set($key, $value)
+  public static function set($key, $value)
   {
     self::loadConfiguration();
 
@@ -36,7 +36,7 @@ class opFileManageConfig
     Doctrine::getTable('SnsConfig')->set(self::$tablePrefix.$key, $value);
   }
 
-  private function loadConfiguration()
+  private static function loadConfiguration()
   {
     if (!self::$isSetConfig)
     {
@@ -47,21 +47,21 @@ class opFileManageConfig
     }
   }
 
-  public function getFormConfig()
+  public static function getFormConfig()
   {
     self::loadConfiguration();
 
     return self::$formConfig;
   }
 
-  public function getNames()
+  public static function getNames()
   {
     self::loadConfiguration();
 
     return self::$formConfig->getNames();
   }
 
-  public function getDefault($key)
+  public static function getDefault($key)
   {
     self::loadConfiguration();
 
@@ -70,7 +70,7 @@ class opFileManageConfig
     return $formConfig['default'];
   }
 
-  public function has($key)
+  public static function has($key)
   {
     self::loadConfiguration();
 
@@ -80,7 +80,7 @@ class opFileManageConfig
   /**
    * @return bool
    */
-  public function isUsePrivate()
+  public static function isUsePrivate()
   {
     return (bool)self::get('use_private_directory');
   }
@@ -88,8 +88,16 @@ class opFileManageConfig
   /**
    * @return bool
    */
-  public function isUseCommunity()
+  public static function isUseCommunity()
   {
     return (bool)self::get('use_community_directory');
+  }
+
+  /**
+   * @return bool
+   */
+  public static function isUsePublic()
+  {
+    return (bool)self::get('use_public_directory');
   }
 }

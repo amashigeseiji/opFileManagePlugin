@@ -20,35 +20,43 @@ class FileDirectoryQuery extends Doctrine_Query
     return $this->orderBy($orderBy ? $orderBy : 'created_at DESC');
   }
 
-  public function addType($types = array())
+  public function addType($types)
   {
-    if ($types)
+    # if type is empty, return empty collection
+    if (empty($types))
     {
-      return $this->andWhereIn('type', $types);
+      return $this->andWhere('type IS NULL');
     }
 
-    if (!opFileManageConfig::isUsePrivate()
-      && !opFileManageConfig::isUseCommunity())
-    {
-      $this->andWhere('type = "public"');
-    }
-    elseif (!opFileManageConfig::isUseCommunity())
-    {
-      $this->andWhere('type <> "community"');
-    }
-    elseif (!opFileManageConfig::isUseCommunity())
-    {
-      $this->andWhere('type <> "private"');
-    }
-
-    return $this;
+    return $this->andWhereIn('type', $types);
   }
 
-  public static function getListQueryByMemberId($memberId, $types = array())
+  public function getPager($page = 1, $size = null)
   {
-    return self::create()
+    if (!$size)
+    {
+      $size = sfConfig::get('app_directory_list_max_size', 10);
+    }
+    $pager = new sfDoctrinePager('FileDirectory', $size);
+    $pager->setQuery($this);
+    $pager->setPage($page);
+    $pager->init();
+
+    return $pager;
+  }
+  /*
+   * static functions
+   */
+
+  public static function getOrderedQuery()
+  {
+    return self::create()->addOrderBy();
+  }
+
+  public static function getListQueryByMemberId($memberId, $types)
+  {
+    return self::getOrderedQuery()
       ->addMemberId($memberId)
-      ->addOrderBy()
       ->addType($types);
   }
 
@@ -57,8 +65,6 @@ class FileDirectoryQuery extends Doctrine_Query
     $directoryIds = Doctrine::getTable('DirectoryConfig')
       ->getDirectoryIdsByCommunityId($communityId);
 
-    return Doctrine_Query::create()
-      ->from('FileDirectory')
-      ->whereIn('id', $directoryIds);
+    return self::getOrderedQuery()->whereIn('id', $directoryIds);
   }
 }
