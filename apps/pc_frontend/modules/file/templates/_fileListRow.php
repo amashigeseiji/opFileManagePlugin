@@ -7,7 +7,7 @@
   </td>
   <?php if (isset($dirname) && $dirname): ?>
   <td>
-    <?php echo link_to($file->FileDirectory->name, '@directory_show?id='.$file->FileDirectory->id) ?>
+    <?php echo link_to($file->directory->name, '@directory_show?id='.$file->directory->id) ?>
   </td>
   <?php endif; ?>
   <?php if (isset($member) && $member): ?>

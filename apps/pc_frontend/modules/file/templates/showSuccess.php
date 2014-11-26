@@ -31,7 +31,7 @@
   <th><?php echo __('Directory') ?></th>
   <td>
     <?php echo link_to($directory->getName(), 'directory_show', $directory) ?>
-    ( <?php echo 'community' === $directory->type ?
+    ( <?php echo $directory->isCommunity() ?
       link_to($directory->getConfig()->getCommunity()->name, '@community_home?id='.$directory->getConfig()->getCommunityid()) :
       __($directory->getPublicLabel()) ?> )
   </td>
@@ -54,7 +54,7 @@
   </td>
 </tr>
 <tr>
-  <th><?php echo __('note') ?></th>
+  <th><?php echo __('Note') ?></th>
   <td>
   <?php echo $file->note ?>
   </td>

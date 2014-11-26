@@ -15,6 +15,7 @@ class opWidgetFormSelectDirectoryType extends sfWidgetFormSelectRadio
 
     if (1 === count($options['choices']))
     {
+      $this->setDefault(reset($options['choices']));
       $this->setHidden(true);
     }
 

@@ -9,90 +9,93 @@ class ManagedFileQuery extends Doctrine_Query
   static public function create($conn = null, $class = null)
   {
     return parent::create($conn, 'ManagedFileQuery')
-      ->from('ManagedFile');
+      ->from('ManagedFile f');
   }
 
   public function addDirectoryId($directoryId)
   {
-    return $this->andWhere('directory_id = ?', $directoryId);
+    if (is_array($directoryId))
+    {
+      return $this->andWhereIn('f.directory_id', $directoryId);
+    }
+
+    return $this->andWhere('f.directory_id = ?', $directoryId);
   }
 
   public function addMemberId($memberId)
   {
-    return $this->andWhere('member_id = ?', $memberId);
+    return $this->andWhere('f.member_id = ?', $memberId);
   }
 
   public function addOrderBy($orderBy = null)
   {
-    return $this->orderBy($orderBy ? $orderBy : 'created_at DESC');
+    return $this->orderBy($orderBy ? $orderBy : 'f.created_at DESC');
   }
 
-  public static function getFileListQueryByDirectoryId($directoryId)
+  public function addDirectoryType(array $types)
   {
-    return self::create()
-      ->addOrderBy()
-      ->addDirectoryId($directoryId);
-  }
-
-  /**
-   * @param community_id
-   * @return Doctrine_Query コミュニティで共有しているファイル一覧を取得するクエリ
-   */
-  public static function getCommunityFileListQuery($communityId)
-  {
-    $directoryIds = Doctrine::getTable('DirectoryConfig')->getDirectoryIdsByCommunityId($communityId);
-
-    return Doctrine_Query::create()
-      ->from('ManagedFile')
-      ->whereIn('directory_id', $directoryIds);
-  }
-
-  public static function getMemberFileListQuery($memberId)
-  {
-    $q = Doctrine_Query::create()
-      ->from('ManagedFile f')
-      ->leftJoin('f.FileDirectory d')
-      ->where('d.member_id  = ?', $memberId);
-
-    if (opFileManageConfig::isUsePrivate()
-      && $memberId === sfContext::getInstance()->getUser()->getMemberId())
+    if ($types)
     {
-      $q->andWhere('type <> ?', 'community');
+      return $this->andWhereIn('d.type', $types);
     }
     else
     {
-      $q->andWhere('type = ?', 'public');
+      return $this->andWhere('d.type IS NULL');
     }
-
-    return $q;
   }
 
-  public static function getPublicFileListQuery($searchParameter = null)
+  public function addLeftJoinDirectory($alias = 'd')
   {
-    $q = Doctrine_Query::create()
-      ->from('ManagedFile f')
-      ->leftJoin('f.FileDirectory d')
-      ->where('d.type = ?', 'public')
-      ->orderBy('created_at DESC');
+    return $this->leftJoin("f.FileDirectory AS $alias");
+  }
 
-    if ($searchParameter)
+  public function getPager($page = 1)
+  {
+    $pager = new sfDoctrinePager('ManagedFile', sfConfig::get('app_file_list_max_size', 10));
+    $pager->setQuery($this);
+    $pager->setPage($page);
+    $pager->init();
+
+    return $pager;
+  }
+
+  /*
+   * private function
+   */
+
+  private function addSearchQuery($searchParameter)
+  {
+    foreach ($searchParameter as $key => $val)
     {
-      foreach ($searchParameter as $key => $val)
+      if ($val)
       {
-        if ($val)
+        if ($key === 'name' || $key === 'note')
         {
-          if ($key === 'name' || $key === 'note')
-          {
-            $q = $q->andWhere("f.$key LIKE ?", "%$val%");
-          }
-          elseif ($key === 'member_id')
-          {
-            $q = $q->andWhere("f.member_id = ?", $val);
-          }
+          $this->andWhere("f.$key LIKE ?", "%$val%");
+        }
+        elseif ($key === 'member_id')
+        {
+          $this->addMemberId($val);
         }
       }
     }
 
-    return $q;
+    return $this;
+  }
+
+  /*
+   * static functions
+   */
+
+  public static function getOrderedQuery()
+  {
+    return self::create()->addOrderBy();
+  }
+
+  public static function getFileListQuery(array $allowedTypes)
+  {
+    return self::getOrderedQuery()
+      ->addLeftJoinDirectory()
+      ->addDirectoryType(Doctrine::getTable('FileDirectory')->getTypes($allowedTypes));
   }
 }
