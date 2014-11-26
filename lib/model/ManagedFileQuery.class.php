@@ -59,11 +59,7 @@ class ManagedFileQuery extends Doctrine_Query
     return $pager;
   }
 
-  /*
-   * private function
-   */
-
-  private function addSearchQuery($searchParameter)
+  public function addSearchQuery($searchParameter)
   {
     foreach ($searchParameter as $key => $val)
     {
