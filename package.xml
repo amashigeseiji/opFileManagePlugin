@@ -7,20 +7,25 @@
  <channel>plugins.openpne.jp</channel>
  <summary>ファイルを共有します</summary>
  <description>SNS内でファイルを共有します。
-・コミュニティフォルダを作成し、ファイルをコミュニティ内でのみ共有する
-・パブリックフォルダを作成し、ファイルをSNS全体で共有する
-・プライベートフォルダを作成し、プライベートなファイルを管理する</description>
+* ファイルをコミュニティ内でのみ共有する
+* ファイルをSNS全体で共有する
+* プライベートなファイルを管理する
+ができます。
+
+詳しい仕様については
+https://github.com/amashigeseiji/opFileManagePlugin/wiki/How-to-use
+を参照してください。</description>
  <lead>
-  <name>amashige</name>
+  <name>tenjuu99</name>
   <user>amashige</user>
   <email />
   <active>yes</active>
  </lead>
  <date>2014-11-27</date>
- <time>04:30:38</time>
+ <time>06:06:27</time>
  <version>
-  <release>0.9.6.1</release>
-  <api>0.9.6.1</api>
+  <release>0.9.6.2</release>
+  <api>0.9.6.2</api>
  </version>
  <stability>
   <release>alpha</release>
@@ -28,8 +33,7 @@
  </stability>
  <license>Apache</license>
  <notes>
-0.9.6 との差分
-* マイフォルダにコミュニティに作成したフォルダが表示されているのを修正
+* 検索しようとするとエラーになるのを修正(refs https://github.com/amashigeseiji/opFileManagePlugin/issues/32)
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -101,7 +105,7 @@
    <file baseinstalldir="/" md5sum="5eb0f2d31c6591c64a5cd19ceb24d80c" name="lib/form/doctrine/PluginFileDirectoryForm.class.php" role="data" />
    <file baseinstalldir="/" md5sum="5d52038e2769519e87088fc4f2f9a230" name="lib/form/doctrine/PluginManagedFileForm.class.php" role="data" />
    <file baseinstalldir="/" md5sum="39edb2f13e21bb19fe8e6e878ed66ef5" name="lib/model/FileDirectoryQuery.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="cfe85cf8882cc06146cd327836535738" name="lib/model/ManagedFileQuery.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="efb698813edd375638cfe33a6aead67b" name="lib/model/ManagedFileQuery.class.php" role="data" />
    <file baseinstalldir="/" md5sum="8751d0f03f0037df968148071cd2fc1e" name="lib/model/doctrine/PluginDirectoryConfig.class.php" role="data" />
    <file baseinstalldir="/" md5sum="32952099925bab18194a8931fefb1d2e" name="lib/model/doctrine/PluginDirectoryConfigTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="87dff531a5f6683ecd2064f17ecaed93" name="lib/model/doctrine/PluginFileDirectory.class.php" role="data" />
@@ -548,6 +552,21 @@ Add public file search
    <notes>
 0.9.6 との差分
 * マイフォルダにコミュニティに作成したフォルダが表示されているのを修正
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.6.2</release>
+    <api>0.9.6.2</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2014-11-27</date>
+   <license>Apache</license>
+   <notes>
+* 検索しようとするとエラーになるのを修正(refs https://github.com/amashigeseiji/opFileManagePlugin/issues/32)
    </notes>
   </release>
  </changelog>
