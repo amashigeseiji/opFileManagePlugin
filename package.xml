@@ -17,10 +17,10 @@
   <active>yes</active>
  </lead>
  <date>2014-11-27</date>
- <time>04:00:40</time>
+ <time>04:30:38</time>
  <version>
-  <release>0.9.6</release>
-  <api>0.9.6</api>
+  <release>0.9.6.1</release>
+  <api>0.9.6.1</api>
  </version>
  <stability>
   <release>alpha</release>
@@ -28,10 +28,8 @@
  </stability>
  <license>Apache</license>
  <notes>
-* 公開フォルダの利用可否設定を追加 ( https://github.com/amashigeseiji/opFileManagePlugin/issues/25 )
-* 管理画面で利用するフォルダの種類を変更したときにナビゲーションを変更する ( https://github.com/amashigeseiji/opFileManagePlugin/issues/28 )
-* コミュニティにアップロードしたファイルをアップロードしたユーザーが編集・削除できない ( https://github.com/amashigeseiji/opFileManagePlugin/issues/29 )
-* static な呼び出し方をしているメソッドが static に定義されていない ( https://github.com/amashigeseiji/opFileManagePlugin/issues/27 )
+0.9.6 との差分
+* マイフォルダにコミュニティに作成したフォルダが表示されているのを修正
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -107,7 +105,7 @@
    <file baseinstalldir="/" md5sum="8751d0f03f0037df968148071cd2fc1e" name="lib/model/doctrine/PluginDirectoryConfig.class.php" role="data" />
    <file baseinstalldir="/" md5sum="32952099925bab18194a8931fefb1d2e" name="lib/model/doctrine/PluginDirectoryConfigTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="87dff531a5f6683ecd2064f17ecaed93" name="lib/model/doctrine/PluginFileDirectory.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="7bcccaf4a5b3403867a7fb1e7eceb9e8" name="lib/model/doctrine/PluginFileDirectoryTable.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="49b51f3b2ec94e7b650046ae71176d8b" name="lib/model/doctrine/PluginFileDirectoryTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="e87d5c985e5d1fa4b3cd6fccadd8d6aa" name="lib/model/doctrine/PluginManagedFile.class.php" role="data" />
    <file baseinstalldir="/" md5sum="fbc70f645276544ab3b5b57319039e76" name="lib/model/doctrine/PluginManagedFileTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="b1df503ae6623fdf8b99120d362a011b" name="lib/util/opFileManageUtil.class.php" role="data" />
@@ -534,6 +532,22 @@ Add public file search
 * 管理画面で利用するフォルダの種類を変更したときにナビゲーションを変更する ( https://github.com/amashigeseiji/opFileManagePlugin/issues/28 )
 * コミュニティにアップロードしたファイルをアップロードしたユーザーが編集・削除できない ( https://github.com/amashigeseiji/opFileManagePlugin/issues/29 )
 * static な呼び出し方をしているメソッドが static に定義されていない ( https://github.com/amashigeseiji/opFileManagePlugin/issues/27 )
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.6.1</release>
+    <api>0.9.6.1</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2014-11-27</date>
+   <license>Apache</license>
+   <notes>
+0.9.6 との差分
+* マイフォルダにコミュニティに作成したフォルダが表示されているのを修正
    </notes>
   </release>
  </changelog>
