@@ -21,11 +21,11 @@ https://github.com/amashigeseiji/opFileManagePlugin/wiki/How-to-use
   <email />
   <active>yes</active>
  </lead>
- <date>2014-11-27</date>
- <time>06:06:27</time>
+ <date>2014-11-30</date>
+ <time>01:15:08</time>
  <version>
-  <release>0.9.6.2</release>
-  <api>0.9.6.2</api>
+  <release>0.9.6.3</release>
+  <api>0.9.6.3</api>
  </version>
  <stability>
   <release>alpha</release>
@@ -33,7 +33,9 @@ https://github.com/amashigeseiji/opFileManagePlugin/wiki/How-to-use
  </stability>
  <license>Apache</license>
  <notes>
-* 検索しようとするとエラーになるのを修正(refs https://github.com/amashigeseiji/opFileManagePlugin/issues/32)
+issue#33 メンバーのフォルダ一覧が表示されない
+issue#34  他のメンバーのフォルダ一覧ページのページャーをクリックするとエラー
+issue#35  コミュニティにフォルダがない場合に、SNS内のすべてのフォルダ・ファイルが表示される
  </notes>
  <contents>
   <dir baseinstalldir="/" name="/">
@@ -42,17 +44,17 @@ https://github.com/amashigeseiji/opFileManagePlugin/wiki/How-to-use
    <file baseinstalldir="/" md5sum="9b007313dab58620a1980dfe8c641f68" name="apps/pc_backend/modules/opFileManagePlugin/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="32062572ee9445e4bb5ba7c2de714bb9" name="apps/pc_backend/modules/opFileManagePlugin/templates/indexSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="f08cbe2cced3102ee38915b151c27d02" name="apps/pc_frontend/config/app.yml" role="data" />
-   <file baseinstalldir="/" md5sum="c91391aada1df002424e55a59b4332d1" name="apps/pc_frontend/config/routing.yml" role="data" />
+   <file baseinstalldir="/" md5sum="98a6579c8ef7d3c93fddf91efa51afc8" name="apps/pc_frontend/config/routing.yml" role="data" />
    <file baseinstalldir="/" md5sum="d41d8cd98f00b204e9800998ecf8427e" name="apps/pc_frontend/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="6bba903acaeae4da0aa70f90313793e5" name="apps/pc_frontend/i18n/form_community.ja.xml" role="data" />
    <file baseinstalldir="/" md5sum="e40451dc4090c2f1acdf9f35d04eb323" name="apps/pc_frontend/i18n/messages.ja.xml" role="data" />
    <file baseinstalldir="/" md5sum="e362dc9c9954a6f92d59445d9f9e3204" name="apps/pc_frontend/modules/community/config/view.yml" role="data" />
-   <file baseinstalldir="/" md5sum="fb29cbb78a54cb4b168d37b9a3a800ce" name="apps/pc_frontend/modules/directory/actions/actions.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="75b0722a238a9f08a86a653903a664e3" name="apps/pc_frontend/modules/directory/actions/actions.class.php" role="data" />
    <file baseinstalldir="/" md5sum="d99fc1f486af93fd194afaeee741c027" name="apps/pc_frontend/modules/directory/actions/components.class.php" role="data" />
    <file baseinstalldir="/" md5sum="23a85a877ba78a09b520b19d03c3650c" name="apps/pc_frontend/modules/directory/config/security.yml" role="data" />
    <file baseinstalldir="/" md5sum="1e335707b90379f0256e54f022626f70" name="apps/pc_frontend/modules/directory/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="d7c2457f3bc632fb667742b3685b61f3" name="apps/pc_frontend/modules/directory/templates/listCommunitySuccess.php" role="data" />
-   <file baseinstalldir="/" md5sum="13a21c553e247976785247bbbe81e5d4" name="apps/pc_frontend/modules/directory/templates/listMemberSuccess.php" role="data" />
+   <file baseinstalldir="/" md5sum="f1092677a0d4a4f08a3fbd45a245e8e7" name="apps/pc_frontend/modules/directory/templates/listMemberSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="f3c46f7446e46bbc761834daa1bf0daa" name="apps/pc_frontend/modules/directory/templates/listMineSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="00bd821f7b91325996e3da1f216179d0" name="apps/pc_frontend/modules/directory/templates/showSuccess.php" role="data" />
    <file baseinstalldir="/" md5sum="7bd36626e3f1adbce678e6d5a3b877b3" name="apps/pc_frontend/modules/directory/templates/_communityDirectoryCreateModal.php" role="data" />
@@ -64,7 +66,7 @@ https://github.com/amashigeseiji/opFileManagePlugin/wiki/How-to-use
    <file baseinstalldir="/" md5sum="f3f2857a63ba46e13318bbc3b7ae22bc" name="apps/pc_frontend/modules/directory/templates/_listTable.php" role="data" />
    <file baseinstalldir="/" md5sum="58092bed078e2f7747d1e57df95f5890" name="apps/pc_frontend/modules/directory/templates/_smtCommunityDirectoryList.php" role="data" />
    <file baseinstalldir="/" md5sum="61b50349f95196f913b4824b9f70314f" name="apps/pc_frontend/modules/file/actions/actions.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="adf35db8611e25e282d05e4da4650cd6" name="apps/pc_frontend/modules/file/actions/components.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="8d8ca7276ad356ca15d9161f72fd986f" name="apps/pc_frontend/modules/file/actions/components.class.php" role="data" />
    <file baseinstalldir="/" md5sum="23a85a877ba78a09b520b19d03c3650c" name="apps/pc_frontend/modules/file/config/security.yml" role="data" />
    <file baseinstalldir="/" md5sum="1e335707b90379f0256e54f022626f70" name="apps/pc_frontend/modules/file/config/view.yml" role="data" />
    <file baseinstalldir="/" md5sum="f77399afdf2fa862d04fb0f49b1c5c61" name="apps/pc_frontend/modules/file/templates/indexSuccess.php" role="data" />
@@ -102,14 +104,14 @@ https://github.com/amashigeseiji/opFileManagePlugin/wiki/How-to-use
    <file baseinstalldir="/" md5sum="0d4e487db83fd097a1321664f85f3459" name="lib/filter/doctrine/PluginManagedFileFormFilter.class.php" role="data" />
    <file baseinstalldir="/" md5sum="534c76d0b7176bdfd5d2a37d82c47184" name="lib/form/opFileManageConfigurationForm.class.php" role="data" />
    <file baseinstalldir="/" md5sum="e07b021026361f9091586e8c9b7d7f4c" name="lib/form/doctrine/PluginDirectoryConfigForm.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="5eb0f2d31c6591c64a5cd19ceb24d80c" name="lib/form/doctrine/PluginFileDirectoryForm.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="528546827afafa702737f27d6d82014d" name="lib/form/doctrine/PluginFileDirectoryForm.class.php" role="data" />
    <file baseinstalldir="/" md5sum="5d52038e2769519e87088fc4f2f9a230" name="lib/form/doctrine/PluginManagedFileForm.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="39edb2f13e21bb19fe8e6e878ed66ef5" name="lib/model/FileDirectoryQuery.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="efb698813edd375638cfe33a6aead67b" name="lib/model/ManagedFileQuery.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="baa533137c81db1b791142f233d340e5" name="lib/model/FileDirectoryQuery.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="e7ab423c5e058400b8003a4a4cc5aecc" name="lib/model/ManagedFileQuery.class.php" role="data" />
    <file baseinstalldir="/" md5sum="8751d0f03f0037df968148071cd2fc1e" name="lib/model/doctrine/PluginDirectoryConfig.class.php" role="data" />
    <file baseinstalldir="/" md5sum="32952099925bab18194a8931fefb1d2e" name="lib/model/doctrine/PluginDirectoryConfigTable.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="87dff531a5f6683ecd2064f17ecaed93" name="lib/model/doctrine/PluginFileDirectory.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="49b51f3b2ec94e7b650046ae71176d8b" name="lib/model/doctrine/PluginFileDirectoryTable.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="7b7a018ba0e4ffcf5e87ded13a491783" name="lib/model/doctrine/PluginFileDirectory.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="70e409131ac826b33264753affbac0be" name="lib/model/doctrine/PluginFileDirectoryTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="e87d5c985e5d1fa4b3cd6fccadd8d6aa" name="lib/model/doctrine/PluginManagedFile.class.php" role="data" />
    <file baseinstalldir="/" md5sum="fbc70f645276544ab3b5b57319039e76" name="lib/model/doctrine/PluginManagedFileTable.class.php" role="data" />
    <file baseinstalldir="/" md5sum="b1df503ae6623fdf8b99120d362a011b" name="lib/util/opFileManageUtil.class.php" role="data" />
@@ -117,7 +119,7 @@ https://github.com/amashigeseiji/opFileManagePlugin/wiki/How-to-use
    <file baseinstalldir="/" md5sum="8c5171799c0a9d9c1f155785becf4a63" name="lib/validator/opValidatorCommunitySelect.class.php" role="data" />
    <file baseinstalldir="/" md5sum="f680b19e5d60fb18c99af86c1543131b" name="lib/validator/opValidatorDirectory.class.php" role="data" />
    <file baseinstalldir="/" md5sum="b716020f43623e002eaaa95b3cfbd7c0" name="lib/widget/opWidgetFormSelectCommunity.class.php" role="data" />
-   <file baseinstalldir="/" md5sum="778721c5f32c6d4ea372db86c7c09db4" name="lib/widget/opWidgetFormSelectDirectory.class.php" role="data" />
+   <file baseinstalldir="/" md5sum="a11f523ad618b3308b1949c6f649cc72" name="lib/widget/opWidgetFormSelectDirectory.class.php" role="data" />
    <file baseinstalldir="/" md5sum="f00f796ff99e61b13e1d8069097b7965" name="lib/widget/opWidgetFormSelectDirectoryType.class.php" role="data" />
    <file baseinstalldir="/" md5sum="6059fe5458d6348af2659d38af527912" name="test/bootstrap/database.php" role="data" />
    <file baseinstalldir="/" md5sum="155ce720c060aa5fc9e2bbbc779b7a13" name="test/bootstrap/functional.php" role="data" />
@@ -567,6 +569,23 @@ Add public file search
    <license>Apache</license>
    <notes>
 * 検索しようとするとエラーになるのを修正(refs https://github.com/amashigeseiji/opFileManagePlugin/issues/32)
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>0.9.6.3</release>
+    <api>0.9.6.3</api>
+   </version>
+   <stability>
+    <release>alpha</release>
+    <api>alpha</api>
+   </stability>
+   <date>2014-11-30</date>
+   <license>Apache</license>
+   <notes>
+issue#33 メンバーのフォルダ一覧が表示されない
+issue#34  他のメンバーのフォルダ一覧ページのページャーをクリックするとエラー
+issue#35  コミュニティにフォルダがない場合に、SNS内のすべてのフォルダ・ファイルが表示される
    </notes>
   </release>
  </changelog>

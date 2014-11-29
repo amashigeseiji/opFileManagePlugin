@@ -25,12 +25,17 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
 
   public function getMemberDirectoryList($memberId, $allowedTypes = array())
   {
-    return FileDirectoryQuery::getListQueryByMemberId($memberId, Doctrine::getTable('FileDirectory')->getTypes($allowedTypes));
+    return FileDirectoryQuery::getListQueryByMemberId($memberId, self::getTypes($allowedTypes));
   }
 
   public function getCommunityDirectoryList($communityId)
   {
     return FileDirectoryQuery::getListQueryByCommunityId($communityId);
+  }
+
+  public function hasDirectory($memberId)
+  {
+    return (bool)$this->createQuery()->where('member_id = ?', $memberId)->count() > 0;
   }
 
   public function appendRoles(Zend_Acl $acl)
@@ -96,7 +101,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     return $acl;
   }
 
-  public function getTypes($allowedType = array())
+  public static function getTypes($allowedType = array())
   {
     $types = self::$types;
     $unset_array = function($val, $array)

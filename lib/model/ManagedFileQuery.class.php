@@ -16,7 +16,12 @@ class ManagedFileQuery extends Doctrine_Query
   {
     if (is_array($directoryId))
     {
-      return $this->andWhereIn('f.directory_id', $directoryId);
+      if ($directoryId)
+      {
+        return $this->andWhereIn('f.directory_id', $directoryId);
+      }
+
+      return $this->where('f.id = ?', null);
     }
 
     return $this->andWhere('f.directory_id = ?', $directoryId);
@@ -92,6 +97,6 @@ class ManagedFileQuery extends Doctrine_Query
   {
     return self::getOrderedQuery()
       ->addLeftJoinDirectory()
-      ->addDirectoryType(Doctrine::getTable('FileDirectory')->getTypes($allowedTypes));
+      ->addDirectoryType(FileDirectoryTable::getTypes($allowedTypes));
   }
 }
