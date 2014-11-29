@@ -83,7 +83,7 @@ class directoryActions extends sfActions
     opFileManageUtil::setLocalNav('friend', $this->member->id);
 
     $this->pager = FileDirectoryTable::getInstance()
-      ->getMemberDirectoryList(array('public'))
+      ->getMemberDirectoryList($this->member->id, array('public'))
       ->getPager($request->getParameter('page'));
   }
 
