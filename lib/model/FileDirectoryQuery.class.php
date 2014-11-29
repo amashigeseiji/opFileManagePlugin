@@ -65,6 +65,11 @@ class FileDirectoryQuery extends Doctrine_Query
     $directoryIds = Doctrine::getTable('DirectoryConfig')
       ->getDirectoryIdsByCommunityId($communityId);
 
-    return self::getOrderedQuery()->whereIn('id', $directoryIds);
+    if ($directoryIds)
+    {
+      return self::getOrderedQuery()->andWhereIn('id', $directoryIds);
+    }
+
+    return self::create()->where('id = ?', null);
   }
 }
