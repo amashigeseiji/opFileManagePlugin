@@ -92,6 +92,6 @@ class ManagedFileQuery extends Doctrine_Query
   {
     return self::getOrderedQuery()
       ->addLeftJoinDirectory()
-      ->addDirectoryType(Doctrine::getTable('FileDirectory')->getTypes($allowedTypes));
+      ->addDirectoryType(FileDirectoryTable::getTypes($allowedTypes));
   }
 }

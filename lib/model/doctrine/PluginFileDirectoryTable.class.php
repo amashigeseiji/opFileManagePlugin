@@ -25,7 +25,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
 
   public function getMemberDirectoryList($memberId, $allowedTypes = array())
   {
-    return FileDirectoryQuery::getListQueryByMemberId($memberId, Doctrine::getTable('FileDirectory')->getTypes($allowedTypes));
+    return FileDirectoryQuery::getListQueryByMemberId($memberId, self::getTypes($allowedTypes));
   }
 
   public function getCommunityDirectoryList($communityId)
@@ -96,7 +96,7 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     return $acl;
   }
 
-  public function getTypes($allowedType = array())
+  public static function getTypes($allowedType = array())
   {
     $types = self::$types;
     $unset_array = function($val, $array)
