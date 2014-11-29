@@ -46,7 +46,8 @@ class fileComponents extends sfComponents
       throw new Exception('The member object does not specified.');
     }
 
-    if ($member->id !== $this->getContext()->getUser()->getMemberId())
+    if ($member->id !== $this->getContext()->getUser()->getMemberId()
+    || !FileDirectoryTable::getInstance()->hasDirectory($member->id))
     {
       return sfView::NONE;
     }

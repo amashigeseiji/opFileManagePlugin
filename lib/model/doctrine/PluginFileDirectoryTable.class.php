@@ -33,6 +33,11 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
     return FileDirectoryQuery::getListQueryByCommunityId($communityId);
   }
 
+  public function hasDirectory($memberId)
+  {
+    return (bool)$this->createQuery()->where('member_id = ?', $memberId)->count() > 0;
+  }
+
   public function appendRoles(Zend_Acl $acl)
   {
     return $acl
