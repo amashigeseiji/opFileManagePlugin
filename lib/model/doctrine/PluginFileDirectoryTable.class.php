@@ -104,37 +104,13 @@ class PluginFileDirectoryTable extends opAccessControlDoctrineTable
   public static function getTypes($allowedType = array())
   {
     $types = self::$types;
-    $unset_array = function($val, $array)
+
+    foreach ($types as $key => $type)
     {
-      if (is_int($key = array_search($val, $array)))
+      $method = 'isUse' . ucfirst($type);
+      if (!opFileManageConfig::$method() || ($allowedType && !in_array($type, $allowedType)))
       {
-        unset($array[$key]);
-      }
-
-      return array_merge($array);
-    };
-
-    if (!opFileManageConfig::isUsePrivate())
-    {
-      $types = $unset_array('private', $types);
-    }
-    if (!opFileManageConfig::isUseCommunity())
-    {
-      $types = $unset_array('community', $types);
-    }
-    if (!opFileManageConfig::isUsePublic())
-    {
-      $types = $unset_array('public', $types);
-    }
-
-    if ($allowedType)
-    {
-      foreach ($types as $type)
-      {
-        if (!in_array($type, $allowedType))
-        {
-          $types = $unset_array($type, $types);
-        }
+        unset($types[$key]);
       }
     }
 
